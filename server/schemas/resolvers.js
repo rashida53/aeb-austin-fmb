@@ -1,4 +1,4 @@
-const { Cook, Dish, MenuItem } = require('../models');
+const { Cook, Dish, MenuItem, Signup, User } = require('../models');
 const Date = require('./graphql.js')
 
 const resolvers = {
@@ -12,6 +12,9 @@ const resolvers = {
         },
         menus: async () => {
             return MenuItem.find();
+        },
+        signups: async () => {
+            return Signup.find();
         }
     },
 
@@ -24,6 +27,12 @@ const resolvers = {
         },
         addMenu: async (parent, args) => {
             return MenuItem.create(args);
+        },
+        createSignup: async (parent, args) => {
+            return Signup.create(args);
+        },
+        addUser: async (parent, args) => {
+            return User.create(args);
         }
     }
 };

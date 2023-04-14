@@ -21,16 +21,31 @@ type MenuItem {
 
 }
 
+type Signup {
+    _id: ID
+    user: String
+    menuItem: String
+    size: String!
+}
+
+type User {
+    _id: ID
+    fullName: String!
+}
+
 type Query {
     cooks: [Cook]!
     dishes: [Dish]!
     menus: [MenuItem]!
+    signups: [Signup]!
 }
 
 type Mutation {
     addCook(cookId: ID, fullName: String): Cook
     addDish(dishId: ID, dishName: String, dishPhoto: String, category: String): Dish
     addMenu(menuId: ID, dish: String, cook: String): MenuItem
+    createSignup(signupId: ID, user: String, menuItem: String, size: String): Signup
+    addUser(userId: ID, fullName: String): User
 }
 
 `;
