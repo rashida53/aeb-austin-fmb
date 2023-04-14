@@ -14,29 +14,23 @@ type Dish {
     category: String!
 }
 
-type Menu {
+type MenuItem {
     _id: ID
-    dishes: [Dish]
-    cooks: [Cook]
+    dish: String
+    cook: String
 
-}
-
-input menuInput {
-    menuId: ID
-    dishes: String
-    cooks: String
 }
 
 type Query {
     cooks: [Cook]!
     dishes: [Dish]!
-    menus: [Menu]!
+    menus: [MenuItem]!
 }
 
 type Mutation {
     addCook(cookId: ID, fullName: String): Cook
     addDish(dishId: ID, dishName: String, dishPhoto: String, category: String): Dish
-    addMenu(input: menuInput): Menu
+    addMenu(menuId: ID, dish: String, cook: String): MenuItem
 }
 
 `;

@@ -1,5 +1,5 @@
 const Cook = require('./Cook');
 const Dish = require('./Dish');
-const Menu = require('./Menu');
+const MenuItem = require('./MenuItem');
 
-module.exports = { Cook, Dish, Menu };
+module.exports = { Cook, Dish, MenuItem };

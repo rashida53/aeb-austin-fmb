@@ -1,15 +1,15 @@
 const { Schema, model } = require('mongoose');
 
-const menuSchema = new Schema(
+const menuItemSchema = new Schema(
     {
-        dishes: [{
+        dish: {
             type: Schema.Types.ObjectId,
             ref: 'Dish'
-        }],
-        cooks: [{
+        },
+        cook: {
             type: Schema.Types.ObjectId,
             ref: 'Cook'
-        }],
+        },
         // date: {
         //     type: Date,
         //     required: true,
@@ -17,6 +17,6 @@ const menuSchema = new Schema(
     }
 )
 
-const Menu = model('Menu', menuSchema);
+const MenuItem = model('MenuItem', menuItemSchema);
 
-module.exports = Menu;
+module.exports = MenuItem;

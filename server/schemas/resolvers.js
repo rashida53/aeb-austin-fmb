@@ -1,4 +1,4 @@
-const { Cook, Dish, Menu } = require('../models');
+const { Cook, Dish, MenuItem } = require('../models');
 const Date = require('./graphql.js')
 
 const resolvers = {
@@ -11,10 +11,10 @@ const resolvers = {
             return Dish.find();
         },
         menus: async () => {
-            return Menu.find();
+            return MenuItem.find();
         }
     },
-    
+
     Mutation: {
         addCook: async (parent, { fullName }) => {
             return Cook.create({ fullName });
@@ -23,7 +23,7 @@ const resolvers = {
             return Dish.create(args);
         },
         addMenu: async (parent, args) => {
-            return Menu.create(args);
+            return MenuItem.create(args);
         }
     }
 };
