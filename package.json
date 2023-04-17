@@ -14,5 +14,9 @@
   "license": "ISC",
   "devDependencies": {
     "concurrently": "^5.1.0"
+  },
+  "dependencies": {
+    "@hookform/error-message": "^2.0.1",
+    "react-hook-form": "^7.43.3"
   }
 }

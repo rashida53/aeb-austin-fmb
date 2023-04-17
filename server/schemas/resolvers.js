@@ -20,7 +20,8 @@ const resolvers = {
 
     Mutation: {
         addCook: async (parent, { fullName }) => {
-            return Cook.create({ fullName });
+            const cook = await Cook.create({ fullName });
+            return cook;
         },
         addDish: async (parent, args) => {
             return Dish.create(args);
