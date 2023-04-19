@@ -1,21 +1,21 @@
 import React from 'react';
 import { useQuery, useMutation } from "@apollo/client";
 import { useForm } from 'react-hook-form';
-import { ADD_COOK } from '../utils/mutations';
-import { GET_ALL_COOKS, GET_ALL_MENUS } from '../utils/queries';
+import { ADD_COOK, CREATE_SIGNUP } from '../utils/mutations';
+import { GET_ALL_COOKS, GET_ALL_MENUS, GET_SINGLE_SIGNUP } from '../utils/queries';
 
 const Dashboard = () => {
 
-    const { loading: cookLoading, data: cookData } = useQuery(GET_ALL_COOKS);
-    let cooks = cookData?.cooks || [];
+    const { loading: cookLoading, data: getCookData } = useQuery(GET_ALL_COOKS);
+    let cooks = getCookData?.cooks || [];
 
     const { loading, data: menuData } = useQuery(GET_ALL_MENUS);
     let menus = menuData?.menus || [];
 
     const { register, handleSubmit } = useForm();
-    const [addCook, { error, data }] = useMutation(ADD_COOK);
+    const [addCook, { error: cookError, data: addCookData }] = useMutation(ADD_COOK);
 
-    const onSubmit = async (cookData, event) => {
+    const onCookSubmit = async (cookData, event) => {
         try {
             const { data } = await addCook({
                 variables: {
@@ -30,6 +30,25 @@ const Dashboard = () => {
         }
     }
 
+    const { loading: signupLoading, data: getSignupData } = useQuery(GET_SINGLE_SIGNUP);
+    let signups = getSignupData?.signups || [];
+
+    const [createSignup, { error: signupError, data: createSignupData }] = useMutation(CREATE_SIGNUP);
+
+        const onSizeSubmit = async (signupData, event) => {
+            try {
+                const { data } = await createSignup({
+                    variables: {
+                        // menuItem: signupData.menuItem._id,
+                        size: signupData.size
+                    }
+                });
+                console.log("signupData", signupData)
+            } catch (err) {
+                console.error(err);
+            }
+        }
+
 
     return (
         <>
@@ -41,70 +60,36 @@ const Dashboard = () => {
             <section>
                 <h1>Open Menus Available For Signup</h1>
 
-                <ul>
+                <div className="signupsTable">
                     {
                         menus && menus.map((menu) => (
-                            <li key={menu._id}>
-                                <p>{menu.dish.dishName}</p>
-                                <p>{menu.cook.fullName}</p>
-                            </li>
+                    <div className="signupsRow" key={menu._id}>
+                        <p>✎</p>
+                        <p>{menu.dish.dishName}</p>
+                        <p>April 10</p>
+                        <p>{menu.cook.fullName}</p>
+                        <p>Size</p>
+
+                <form onSubmit={handleSubmit(onSizeSubmit)}>
+                    <input {...register("size")} type="radio" id="small" value="small"></input>
+                    <label htmlFor="small">Small</label>
+
+                    {/* <input {...register("size")} type="radio" id="Medium" value="Medium"></input>
+                    <label htmlFor="Medium">Medium</label>
+
+                    <input {...register("size")} type="radio" id="Large" value="Large"></input>
+                    <label htmlFor="Large">Large</label> */}
+
+                    <input type="submit" value="Create Signup" />
+
+                </form>
+                    </div>
                         ))
                     }
 
-                </ul>
-
-                <div className="signupsTable">
-                    <div className="signupsRow">
-                        <p>✎</p>
-                        <p>Dish 1</p>
-                        <p>April 10</p>
-                        <p>Cook 1</p>
-                    </div>
-
-                    <div className="signupsRow">
-                        <p>✎</p>
-                        <p>Dish 2</p>
-                        <p>April 12</p>
-                        <p>Cook 2</p>
-                    </div>
-
-                    <div className="signupsRow">
-                        <p>✎</p>
-                        <p>Dish 3</p>
-                        <p>April 14</p>
-                        <p>Cook 3</p>
-                    </div>
-
-                    <div className="signupsRow">
-                        <p>✎</p>
-                        <p>Dish 4</p>
-                        <p>April 16</p>
-                        <p>Cook 1</p>
-                    </div>
-
-                    <div className="signupsRow">
-                        <p>✎</p>
-                        <p>Dish 5</p>
-                        <p>April 18</p>
-                        <p>Cook 2</p>
-                    </div>
+              
                 </div>
 
-                <h2>Signup Form</h2>
-
-                <form>
-                    <input type="radio" id="small" name="small" value="small"></input>
-                    <label htmlFor="small">Small</label>
-
-                    <input type="radio" id="Medium" name="Medium" value="Medium"></input>
-                    <label htmlFor="Medium">Medium</label>
-
-                    <input type="radio" id="Large" name="Large" value="Large"></input>
-                    <label htmlFor="Large">Large</label>
-
-                    <button type="submit">Submit</button>
-
-                </form>
             </section>
 
             <section>
@@ -122,7 +107,7 @@ const Dashboard = () => {
 
                 </ul>
 
-                <form onSubmit={handleSubmit(onSubmit)}>
+                <form onSubmit={handleSubmit(onCookSubmit)}>
                     <input {...register('fullName', { required: true })}
                         placeholder='Name'
                     ></input>
