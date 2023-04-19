@@ -2,12 +2,15 @@ import React from 'react';
 import { useQuery, useMutation } from "@apollo/client";
 import { useForm } from 'react-hook-form';
 import { ADD_COOK } from '../utils/mutations';
-import { GET_ALL_COOKS } from '../utils/queries';
+import { GET_ALL_COOKS, GET_ALL_MENUS } from '../utils/queries';
 
 const Dashboard = () => {
 
-    const { loading, data: cookData } = useQuery(GET_ALL_COOKS);
-    let cooks = cookData?.cooks || []
+    const { loading: cookLoading, data: cookData } = useQuery(GET_ALL_COOKS);
+    let cooks = cookData?.cooks || [];
+
+    const { loading, data: menuData } = useQuery(GET_ALL_MENUS);
+    let menus = menuData?.menus || [];
 
     const { register, handleSubmit } = useForm();
     const [addCook, { error, data }] = useMutation(ADD_COOK);
@@ -36,8 +39,19 @@ const Dashboard = () => {
             </nav>
 
             <section>
-                <h1>Menu</h1>
-                <h2>Open Signups</h2>
+                <h1>Open Menus Available For Signup</h1>
+
+                <ul>
+                    {
+                        menus && menus.map((menu) => (
+                            <li key={menu._id}>
+                                <p>{menu.dish.dishName}</p>
+                                <p>{menu.cook.fullName}</p>
+                            </li>
+                        ))
+                    }
+
+                </ul>
 
                 <div className="signupsTable">
                     <div className="signupsRow">

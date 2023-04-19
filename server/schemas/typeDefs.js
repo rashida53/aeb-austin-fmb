@@ -16,9 +16,8 @@ type Dish {
 
 type MenuItem {
     _id: ID
-    dish: String
-    cook: String
-
+    dish: Dish
+    cook: Cook
 }
 
 type Signup {
