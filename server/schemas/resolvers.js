@@ -11,7 +11,7 @@ const resolvers = {
             return Dish.find();
         },
         menus: async () => {
-            return MenuItem.find();
+            return MenuItem.find().populate('dish').populate('cook');
         },
         signups: async () => {
             return Signup.find();
