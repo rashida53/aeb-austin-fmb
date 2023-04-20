@@ -6,4 +6,14 @@ export const ADD_COOK = gql `
             fullName
         }
     }
+    `
+
+export const CREATE_SIGNUP = gql `
+    mutation createSignup($user: String $menuItem: String $size: String) {
+        createSignup(user: $user menuItem: $menuItem size: $size) {
+            user
+            menuItem
+            size
+        }
+    }
 `

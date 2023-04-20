@@ -22,3 +22,11 @@ export const GET_ALL_MENUS = gql`
         }
     }
 `
+
+export const GET_SINGLE_SIGNUP = gql`
+    query getSingleSignup {
+        user
+        menuItem
+        size
+    }    
+`
