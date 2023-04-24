@@ -22,8 +22,8 @@ type MenuItem {
 
 type Signup {
     _id: ID
-    user: String
-    menuItem: String
+    user: User
+    menuItem: MenuItem
     size: String!
 }
 

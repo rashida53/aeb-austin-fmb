@@ -1,7 +1,7 @@
 import React from 'react';
 import { useQuery, useMutation } from "@apollo/client";
 import { useForm } from 'react-hook-form';
-import { GET_ALL_COOKS, GET_ALL_MENUS, GET_SINGLE_SIGNUP } from '../utils/queries';
+import { GET_ALL_COOKS, GET_ALL_MENUS, GET_ALL_SIGNUPS } from '../utils/queries';
 import CookCard from '../components/CookCard';
 import CookForm from '../components/CookForm';
 import SignupForm from '../components/SignupForm';
@@ -14,25 +14,12 @@ const Dashboard = () => {
     const { loading, data: menuData } = useQuery(GET_ALL_MENUS);
     let menus = menuData?.menus || [];
 
-    // const { loading: signupLoading, data: getSignupData } = useQuery(GET_SINGLE_SIGNUP);
-    // let signups = getSignupData?.signups || [];
+    const { loading: signupLoading, data: signupData } = useQuery(GET_ALL_SIGNUPS);
+    let signups = signupData?.signups || [];
 
-    // const [createSignup, { error: signupError, data: createSignupData }] = useMutation(CREATE_SIGNUP);
-    // const onSizeSubmit = async (signupData, event) => {
-    //     console.log(event);
-    //     try {
-    //         const { data } = await createSignup({
-    //             variables: {
-    //                 menuItem: event.target.id,
-    //                 user: '64398b289c7e0365b67d0b49',
-    //                 size: signupData.size
-    //             }
-    //         });
-    //         console.log("signupData", data)
-    //     } catch (err) {
-    //         console.error(err);
-    //     }
-    // }
+
+    console.log("menus", menus);
+    console.log("signups", signups);
 
 
     return (
@@ -53,28 +40,29 @@ const Dashboard = () => {
                                 <p>{menu.dish.dishName}</p>
                                 <p>April 10</p>
                                 <p>{menu.cook.fullName}</p>
+
                                 <p>Size</p>
 
                                 <SignupForm id={menu._id} />
 
-                                {/* <form id={menu._id} onSubmit={handleSubmit(onSizeSubmit)}>
-                                    <input {...register("size", { required: true })} type="radio" id="Small" value="Small"></input>
-                                    <label htmlFor="Small">Small</label>
-
-                                    <input {...register("size", { required: true })} type="radio" id="Medium" value="Medium"></input>
-                                    <label htmlFor="Medium">Medium</label>
-
-                                    <input {...register("size", { required: true })} type="radio" id="Large" value="Large"></input>
-                                    <label htmlFor="Large">Large</label>
-
-                                    <input type="submit" value="Create Signup" />
-
-                                </form> */}
                             </div>
                         ))
                     }
 
 
+                </div>
+
+                <div>
+                    {
+                        signups && signups.map((signup) => (
+                            <div>
+                                <p>{signup.user.fullName}</p>
+                                {/* <p>{signup.menuItem}</p> */}
+                                <p>{signup.size}</p>
+                            </div>
+
+                        ))
+                    }
                 </div>
 
             </section>

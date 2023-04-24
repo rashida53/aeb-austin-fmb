@@ -23,10 +23,21 @@ export const GET_ALL_MENUS = gql`
     }
 `
 
-export const GET_SINGLE_SIGNUP = gql`
-    query getSingleSignup {
-        user
-        menuItem
-        size
+export const GET_ALL_SIGNUPS = gql`
+    query getAllSignups {
+        signups {
+            user {
+                _id
+                fullName
+            }
+            menuItem {
+                _id
+                dish {
+                    dishName
+                }
+            }
+            size            
+        }
+        
     }    
 `
