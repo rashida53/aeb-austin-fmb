@@ -14,7 +14,12 @@ const resolvers = {
             return MenuItem.find().populate('dish').populate('cook');
         },
         signups: async () => {
-            return Signup.find();
+            return Signup.find().populate(
+                {
+                    path: 'menuItem',
+                    populate: { path: 'dish cook' },
+                }
+            ).populate('user');
         }
     },
 
