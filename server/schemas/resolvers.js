@@ -31,7 +31,7 @@ const resolvers = {
         addDish: async (parent, args) => {
             return Dish.create(args);
         },
-        addMenu: async (parent, args) => {
+        createMenu: async (parent, args) => {
             return MenuItem.create(args);
         },
         createSignup: async (parent, args) => {

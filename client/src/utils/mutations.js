@@ -21,3 +21,25 @@ export const CREATE_SIGNUP = gql`
         }
     }
 `
+
+export const CREATE_MENU = gql`
+    mutation createMenu($dish: String $cook: String ) {
+        createMenu(dish: $dish cook: $cook) {
+            dish {
+                _id
+            }
+            cook {
+                _id
+            }
+        }
+    }
+`
+
+export const ADD_DISH = gql`
+    mutation addDish($dishName: String! $category: String) {
+        addDish(dishName: $dishName category: $category) {
+            dishName
+            category
+        }
+    }
+`

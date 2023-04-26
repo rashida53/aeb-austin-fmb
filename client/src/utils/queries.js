@@ -9,14 +9,26 @@ export const GET_ALL_COOKS = gql`
     }
 `
 
+export const GET_ALL_DISHES = gql`
+    query getAllDishes {
+        dishes {
+            _id
+            dishName
+            category
+        }
+    }
+`
+
 export const GET_ALL_MENUS = gql`
     query getAllMenus {
         menus {
             _id
             cook {
+                _id
                 fullName
             }
             dish {
+                _id
                 dishName
             }
         }

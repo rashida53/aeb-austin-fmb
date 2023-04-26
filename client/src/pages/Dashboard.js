@@ -49,9 +49,9 @@ const Dashboard = () => {
                         <div className="signup">
                             <div className="signupsRow" key={menu._id}>
                                 <p className="createSignupPencil" onClick={showSignupForm}>✎</p>
-                                <p>{menu.dish.dishName}</p>
+                                <p>{menu.dish?.dishName}</p>
                                 <p>April 10</p>
-                                <p>{menu.cook.fullName}</p>
+                                <p>{menu.cook?.fullName}</p>
 
                             </div>
                             <div className="signupForm">

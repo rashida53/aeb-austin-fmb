@@ -7,6 +7,7 @@ const SignupForm = (props) => {
     const { register, handleSubmit } = useForm();
     const [createSignup, { error: signupError, data: createSignupData }] =
         useMutation(CREATE_SIGNUP);
+
     const onSizeSubmit = async (signupData, event) => {
         console.log(event);
         try {
@@ -19,8 +20,9 @@ const SignupForm = (props) => {
             });
             const signupForm = document.querySelector(".signupForm");
             signupForm.style.visibility = "hidden";
-            window.location.reload();
             console.log("signupData", data);
+            window.location.reload();
+
         } catch (err) {
             console.error(err);
         }

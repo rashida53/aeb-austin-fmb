@@ -9,7 +9,8 @@ h1 {
 nav,
 .signupsRow,
 .signupInputs,
-.sizeOption {
+.sizeOption,
+.dishesRow {
   display: flex;
   justify-content: space-between;
 }
