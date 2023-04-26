@@ -27,6 +27,11 @@ const Dashboard = () => {
     const showAddCook = () => {
         const cookForm = document.querySelector(".cookForm");
         cookForm.style.visibility = "visible"
+    };
+
+    const showSignupForm = () => {
+        const signupForm = document.querySelector(".signupForm");
+        signupForm.style.visibility = "visible"
     }
 
     return (
@@ -43,10 +48,10 @@ const Dashboard = () => {
                     menus.map((menu) => (
                         <div className="signup">
                             <div className="signupsRow" key={menu._id}>
-                                <p>✎</p>
-                                <p>{menu.dish.dishName}</p>
+                                <p className="createSignupPencil" onClick={showSignupForm}>✎</p>
+                                <p>{menu.dish?.dishName}</p>
                                 <p>April 10</p>
-                                <p>{menu.cook.fullName}</p>
+                                <p>{menu.cook?.fullName}</p>
 
                             </div>
                             <div className="signupForm">

@@ -6,7 +6,11 @@ h1 {
   text-align: center;
 }
 
-nav, .signupsRow, .signupInputs, .sizeOption {
+nav,
+.signupsRow,
+.signupInputs,
+.sizeOption,
+.dishesRow {
   display: flex;
   justify-content: space-between;
 }
@@ -32,11 +36,14 @@ nav, .signupsRow, .signupInputs, .sizeOption {
   margin: 0px;
 }
 
-.cookForm {
+.cookForm,
+.signupForm {
   visibility: hidden;
 }
 
-.signupsTable, .cookTiles, .dishesLink {
+.signupsTable,
+.cookTiles,
+.dishesLink {
   margin-bottom: 75px;
 }
 

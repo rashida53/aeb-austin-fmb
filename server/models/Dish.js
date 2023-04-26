@@ -8,7 +8,6 @@ const dishSchema = new Schema(
         },
         dishPhoto: {
             type: String,
-            required: true,
         },
         category: {
             type: String,

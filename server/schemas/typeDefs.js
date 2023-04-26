@@ -10,7 +10,7 @@ type Cook {
 type Dish {
     _id: ID
     dishName: String!
-    dishPhoto: String!
+    dishPhoto: String
     category: String!
 }
 
@@ -42,7 +42,7 @@ type Query {
 type Mutation {
     addCook(cookId: ID, fullName: String): Cook
     addDish(dishId: ID, dishName: String, dishPhoto: String, category: String): Dish
-    addMenu(menuId: ID, dish: String, cook: String): MenuItem
+    createMenu(menuId: ID, dish: String, cook: String): MenuItem
     createSignup(signupId: ID, user: String, menuItem: String, size: String): Signup
     addUser(userId: ID, fullName: String): User
 }
