@@ -1,4 +1,4 @@
-const { Cook, Dish, MenuItem, Signup, User } = require('../models');
+const { Cook, Dish, MenuItem, Signup, User, Category } = require('../models');
 const Date = require('./graphql.js')
 
 const resolvers = {
@@ -20,7 +20,7 @@ const resolvers = {
                     populate: { path: 'dish cook' },
                 }
             ).populate('user');
-        }
+        },
     },
 
     Mutation: {
@@ -39,7 +39,7 @@ const resolvers = {
         },
         addUser: async (parent, args) => {
             return User.create(args);
-        }
+        },
     }
 };
 

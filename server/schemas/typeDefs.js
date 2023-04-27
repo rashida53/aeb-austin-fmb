@@ -11,7 +11,7 @@ type Dish {
     _id: ID
     dishName: String!
     dishPhoto: String
-    category: String!
+    category: String
 }
 
 type MenuItem {
@@ -37,6 +37,7 @@ type Query {
     dishes: [Dish]!
     menus: [MenuItem]!
     signups: [Signup]!
+
 }
 
 type Mutation {

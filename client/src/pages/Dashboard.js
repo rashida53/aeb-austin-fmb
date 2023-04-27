@@ -70,7 +70,7 @@ const Dashboard = () => {
                             <ul>
                                 <li>{signup.user.fullName}</li>
                                 <p>Monday</p>
-                                <p>{signup.menuItem.dish.dishName}</p>
+                                <p>{signup.menuItem?.dish?.dishName}</p>
                                 <p>{signup.size}</p>
                             </ul>
 
