@@ -9,6 +9,15 @@ export const GET_ALL_COOKS = gql`
     }
 `
 
+export const GET_SINGLE_COOK = gql`
+    query getSingleCook($cookId: ID!) {
+        cook(cookId: $cookId) {
+            _id
+            fullName
+        }
+    }
+`
+
 export const GET_ALL_DISHES = gql`
     query getAllDishes {
         dishes {

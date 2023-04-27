@@ -34,6 +34,7 @@ type User {
 
 type Query {
     cooks: [Cook]!
+    cook(cookId: ID!): Cook!
     dishes: [Dish]!
     menus: [MenuItem]!
     signups: [Signup]!

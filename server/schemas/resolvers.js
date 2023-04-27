@@ -7,6 +7,11 @@ const resolvers = {
         cooks: async () => {
             return Cook.find();
         },
+        cook: async (parent, { cookId }) => {
+            return Cook.findOne(
+                { _id: cookId }
+            );
+        },
         dishes: async () => {
             return Dish.find();
         },
