@@ -10,10 +10,15 @@ const menuItemSchema = new Schema(
             type: Schema.Types.ObjectId,
             ref: 'Cook'
         },
-        // date: {
-        //     type: Date,
-        //     required: true,
-        // }
+        amount: {
+            type: Number,
+        },
+        isPaid: {
+            type: Boolean,
+        },
+        menuDate: {
+            type: Date,
+        }
     }
 )
 

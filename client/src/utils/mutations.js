@@ -23,14 +23,16 @@ export const CREATE_SIGNUP = gql`
 `
 
 export const CREATE_MENU = gql`
-    mutation createMenu($dish: String $cook: String ) {
-        createMenu(dish: $dish cook: $cook) {
+    mutation createMenu($dish: String $cook: String $amount: Int $isPaid: Boolean $menuDate: String) {
+        createMenu(dish: $dish cook: $cook amount: $amount isPaid: $isPaid menuDate: $menuDate)  {
             dish {
                 _id
             }
             cook {
                 _id
             }
+            amount
+            isPaid
         }
     }
 `
@@ -40,6 +42,15 @@ export const ADD_DISH = gql`
         addDish(dishName: $dishName category: $category) {
             dishName
             category
+        }
+    }
+`
+
+export const ADD_COST = gql`
+    mutation addCost($menuId: ID $amount: Int) {
+        addCost(menuId: $menuId amount: $amount) {
+            _id
+            amount
         }
     }
 `

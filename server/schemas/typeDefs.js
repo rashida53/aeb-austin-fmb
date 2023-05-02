@@ -18,6 +18,9 @@ type MenuItem {
     _id: ID
     dish: Dish
     cook: Cook
+    amount: Int
+    isPaid: Boolean
+    menuDate: String
 }
 
 type Signup {
@@ -37,6 +40,7 @@ type Query {
     cook(cookId: ID!): Cook!
     dishes: [Dish]!
     menus: [MenuItem]!
+    cookMenuItems(cookId: ID!): [MenuItem]!
     signups: [Signup]!
 
 }
@@ -44,7 +48,8 @@ type Query {
 type Mutation {
     addCook(cookId: ID, fullName: String): Cook
     addDish(dishId: ID, dishName: String, dishPhoto: String, category: String): Dish
-    createMenu(menuId: ID, dish: String, cook: String): MenuItem
+    createMenu(menuId: ID, dish: String, cook: String, amount: Int, isPaid: Boolean menuDate: String): MenuItem
+    addCost(menuId: ID, amount: Int): MenuItem
     createSignup(signupId: ID, user: String, menuItem: String, size: String): Signup
     addUser(userId: ID, fullName: String): User
 }

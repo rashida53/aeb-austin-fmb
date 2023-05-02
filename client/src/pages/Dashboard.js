@@ -6,10 +6,10 @@ import {
   GET_ALL_MENUS,
   GET_ALL_SIGNUPS,
 } from "../utils/queries";
-import CookCard from "../components/CookCard";
 import CookForm from "../components/CookForm";
 import SignupForm from "../components/SignupForm";
 import { Link } from "react-router-dom";
+import { timeConverter } from "../utils/timeConverter";
 
 const Dashboard = () => {
   const { loading: cookLoading, data: getCookData } = useQuery(GET_ALL_COOKS);
@@ -17,6 +17,7 @@ const Dashboard = () => {
 
   const { loading, data: menuData } = useQuery(GET_ALL_MENUS);
   let menus = menuData?.menus || [];
+  console.log("menus", menus)
 
   const { loading: signupLoading, data: signupData } =
     useQuery(GET_ALL_SIGNUPS);
@@ -30,13 +31,23 @@ const Dashboard = () => {
     cookForm.style.visibility = "visible";
   };
 
-  const showSignupForm = () => {
-    const signupForm = document.querySelector(".signupForm");
+  const showSignupForm = (event) => {
+    hideAllForms();
+    const signupForm = document.getElementById("form" + event.target.id);
     signupForm.style.visibility = "visible";
   };
 
+  function hideAllForms() {
+    var allSignupDivs = document.getElementsByClassName("signupForm");
+    if (allSignupDivs.length > 0) {
+      for (var i = 0; i < allSignupDivs.length; i++) {
+        allSignupDivs[i].style.visibility = "hidden";
+      }
+    }
+  };
+
   return (
-    <>
+    <div className="mainContainer">
       <nav>
         <h3>Dashboard</h3>
         <h3>Sign Out</h3>
@@ -49,14 +60,14 @@ const Dashboard = () => {
           menus.map((menu) => (
             <div className="signup">
               <div className="signupsRow" key={menu._id}>
-                <p className="createSignupPencil" onClick={showSignupForm}>
+                <p id={menu._id} className="createSignupPencil" onClick={showSignupForm}>
                   ✎
                 </p>
                 <p>{menu.dish?.dishName}</p>
-                <p>April 10</p>
+                <p>{timeConverter(menu.menuDate)}</p>
                 <p>{menu.cook?.fullName}</p>
               </div>
-              <div className="signupForm">
+              <div id={"form" + menu._id} className="signupForm">
                 <SignupForm id={menu._id} />
               </div>
             </div>
@@ -84,24 +95,27 @@ const Dashboard = () => {
       <div className="cookTiles">
         {cooks &&
           cooks.map((cook) => (
-              <Link to={`/cook/${cook._id}`}>
-            <div className="cookTile" key={cook._id}>
+            <Link to={`/cook/${cook._id}`}>
+              <div className="cookTile" key={cook._id}>
                 <p>{cook.fullName}</p>
-            </div>
-              </Link>
+              </div>
+            </Link>
           ))}
         <div className="cookTile">
           <p className="addCookPlus" onClick={showAddCook}>
             +
           </p>
         </div>
+
+      </div>
+      <div>
         <CookForm />
       </div>
 
       <Link to="/dishes">
-      <h1 className="dishes">Dishes</h1>
+        <h1 className="dishes">Dishes</h1>
       </Link>
-    </>
+    </div>
   );
 };
 

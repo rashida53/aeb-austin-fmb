@@ -40,7 +40,7 @@ const Dishes = () => {
                     <div>
                         <div>
                             <ul>
-                                <li>{dish.dishName}</li>
+                                <li key={dish._id} id={dish._id}>{dish.dishName}</li>
                             </ul>
                         </div>
 
