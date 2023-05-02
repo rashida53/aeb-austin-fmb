@@ -47,6 +47,18 @@ nav,
   margin-bottom: 75px;
 }
 
+
+.mainContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.signupsTable {
+  max-width: 600px;
+
+}
+
 .signup {
   margin-bottom: 40px;
 }

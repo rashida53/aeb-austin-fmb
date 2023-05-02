@@ -10,11 +10,14 @@ const CreateMenuForm = () => {
     const [createMenu, { data: createMenuData }] = useMutation(CREATE_MENU);
 
     const onSubmit = async (menuData, event) => {
+        const amount = parseFloat(menuData.amount);
         try {
             const { data } = await createMenu({
                 variables: {
                     dish: menuData.dishId,
                     cook: menuData.cookId,
+                    menuDate: menuData.menuDate,
+                    isPaid: false
                 },
             });
             console.log("menu data", menuData)
@@ -35,14 +38,15 @@ const CreateMenuForm = () => {
             <form onSubmit={handleSubmit(onSubmit)} >
                 <select {...register("dishId", { required: true })}>
                     {dishes && dishes.map((dish) => (
-                        <option value={dish._id}>{dish.dishName}</option>
+                        <option key={dish._id} value={dish._id}>{dish.dishName}</option>
                     ))}
                 </select>
                 <select {...register("cookId", { required: true })}>
                     {cooks && cooks.map((cook) => (
-                        <option value={cook._id}>{cook.fullName}</option>
+                        <option key={cook._id} value={cook._id}>{cook.fullName}</option>
                     ))}
                 </select>
+                <input type="datetime-local" format="yyyy-MM-dd" {...register("menuDate")}></input>
 
                 <input type='submit' value='Create' />
 

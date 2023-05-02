@@ -40,6 +40,7 @@ export const GET_ALL_MENUS = gql`
                 _id
                 dishName
             }
+            menuDate
         }
     }
 `
@@ -61,4 +62,22 @@ export const GET_ALL_SIGNUPS = gql`
         }
         
     }    
+`
+
+export const GET_COOKS_MENU_ITEMS = gql`
+    query getCooksMenuItems($cookId: ID!) {
+        cookMenuItems(cookId: $cookId) {
+            _id
+            cook {
+                _id
+                fullName
+            }
+            dish {
+                _id
+                dishName
+            }
+            menuDate
+            amount
+        }
+    }
 `

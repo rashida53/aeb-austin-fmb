@@ -15,8 +15,15 @@ const resolvers = {
         dishes: async () => {
             return Dish.find();
         },
-        menus: async () => {
+        menus: async (parent, args) => {
             return MenuItem.find().populate('dish').populate('cook');
+        },
+        cookMenuItems: async (parent, { cookId }) => {
+            return MenuItem.find(
+                {
+                    cook: cookId
+                }
+            ).populate('dish').populate('cook');
         },
         signups: async () => {
             return Signup.find().populate(
@@ -45,6 +52,15 @@ const resolvers = {
         addUser: async (parent, args) => {
             return User.create(args);
         },
+        addCost: async (parent, { menuId, amount }) => {
+            return MenuItem.findOneAndUpdate(
+                { _id: menuId },
+                {
+                    amount: amount
+                },
+                { new: true }
+            )
+        }
     }
 };
 
