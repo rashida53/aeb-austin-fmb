@@ -1,10 +1,11 @@
 import React from 'react';
 import { useQuery, useMutation } from '@apollo/client'
-import { GET_SINGLE_COOK, GET_COOKS_MENU_ITEMS } from "../utils/queries";
+import { GET_SINGLE_COOK, GET_COOKS_MENU_ITEMS, GET_COOKS_MENU_ITEMS_BY_DATE } from "../utils/queries";
 import { useForm } from 'react-hook-form'
 import { useParams } from 'react-router-dom';
 import { timeConverter } from '../utils/timeConverter';
 import { ADD_COST } from '../utils/mutations';
+import AddCostForm from '../components/AddCostForm';
 
 const Cook = () => {
     const { cookId: cookParam } = useParams();
@@ -14,23 +15,9 @@ const Cook = () => {
     const { loading: cookItemsLoading, data: cookItemsData } = useQuery(GET_COOKS_MENU_ITEMS, { variables: { cookId: cookParam } });
     const cookMenus = cookItemsData?.cookMenuItems;
 
-    const { register, handleSubmit } = useForm();
-    const [addCost] = useMutation(ADD_COST);
-
-    const onSubmit = async (costData, event) => {
-        const amount = parseFloat(costData.amount);
-        try {
-            const { data } = await addCost({
-                variables: {
-                    menuId: event.target.id,
-                    amount: amount,
-                },
-            });
-            console.log("cost data", costData);
-        } catch (err) {
-            console.error(err);
-        }
-    };
+    const { loading: cookMenuItemsLoading, data: cookMenuItemsData } = useQuery(GET_COOKS_MENU_ITEMS_BY_DATE, { variables: { cookId: cookParam } });
+    const cookMenuItems = cookMenuItemsData?.cookMenuItemsByDate;
+    console.log(cookMenuItemsData);
 
     return (
         <>
@@ -39,7 +26,7 @@ const Cook = () => {
             <h1>This Week's Dishes</h1>
 
             <div>
-                {cookMenus && cookMenus.map((cookMenu) => (
+                {cookMenuItems && cookMenuItems.map((cookMenu) => (
                     <div className="weeklyDishContainer">
                         <div className="dishesRow">
                             <p>{cookMenu.dish.dishName}</p>
@@ -79,10 +66,7 @@ const Cook = () => {
                                 <p>{cookMenu.amount}</p>
                                 <p>{timeConverter(cookMenu.menuDate)}</p>
 
-                                <form onSubmit={handleSubmit(onSubmit)} id={cookMenu._id} >
-                                    <input {...register("amount", { required: true })} placeholder="Amount"></input>
-                                    <input type="submit" value="Add cost"></input>
-                                </form>
+                                <AddCostForm id={cookMenu._id} />
                             </div>
 
                         </div>

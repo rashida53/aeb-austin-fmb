@@ -5,6 +5,7 @@ import {
   GET_ALL_COOKS,
   GET_ALL_MENUS,
   GET_ALL_SIGNUPS,
+  GET_OPEN_MENUS
 } from "../utils/queries";
 import CookForm from "../components/CookForm";
 import SignupForm from "../components/SignupForm";
@@ -18,6 +19,9 @@ const Dashboard = () => {
   const { loading, data: menuData } = useQuery(GET_ALL_MENUS);
   let menus = menuData?.menus || [];
   console.log("menus", menus)
+
+  const { loading: openMenuLoading, data: openMenuData } = useQuery(GET_OPEN_MENUS);
+  let openMenus = openMenuData?.openMenus || [];
 
   const { loading: signupLoading, data: signupData } =
     useQuery(GET_ALL_SIGNUPS);
@@ -56,8 +60,8 @@ const Dashboard = () => {
       <h1>Open Menus Available For Signup</h1>
 
       <div className="signupsTable">
-        {menus &&
-          menus.map((menu) => (
+        {openMenus &&
+          openMenus.map((menu) => (
             <div className="signup">
               <div className="signupsRow" key={menu._id}>
                 <p id={menu._id} className="createSignupPencil" onClick={showSignupForm}>
