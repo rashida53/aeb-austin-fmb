@@ -54,3 +54,12 @@ export const ADD_COST = gql`
         }
     }
 `
+
+export const MENU_PAID = gql`
+    mutation menuPaid($menuId: ID $isPaid: Boolean) {
+        menuPaid(menuId: $menuId isPaid: $isPaid) {
+            _id
+            isPaid
+        }
+    }
+`

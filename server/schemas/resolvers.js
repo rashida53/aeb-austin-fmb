@@ -26,6 +26,22 @@ const resolvers = {
                 }
             ).populate('dish').populate('cook');
         },
+        getCooksUnpaidMenus: async (parent, { cookId }) => {
+            return MenuItem.find(
+                {
+                    cook: cookId,
+                    isPaid: false
+                }
+            ).populate('dish').populate('cook');
+        },
+        getCooksPaidMenus: async (parent, { cookId }) => {
+            return MenuItem.find(
+                {
+                    cook: cookId,
+                    isPaid: true
+                }
+            ).populate('dish').populate('cook');
+        },
         thisWeeksDishes: async () => {
             var currentDate = new Date();
             var beforeSevenDays = new Date(currentDate.setDate(currentDate.getDate() - 7));
@@ -84,6 +100,15 @@ const resolvers = {
                 { _id: menuId },
                 {
                     amount: amount
+                },
+                { new: true }
+            )
+        },
+        menuPaid: async (parent, { menuId, isPaid }) => {
+            return MenuItem.findOneAndUpdate(
+                { _id: menuId },
+                {
+                    isPaid: isPaid,
                 },
                 { new: true }
             )
