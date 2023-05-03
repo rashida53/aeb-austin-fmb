@@ -57,6 +57,7 @@ export const GET_ALL_SIGNUPS = gql`
                 dish {
                     dishName
                 }
+                menuDate
             }
             size            
         }
@@ -64,10 +65,64 @@ export const GET_ALL_SIGNUPS = gql`
     }    
 `
 
+export const GET_OPEN_MENUS = gql`
+    query getOpenMenus {
+        openMenus {
+             _id
+            cook {
+                _id
+                fullName
+            }
+            dish {
+                _id
+                dishName
+            }
+            menuDate
+            amount
+        }
+    }
+`
+
+export const GET_THIS_WEEKS_DISHES = gql`
+    query getThisWeeksDishes {
+        thisWeeksDishes {
+             _id
+            cook {
+                _id
+                fullName
+            }
+            dish {
+                _id
+                dishName
+            }
+            menuDate
+            amount
+        }
+    }
+`
+
 export const GET_COOKS_MENU_ITEMS = gql`
     query getCooksMenuItems($cookId: ID!) {
         cookMenuItems(cookId: $cookId) {
             _id
+            cook {
+                _id
+                fullName
+            }
+            dish {
+                _id
+                dishName
+            }
+            menuDate
+            amount
+        }
+    }
+`
+
+export const GET_COOKS_MENU_ITEMS_BY_DATE = gql`
+    query getCooksMenuItemsByDate($cookId: ID!) {
+        cookMenuItemsByDate(cookId: $cookId) {
+             _id
             cook {
                 _id
                 fullName

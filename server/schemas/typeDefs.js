@@ -40,7 +40,10 @@ type Query {
     cook(cookId: ID!): Cook!
     dishes: [Dish]!
     menus: [MenuItem]!
+    openMenus: [MenuItem]!
+    thisWeeksDishes: [MenuItem]!
     cookMenuItems(cookId: ID!): [MenuItem]!
+    cookMenuItemsByDate(cookId: ID!): [MenuItem]!
     signups: [Signup]!
 
 }

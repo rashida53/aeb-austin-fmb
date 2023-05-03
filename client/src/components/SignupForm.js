@@ -9,7 +9,6 @@ const SignupForm = (props) => {
         useMutation(CREATE_SIGNUP);
 
     const onSizeSubmit = async (signupData, event) => {
-        console.log(event);
         try {
             const { data } = await createSignup({
                 variables: {

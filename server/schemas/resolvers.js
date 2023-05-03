@@ -1,5 +1,4 @@
 const { Cook, Dish, MenuItem, Signup, User, Category } = require('../models');
-const Date = require('./graphql.js')
 
 const resolvers = {
 
@@ -17,6 +16,34 @@ const resolvers = {
         },
         menus: async (parent, args) => {
             return MenuItem.find().populate('dish').populate('cook');
+        },
+        openMenus: async () => {
+            var currentDate = new Date();
+            var beforeThreeDays = new Date(currentDate.setDate(currentDate.getDate() - 3));
+            return MenuItem.find(
+                {
+                    menuDate: { "$gte": beforeThreeDays }
+                }
+            ).populate('dish').populate('cook');
+        },
+        thisWeeksDishes: async () => {
+            var currentDate = new Date();
+            var beforeSevenDays = new Date(currentDate.setDate(currentDate.getDate() - 7));
+            return MenuItem.find(
+                {
+                    menuDate: { "$gte": beforeSevenDays }
+                }
+            ).populate('dish').populate('cook');
+        },
+        cookMenuItemsByDate: async (parent, { cookId }) => {
+            var currentDate = new Date();
+            var beforeSevenDays = new Date(currentDate.setDate(currentDate.getDate() - 7));
+            return MenuItem.find(
+                {
+                    cook: cookId,
+                    menuDate: { "$gte": beforeSevenDays }
+                }
+            ).populate('dish').populate('cook');
         },
         cookMenuItems: async (parent, { cookId }) => {
             return MenuItem.find(
