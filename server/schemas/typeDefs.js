@@ -41,6 +41,7 @@ type Query {
     dishes: [Dish]!
     menus: [MenuItem]!
     openMenus: [MenuItem]!
+    thisWeeksDishes: [MenuItem]!
     cookMenuItems(cookId: ID!): [MenuItem]!
     cookMenuItemsByDate(cookId: ID!): [MenuItem]!
     signups: [Signup]!

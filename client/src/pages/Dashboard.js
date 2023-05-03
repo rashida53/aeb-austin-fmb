@@ -86,7 +86,7 @@ const Dashboard = () => {
             <div>
               <ul>
                 <li>{signup.user.fullName}</li>
-                <p>Monday</p>
+                <p>{timeConverter(signup.menuItem.menuDate)}</p>
                 <p>{signup.menuItem?.dish?.dishName}</p>
                 <p>{signup.size}</p>
               </ul>

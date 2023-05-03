@@ -37,25 +37,6 @@ const Cook = () => {
 
                 ))}
 
-                <div>
-                    <h1>Dish History</h1>
-
-                    <p>Dish1</p>
-                    <p>$10</p>
-                    <p>April 2023</p>
-                    <p>Dish1</p>
-                    <p>$12</p>
-                    <p>Feb 2023</p>
-                    <p>Dish1</p>
-                    <p>$9</p>
-                    <p>Jan 2023</p>
-                    <p>Dish2</p>
-                    <p>$15</p>
-                    <p>Jan 2023</p>
-                    <p>Dish 3</p>
-                    <p>$20</p>
-                    <p>Jan 2023</p>
-                </div>
 
                 <div>
                     <h1>Pending Payments</h1>

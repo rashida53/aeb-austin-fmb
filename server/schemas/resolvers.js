@@ -26,6 +26,15 @@ const resolvers = {
                 }
             ).populate('dish').populate('cook');
         },
+        thisWeeksDishes: async () => {
+            var currentDate = new Date();
+            var beforeSevenDays = new Date(currentDate.setDate(currentDate.getDate() - 7));
+            return MenuItem.find(
+                {
+                    menuDate: { "$gte": beforeSevenDays }
+                }
+            ).populate('dish').populate('cook');
+        },
         cookMenuItemsByDate: async (parent, { cookId }) => {
             var currentDate = new Date();
             var beforeSevenDays = new Date(currentDate.setDate(currentDate.getDate() - 7));

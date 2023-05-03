@@ -1,8 +1,9 @@
 import React from "react";
 import { useQuery, useMutation } from "@apollo/client";
-import { GET_ALL_MENUS, GET_ALL_DISHES } from "../utils/queries";
+import { GET_ALL_MENUS, GET_ALL_DISHES, GET_THIS_WEEKS_DISHES } from "../utils/queries";
 import CreateMenuForm from "../components/CreateMenuForm";
 import AddDishForm from "../components/AddDishForm";
+import { timeConverter } from "../utils/timeConverter";
 
 const Dishes = () => {
 
@@ -12,9 +13,8 @@ const Dishes = () => {
     const { loading: dishLoading, data: getDishData } = useQuery(GET_ALL_DISHES);
     let dishes = getDishData?.dishes || [];
 
-    console.log("dishes", dishes)
-
-    console.log(menus);
+    const { loading: thisWeekDishLoading, data: thisWeekDishData } = useQuery(GET_THIS_WEEKS_DISHES);
+    let thisWeeksDishes = thisWeekDishData?.thisWeeksDishes || [];
 
 
     return (
@@ -22,11 +22,11 @@ const Dishes = () => {
             <h1>This Week's Dishes</h1>
 
             <div>
-                {menus && menus.map((menu) => (
+                {thisWeeksDishes && thisWeeksDishes.map((menu) => (
                     <div className="weeklyDishContainer">
                         <div className="dishesRow">
                             <p>{menu.dish?.dishName}</p>
-                            <p>April 10</p>
+                            <p>{timeConverter(menu.menuDate)}</p>
                             <p>{menu.cook?.fullName}</p>
                         </div>
                     </div>
