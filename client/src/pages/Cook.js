@@ -1,10 +1,10 @@
 import React from 'react';
 import { useQuery, useMutation } from '@apollo/client'
-import { GET_SINGLE_COOK, GET_COOKS_MENU_ITEMS, GET_COOKS_MENU_ITEMS_BY_DATE } from "../utils/queries";
+import { GET_SINGLE_COOK, GET_COOKS_MENU_ITEMS, GET_COOKS_MENU_ITEMS_BY_DATE, GET_COOKS_UNPAID_MENUS, GET_COOKS_PAID_MENUS } from "../utils/queries";
 import { useForm } from 'react-hook-form'
 import { useParams } from 'react-router-dom';
 import { timeConverter } from '../utils/timeConverter';
-import { ADD_COST } from '../utils/mutations';
+import { MENU_PAID } from '../utils/mutations';
 import AddCostForm from '../components/AddCostForm';
 
 const Cook = () => {
@@ -19,13 +19,35 @@ const Cook = () => {
     const cookMenuItems = cookMenuItemsData?.cookMenuItemsByDate;
     console.log(cookMenuItemsData);
 
+    const { loading: cooksUnpaidMenusLoading, data: cooksUnpaidMenusData } = useQuery(GET_COOKS_UNPAID_MENUS, { variables: { cookId: cookParam } });
+    const cooksUnpaidMenus = cooksUnpaidMenusData?.getCooksUnpaidMenus;
+
+    const { loading: cooksPaidMenusLoading, data: cooksPaidMenusData } = useQuery(GET_COOKS_PAID_MENUS, { variables: { cookId: cookParam } });
+    const cooksPaidMenus = cooksPaidMenusData?.getCooksPaidMenus;
+
+    const [menuPaid] = useMutation(MENU_PAID);
+
+    const menuPaidButton = async (event) => {
+        try {
+            const { data } = await menuPaid({
+                variables: {
+                    menuId: event.target.id,
+                    isPaid: true
+                },
+            });
+            window.location.reload(); 
+        } catch (err) {
+            console.error(err);
+        }
+    }
+
     return (
         <>
             <h1>{cook.fullName}</h1>
 
             <h1>This Week's Dishes</h1>
 
-            <div>
+            <div className="mainContainer">
                 {cookMenuItems && cookMenuItems.map((cookMenu) => (
                     <div className="weeklyDishContainer">
                         <div className="dishesRow">
@@ -40,7 +62,7 @@ const Cook = () => {
 
                 <div>
                     <h1>Pending Payments</h1>
-                    {cookMenus && cookMenus.map((cookMenu) => (
+                    {cooksUnpaidMenus && cooksUnpaidMenus.map((cookMenu) => (
                         <div className="weeklyDishContainer">
                             <div className="dishesRow">
                                 <p>{cookMenu.dish.dishName}</p>
@@ -48,14 +70,27 @@ const Cook = () => {
                                 <p>{timeConverter(cookMenu.menuDate)}</p>
 
                                 <AddCostForm id={cookMenu._id} />
+                                <button onClick={menuPaidButton} id={cookMenu._id}>Paid</button>
                             </div>
 
                         </div>
-
                     ))}
-
-
                 </div>
+
+                <div>
+                    <h1>Payment History</h1>
+                    {cooksPaidMenus && cooksPaidMenus.map((cookMenu) => (
+                        <div className="weeklyDishContainer">
+                            <div className="dishesRow">
+                                <p>{cookMenu.dish.dishName}</p>
+                                <p>{cookMenu.amount}</p>
+                                <p>{timeConverter(cookMenu.menuDate)}</p>
+                            </div>
+
+                        </div>
+                    ))}
+                </div>
+
             </div>
         </>
     )

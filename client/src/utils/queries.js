@@ -136,3 +136,39 @@ export const GET_COOKS_MENU_ITEMS_BY_DATE = gql`
         }
     }
 `
+
+export const GET_COOKS_UNPAID_MENUS = gql`
+    query getCooksUnpaidMenus($cookId: ID!) {
+        getCooksUnpaidMenus(cookId: $cookId) {
+            _id
+            cook {
+                _id
+                fullName
+            }
+            dish {
+                _id
+                dishName
+            }
+            menuDate
+            amount
+        }
+    }
+`
+
+export const GET_COOKS_PAID_MENUS = gql`
+    query getCooksPaidMenus($cookId: ID!) {
+        getCooksPaidMenus(cookId: $cookId) {
+            _id
+            cook {
+                _id
+                fullName
+            }
+            dish {
+                _id
+                dishName
+            }
+            menuDate
+            amount
+        }
+    }
+`
