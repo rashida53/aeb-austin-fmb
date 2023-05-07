@@ -58,6 +58,7 @@ type Mutation {
     createSignup(signupId: ID, user: String, menuItem: String, size: String): Signup
     addUser(userId: ID, fullName: String): User
     menuPaid(menuId: ID, isPaid: Boolean): MenuItem
+    returnToPending(menuId: ID, isPaid: Boolean): MenuItem
 }
 
 `;

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useQuery, useMutation } from "@apollo/client";
 import { useForm } from "react-hook-form";
 import { ADD_DISH } from "../utils/mutations";
@@ -23,7 +23,7 @@ const AddDishForm = () => {
 
     return (
         <>
-            <form onSubmit={handleSubmit(onSubmit)} >
+            <form onSubmit={handleSubmit(onSubmit)}>
                 <input {...register("dishName", { required: true })} placeholder="Name"></input>
                 <input {...register("category", { required: true })} placeholder="Category"></input>
                 <input type="submit" value="Add dish"></input>

@@ -112,6 +112,13 @@ const resolvers = {
                 },
                 { new: true }
             )
+        },
+        returnToPending: async (parent, { menuId, isPaid }) => {
+            return MenuItem.findOneAndUpdate(
+                { _id: menuId },
+                { isPaid: false },
+                { new: true }
+            )
         }
     }
 };

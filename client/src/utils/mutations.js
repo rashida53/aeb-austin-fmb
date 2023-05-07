@@ -63,3 +63,12 @@ export const MENU_PAID = gql`
         }
     }
 `
+
+export const RETURN_TO_PENDING = gql`
+    mutation returnToPending($menuId: ID $isPaid: Boolean) {
+        returnToPending(menuId: $menuId isPaid: $isPaid) {
+            _id
+            isPaid
+        }
+    }
+`
