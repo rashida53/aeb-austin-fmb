@@ -33,6 +33,12 @@ type Signup {
 type User {
     _id: ID
     fullName: String!
+    email: String!
+}
+
+type Auth {
+    token: ID!
+    me: User
 }
 
 type Query {
@@ -47,16 +53,20 @@ type Query {
     getCooksUnpaidMenus(cookId: ID!): [MenuItem]!
     getCooksPaidMenus(cookId: ID!): [MenuItem]!
     signups: [Signup]!
+    users: [User]!
+    user(userId: ID!): User
+    me: User
 
 }
 
 type Mutation {
+    login(email: String!, password: String!): Auth
+    addUser(email: String!, password: String!, fullName: String!): Auth
     addCook(cookId: ID, fullName: String): Cook
     addDish(dishId: ID, dishName: String, dishPhoto: String, category: String): Dish
     createMenu(menuId: ID, dish: String, cook: String, amount: Int, isPaid: Boolean menuDate: String): MenuItem
     addCost(menuId: ID, amount: Int): MenuItem
     createSignup(signupId: ID, user: String, menuItem: String, size: String): Signup
-    addUser(userId: ID, fullName: String): User
     menuPaid(menuId: ID, isPaid: Boolean): MenuItem
     returnToPending(menuId: ID, isPaid: Boolean): MenuItem
 }

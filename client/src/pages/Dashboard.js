@@ -11,6 +11,8 @@ import CookForm from "../components/CookForm";
 import SignupForm from "../components/SignupForm";
 import { Link } from "react-router-dom";
 import { timeConverter } from "../utils/timeConverter";
+import Auth from '../utils/auth';
+import { Navigate } from 'react-router-dom';
 
 const Dashboard = () => {
   const { loading: cookLoading, data: getCookData } = useQuery(GET_ALL_COOKS);
@@ -51,75 +53,78 @@ const Dashboard = () => {
   };
 
   return (
-    <div className="mainContainer">
-      <nav>
-        <h3>Dashboard</h3>
-        <h3>Sign Out</h3>
-      </nav>
+    <>
+      {!Auth.loggedIn() && <Navigate to='/login' />}
+      <div className="mainContainer">
+        <nav>
+          <h3>Dashboard</h3>
+          <h3>Sign Out</h3>
+        </nav>
 
-      <h1>Open Menus Available For Signup</h1>
+        <h1>Open Menus Available For Signup</h1>
 
-      <div className="signupsTable">
-        {openMenus &&
-          openMenus.map((menu) => (
-            <div className="signup">
-              <div className="signupsRow" key={menu._id}>
-                <p id={menu._id} className="createSignupPencil" onClick={showSignupForm}>
-                  ✎
-                </p>
-                <p>{menu.dish?.dishName}</p>
-                <p>{timeConverter(menu.menuDate)}</p>
-                <p>{menu.cook?.fullName}</p>
+        <div className="signupsTable">
+          {openMenus &&
+            openMenus.map((menu) => (
+              <div className="signup">
+                <div className="signupsRow" key={menu._id}>
+                  <p id={menu._id} className="createSignupPencil" onClick={showSignupForm}>
+                    ✎
+                  </p>
+                  <p>{menu.dish?.dishName}</p>
+                  <p>{timeConverter(menu.menuDate)}</p>
+                  <p>{menu.cook?.fullName}</p>
+                </div>
+                <div id={"form" + menu._id} className="signupForm">
+                  <SignupForm id={menu._id} />
+                </div>
               </div>
-              <div id={"form" + menu._id} className="signupForm">
-                <SignupForm id={menu._id} />
-              </div>
-            </div>
-          ))}
-      </div>
-
-      <h1>Your Signups</h1>
-
-      <div className="signupsContainer">
-        {signups &&
-          signups.map((signup) => (
-            <div>
-              <ul>
-                <li>{signup.user.fullName}</li>
-                <p>{timeConverter(signup.menuItem.menuDate)}</p>
-                <p>{signup.menuItem?.dish?.dishName}</p>
-                <p>{signup.size}</p>
-              </ul>
-            </div>
-          ))}
-      </div>
-
-      <h1>Cooks</h1>
-
-      <div className="cookTiles">
-        {cooks &&
-          cooks.map((cook) => (
-            <Link to={`/cook/${cook._id}`}>
-              <div className="cookTile" key={cook._id}>
-                <p>{cook.fullName}</p>
-              </div>
-            </Link>
-          ))}
-        <div className="cookTile">
-          <p className="addCookPlus" onClick={showAddCook}>
-            +
-          </p>
+            ))}
         </div>
 
-      </div>
-      <div>
-        <CookForm />
-      </div>
+        <h1>Your Signups</h1>
 
-      <Link to="/dishes">
-        <h1 className="dishes">Dishes</h1>
-      </Link>
-    </div>
+        <div className="signupsContainer">
+          {signups &&
+            signups.map((signup) => (
+              <div>
+                <ul>
+                  <li>{signup.user.fullName}</li>
+                  <p>{timeConverter(signup.menuItem.menuDate)}</p>
+                  <p>{signup.menuItem?.dish?.dishName}</p>
+                  <p>{signup.size}</p>
+                </ul>
+              </div>
+            ))}
+        </div>
+
+        <h1>Cooks</h1>
+
+        <div className="cookTiles">
+          {cooks &&
+            cooks.map((cook) => (
+              <Link to={`/cook/${cook._id}`}>
+                <div className="cookTile" key={cook._id}>
+                  <p>{cook.fullName}</p>
+                </div>
+              </Link>
+            ))}
+          <div className="cookTile">
+            <p className="addCookPlus" onClick={showAddCook}>
+              +
+            </p>
+          </div>
+
+        </div>
+        <div>
+          <CookForm />
+        </div>
+
+        <Link to="/dishes">
+          <h1 className="dishes">Dishes</h1>
+        </Link>
+      </div>
+    </>
   );
 };
 

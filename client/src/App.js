@@ -12,6 +12,7 @@ import "./App.css";
 import Dashboard from "./pages/Dashboard";
 import Dishes from "./pages/Dishes";
 import Cook from "./pages/Cook";
+import Login from "./pages/Login";
 
 const httpLink = createHttpLink({
   uri: "/graphql",
@@ -39,7 +40,12 @@ function App() {
       <Router>
         <>
           <Routes>
-            <Route exact path="/" element={<Dashboard />} />
+            <Route
+              exact path='/'
+              element={<Login />}
+            />
+            <Route path='/login' element={<Login />} />
+            <Route exact path="/dashboard" element={<Dashboard />} />
             <Route exact path="/dishes" element={<Dishes />} />
             <Route path="/cook/:cookId" element={<Cook />} />
           </Routes>
