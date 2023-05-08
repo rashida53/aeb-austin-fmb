@@ -1,8 +1,26 @@
 const { Cook, Dish, MenuItem, Signup, User, Category } = require('../models');
+const { signToken } = require('../utils/auth');
+const { AuthenticationError } = require('apollo-server-express');
 
 const resolvers = {
 
     Query: {
+        me: async (parent, args, context) => {
+            if (context.user) {
+                return User.findOne(
+                    { _id: context.user._id }
+                )
+            }
+            throw new AuthenticationError('You must be logged in')
+        },
+        users: async () => {
+            return User.find()
+        },
+        user: async (parent, { userId }, context) => {
+            return User.findOne(
+                { _id: userId }
+            )
+        },
         cooks: async () => {
             return Cook.find();
         },
@@ -79,6 +97,23 @@ const resolvers = {
     },
 
     Mutation: {
+        login: async (parent, args) => {
+            const user = await User.findOne({ email: args.email });
+            if (!user) {
+                throw new AuthenticationError('No user found with this email');
+            }
+            const correctPw = await user.isCorrectPassword(args.password);
+            if (!correctPw) {
+                throw new AuthenticationError('Incorrect Password');
+            }
+            const token = signToken(user);
+            return { token, user };
+        },
+        addUser: async (parent, args) => {
+            const user = await User.create(args);
+            const token = signToken(user);
+            return { token, user };
+        },
         addCook: async (parent, { fullName }) => {
             const cook = await Cook.create({ fullName });
             return cook;
@@ -91,9 +126,6 @@ const resolvers = {
         },
         createSignup: async (parent, args) => {
             return Signup.create(args);
-        },
-        addUser: async (parent, args) => {
-            return User.create(args);
         },
         addCost: async (parent, { menuId, amount }) => {
             return MenuItem.findOneAndUpdate(
@@ -110,6 +142,13 @@ const resolvers = {
                 {
                     isPaid: isPaid,
                 },
+                { new: true }
+            )
+        },
+        returnToPending: async (parent, { menuId, isPaid }) => {
+            return MenuItem.findOneAndUpdate(
+                { _id: menuId },
+                { isPaid: false },
                 { new: true }
             )
         }

@@ -1,19 +1,26 @@
 import React from "react";
-import { useMutation } from "@apollo/client";
+import { useMutation, useQuery } from "@apollo/client";
 import { useForm } from "react-hook-form";
 import { CREATE_SIGNUP } from "../utils/mutations";
+import { GET_ME } from "../utils/queries";
 
 const SignupForm = (props) => {
     const { register, handleSubmit } = useForm();
     const [createSignup, { error: signupError, data: createSignupData }] =
         useMutation(CREATE_SIGNUP);
 
+    const { loading, data } = useQuery(GET_ME);
+    const me = data?.me;
+
+    console.log("me", me)
+
+
     const onSizeSubmit = async (signupData, event) => {
         try {
             const { data } = await createSignup({
                 variables: {
                     menuItem: event.target.id,
-                    user: "64398b289c7e0365b67d0b49",
+                    user: me._id,
                     size: signupData.size,
                 },
             });

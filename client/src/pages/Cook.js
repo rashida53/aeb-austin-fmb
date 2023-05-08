@@ -4,7 +4,7 @@ import { GET_SINGLE_COOK, GET_COOKS_MENU_ITEMS, GET_COOKS_MENU_ITEMS_BY_DATE, GE
 import { useForm } from 'react-hook-form'
 import { useParams } from 'react-router-dom';
 import { timeConverter } from '../utils/timeConverter';
-import { MENU_PAID } from '../utils/mutations';
+import { MENU_PAID, RETURN_TO_PENDING } from '../utils/mutations';
 import AddCostForm from '../components/AddCostForm';
 
 const Cook = () => {
@@ -27,6 +27,8 @@ const Cook = () => {
 
     const [menuPaid] = useMutation(MENU_PAID);
 
+    const [returnToPending] = useMutation(RETURN_TO_PENDING);
+
     const menuPaidButton = async (event) => {
         try {
             const { data } = await menuPaid({
@@ -35,7 +37,20 @@ const Cook = () => {
                     isPaid: true
                 },
             });
-            window.location.reload(); 
+            window.location.reload();
+        } catch (err) {
+            console.error(err);
+        }
+    };
+
+    const returnToPendingButton = async (event) => {
+        try {
+            const { data } = await returnToPending({
+                variables: {
+                    menuId: event.target.id,
+                    isPaid: false
+                }
+            })
         } catch (err) {
             console.error(err);
         }
@@ -85,6 +100,7 @@ const Cook = () => {
                                 <p>{cookMenu.dish.dishName}</p>
                                 <p>{cookMenu.amount}</p>
                                 <p>{timeConverter(cookMenu.menuDate)}</p>
+                                <button onClick={returnToPendingButton} id={cookMenu._id}>Return to pending</button>
                             </div>
 
                         </div>

@@ -5,7 +5,7 @@ import CreateMenuForm from "../components/CreateMenuForm";
 import AddDishForm from "../components/AddDishForm";
 import { timeConverter } from "../utils/timeConverter";
 
-const Dishes = () => {
+const Dishes = (props) => {
 
     const { loading, data: menuData } = useQuery(GET_ALL_MENUS);
     let menus = menuData?.menus || [];
