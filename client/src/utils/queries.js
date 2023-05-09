@@ -75,6 +75,25 @@ export const GET_ALL_SIGNUPS = gql`
     }    
 `
 
+export const GET_USER_SIGNUPS = gql`
+    query getUserSignups {
+        userSignups {
+             user {
+                fullName
+            }
+            menuItem {
+                _id
+                dish {
+                    dishName
+                }
+                menuDate
+            }
+            size            
+        
+        }
+    }
+`
+
 export const GET_OPEN_MENUS = gql`
     query getOpenMenus {
         openMenus {

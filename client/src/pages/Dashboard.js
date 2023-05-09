@@ -5,7 +5,9 @@ import {
   GET_ALL_COOKS,
   GET_ALL_MENUS,
   GET_ALL_SIGNUPS,
-  GET_OPEN_MENUS
+  GET_USER_SIGNUPS,
+  GET_OPEN_MENUS,
+  GET_ME
 } from "../utils/queries";
 import CookForm from "../components/CookForm";
 import SignupForm from "../components/SignupForm";
@@ -20,17 +22,14 @@ const Dashboard = () => {
 
   const { loading, data: menuData } = useQuery(GET_ALL_MENUS);
   let menus = menuData?.menus || [];
-  console.log("menus", menus)
 
   const { loading: openMenuLoading, data: openMenuData } = useQuery(GET_OPEN_MENUS);
   let openMenus = openMenuData?.openMenus || [];
 
-  const { loading: signupLoading, data: signupData } =
-    useQuery(GET_ALL_SIGNUPS);
-  let signups = signupData?.signups || [];
+  const { loading: signupLoading, data: signupData } = useQuery(GET_USER_SIGNUPS);
+  let signups = signupData?.userSignups || [];
 
-  console.log("menus", menus);
-  console.log("signups", signups);
+  console.log("user signups", signups)
 
   const showAddCook = () => {
     const cookForm = document.querySelector(".cookForm");
