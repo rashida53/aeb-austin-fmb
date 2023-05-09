@@ -13,6 +13,7 @@ import Dashboard from "./pages/Dashboard";
 import Dishes from "./pages/Dishes";
 import Cook from "./pages/Cook";
 import Login from "./pages/Login";
+import Cooks from './pages/Cooks'
 
 const httpLink = createHttpLink({
   uri: "/graphql",
@@ -47,6 +48,7 @@ function App() {
             <Route path='/login' element={<Login />} />
             <Route exact path="/dashboard" element={<Dashboard />} />
             <Route exact path="/dishes" element={<Dishes />} />
+            <Route path="/cooks/" element={<Cooks />} />
             <Route path="/cook/:cookId" element={<Cook />} />
           </Routes>
         </>

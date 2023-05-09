@@ -57,6 +57,7 @@ const Dashboard = () => {
       <div className="mainContainer">
         <nav>
           <h3>Dashboard</h3>
+          <h3>Cooks</h3>
           <h3>Sign Out</h3>
         </nav>
 
@@ -97,27 +98,7 @@ const Dashboard = () => {
             ))}
         </div>
 
-        <h1>Cooks</h1>
-
-        <div className="cookTiles">
-          {cooks &&
-            cooks.map((cook) => (
-              <Link to={`/cook/${cook._id}`}>
-                <div className="cookTile" key={cook._id}>
-                  <p>{cook.fullName}</p>
-                </div>
-              </Link>
-            ))}
-          <div className="cookTile">
-            <p className="addCookPlus" onClick={showAddCook}>
-              +
-            </p>
-          </div>
-
-        </div>
-        <div>
-          <CookForm />
-        </div>
+       
 
         <Link to="/dishes">
           <h1 className="dishes">Dishes</h1>
