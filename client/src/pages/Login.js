@@ -25,13 +25,29 @@ const Login = () => {
         <>
             {Auth.loggedIn() && <Navigate to="/dashboard" />}
 
+        <div className='mainContainer'>
+
+            <div className='logo'>
+         
+            </div>
+
+            <div className='loginForm'>
             <form onSubmit={handleSubmit(onSubmit)}>
-                <input {...register("email", { required: true })} placeholder="Email"
+                <label htmlFor='email'>Email</label>
+                <input {...register("email", { required: true })}
                 />
-                <input type="password" {...register("password", { required: true })} placeholder="Password"
+                 <label htmlFor='password'>Password</label>
+                <input type="password" {...register("password", { required: true })}
                 />
-                <button type="submit">Log In</button>
+
+                <div className='loginButton'>
+
+                <button type="submit"><h3>Log In</h3></button>
+                </div>
             </form>
+            </div>
+
+            </div>
         </>
     )
 };
