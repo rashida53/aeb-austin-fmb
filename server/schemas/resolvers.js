@@ -94,6 +94,20 @@ const resolvers = {
                 }
             ).populate('user');
         },
+        userSignups: async (parent, args, context) => {
+            if (context) {
+                return Signup.find(
+                    { user: context.user._id },
+                    console.log("user id", context.user._id)
+                ).populate(
+                    {
+                        path: 'menuItem',
+                        populate: { path: 'dish cook' },
+                    }
+                ).populate('user');
+            }
+
+        },
     },
 
     Mutation: {
