@@ -15,6 +15,8 @@ import { Link } from "react-router-dom";
 import { timeConverter } from "../utils/timeConverter";
 import Auth from '../utils/auth';
 import { Navigate } from 'react-router-dom';
+import Header from '../components/Header';
+import SectionHeader from "../components/SectionHeader";
 
 const Dashboard = () => {
   const { loading: cookLoading, data: getCookData } = useQuery(GET_ALL_COOKS);
@@ -55,25 +57,30 @@ const Dashboard = () => {
     <>
       {!Auth.loggedIn() && <Navigate to='/login' />}
       <div className="mainContainer">
+        <Header />
         <nav>
           <h3>Dashboard</h3>
           <h3>Cooks</h3>
           <h3>Sign Out</h3>
         </nav>
 
-        <h1>Open Menus Available For Signup</h1>
+        <SectionHeader title="Open Signups" />
 
         <div className="signupsTable">
           {openMenus &&
             openMenus.map((menu) => (
               <div className="signup">
                 <div className="signupsRow" key={menu._id}>
-                  <p id={menu._id} className="createSignupPencil" onClick={showSignupForm}>
-                    ✎
-                  </p>
-                  <p>{menu.dish?.dishName}</p>
-                  <p>{timeConverter(menu.menuDate)}</p>
-                  <p>{menu.cook?.fullName}</p>
+                  <div className="addButton">
+                    <p id={menu._id} className="createSignupPencil" onClick={showSignupForm}>
+                      +
+                    </p>
+                  </div>
+                  <div className="openSignupInfo">
+                    <p>{menu.dish?.dishName}</p>
+                    <p>{timeConverter(menu.menuDate)}</p>
+                    <p>{menu.cook?.fullName}</p>
+                  </div>
                 </div>
                 <div id={"form" + menu._id} className="signupForm">
                   <SignupForm id={menu._id} />
@@ -98,7 +105,7 @@ const Dashboard = () => {
             ))}
         </div>
 
-       
+
 
         <Link to="/dishes">
           <h1 className="dishes">Dishes</h1>

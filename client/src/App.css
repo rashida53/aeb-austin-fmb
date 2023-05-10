@@ -6,8 +6,8 @@
 }
 
 body {
-  margin: 20px;
   background-image: url('./assets/bg.jpg');
+  background-position: center;
 }
 
 h1,
@@ -29,6 +29,20 @@ h2 {
 h3 {
   font-size: 25px;
   font-weight: bold;
+}
+
+.header {
+  color: var(--gold);
+  margin: 20px;
+}
+
+.sectionHeader {
+  background-color: var(--gold);
+  padding: 5px;
+  width: 100%;
+  color: white;
+  text-align: center;
+  margin: 0px -10px 0px -10px;
 }
 
 nav>a {
@@ -108,6 +122,15 @@ nav,
 .dishesRow {
   display: flex;
   justify-content: space-between;
+}
+
+.addButton,
+.openSignupInfo {
+  background-color: white;
+  border-radius: 15px;
+  padding: 10px;
+  color: var(--gold);
+  margin: 15px;
 }
 
 .cookTiles {

@@ -55,16 +55,6 @@ const SignupForm = (props) => {
                     <input
                         {...register("size", { required: true })}
                         type="radio"
-                        id="Medium"
-                        value="Medium"
-                    ></input>
-                    <label htmlFor="Medium">Medium</label>
-                </div>
-
-                <div className="sizeOption">
-                    <input
-                        {...register("size", { required: true })}
-                        type="radio"
                         id="Large"
                         value="Large"
                     ></input>
