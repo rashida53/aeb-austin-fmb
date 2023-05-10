@@ -1,9 +1,84 @@
+:root {
+  --gold: #A4800F;
+  --lightgold: #D9AA16;
+  --green: #6B802A;
+  --darkgreen: #3B4A07;
+}
+
 body {
   margin: 20px;
+  background-image: url('./assets/bg.jpg');
+}
+
+h1, h2, h3, h4 {
+  margin: 0px;
 }
 
 h1 {
   text-align: center;
+}
+
+h2 {
+  font-size: 30px;
+  font-weight: bold;
+}
+
+h3 {
+  font-size: 25px;
+  font-weight: bold;
+} 
+
+nav > a {
+  font-size: 25px;
+}
+
+p {
+  font-size: 18px;
+}
+
+button > p {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+button > h2, .loginForm > form > label {
+  font-size: 25px;
+  font-weight: bold;
+  color: var(--gold);
+}
+
+.logo {
+  background-image: url('./assets/logo.png');
+  width: 390px;
+  height: 157px;
+  margin: 30px;
+}
+
+.loginForm > form {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+}
+
+.loginButton {
+  align-self: center;
+}
+
+input {
+  border: 2px solid var(--gold);
+  border-radius: 15px;
+  padding: 10px;
+  margin-bottom: 20px;
+  font-size: 20px;
+}
+
+.loginButton > button {
+  background-color: var(--green);
+  color: white;
+  border: 2px solid var(--darkgreen);
+  border-radius: 15px;
+  padding: 10px 25px 10px 25px;
+
 }
 
 nav,
