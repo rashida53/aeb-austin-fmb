@@ -10,7 +10,10 @@ body {
   background-image: url('./assets/bg.jpg');
 }
 
-h1, h2, h3, h4 {
+h1,
+h2,
+h3,
+h4 {
   margin: 0px;
 }
 
@@ -26,9 +29,9 @@ h2 {
 h3 {
   font-size: 25px;
   font-weight: bold;
-} 
+}
 
-nav > a {
+nav>a {
   font-size: 25px;
 }
 
@@ -36,12 +39,13 @@ p {
   font-size: 18px;
 }
 
-button > p {
+button>p {
   font-size: 18px;
   font-weight: bold;
 }
 
-button > h2, .loginForm > form > label {
+button>h2,
+.loginForm>form>label {
   font-size: 25px;
   font-weight: bold;
   color: var(--gold);
@@ -54,10 +58,18 @@ button > h2, .loginForm > form > label {
   margin: 30px;
 }
 
-.loginForm > form {
+.loginForm>form {
   display: flex;
   flex-direction: column;
   align-items: start;
+}
+
+.loginForm {
+  height: 70vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-top: -70px;
 }
 
 .loginButton {
@@ -70,9 +82,17 @@ input {
   padding: 10px;
   margin-bottom: 20px;
   font-size: 20px;
+
+  /* color: var(--green); */
 }
 
-.loginButton > button {
+:-webkit-autofill,
+:-webkit-autofill:hover,
+:-webkit-autofill:focus {
+  -webkit-text-fill-color: var(--green);
+}
+
+.loginButton>button {
   background-color: var(--green);
   color: white;
   border: 2px solid var(--darkgreen);
