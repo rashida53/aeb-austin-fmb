@@ -85,20 +85,29 @@ const Dashboard = () => {
             openMenus.map((menu) => (
               <div className="signup">
                 <div className="signupsRow" key={menu._id}>
-                  <div className="addButton">
-                    <p id={menu._id} className="createSignupPencil" onClick={showSignupForm}>
-                      +
-                    </p>
-                  </div>
+
                   <div className="openSignupInfo">
                     <p>{menu.dish?.dishName}</p>
                     <p>{timeConverter(menu.menuDate)}</p>
                     <p>{menu.cook?.fullName}</p>
                   </div>
+
+                  <div className="dishPhotoContainer">
+                    <img className="dishPhoto" src="https://www.seriouseats.com/thmb/tuMCogfAOy2zNdVqE7ydUwuru9Q=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/easy-vegetable-fried-rice-recipe-hero-2-fed2a62b8bce4c51b945d9c24c2edb68.jpg" />
+                  </div>
+
+                  <div className="addButton">
+                    <p id={menu._id} className="createSignupPencil" onClick={showSignupForm}>
+                      +
+                    </p>
+                  </div>
+
                 </div>
+
                 <div id={"form" + menu._id} className="signupForm">
                   <SignupForm id={menu._id} />
                 </div>
+
               </div>
             ))}
         </div>

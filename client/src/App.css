@@ -132,12 +132,16 @@ input {
 }
 
 nav,
-.signupsRow,
+/* .signupsRow, */
 .signupInputs,
 .sizeOption,
 .dishesRow {
   display: flex;
   justify-content: space-between;
+}
+
+.signupsRow {
+  position: absolute;
 }
 
 .addButton,
@@ -148,8 +152,25 @@ nav,
   padding: 10px;
   color: var(--gold);
   margin: 15px;
+  box-shadow: 4px 4px 10px rgb(177, 177, 177);
 }
 
+.openSignupInfo {
+  position: absolute;
+  top: 0px;
+
+}
+
+.dishPhoto {
+  border: 3px solid var(--green);
+  border-radius: 15px;
+  width: 130px;
+  height: 130px;
+  position: relative;
+  left: 50px;
+  top: 50px;
+  z-index: 1;
+}
 
 .cookTiles {
   display: flex;
