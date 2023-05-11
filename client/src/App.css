@@ -115,6 +115,22 @@ input {
 
 }
 
+.submitButton {
+  background-color: var(--green);
+  color: white;
+  border: 2px solid var(--darkgreen);
+  border-radius: 15px;
+  padding: 3px 9px 3px 9px;
+}
+
+.sizeButton {
+  background-color: transparent;
+  color: var(--gold);
+  border: 2px solid var(--gold);
+  border-radius: 15px;
+  padding: 3px 9px 3px 9px;
+}
+
 nav,
 .signupsRow,
 .signupInputs,
@@ -125,13 +141,15 @@ nav,
 }
 
 .addButton,
-.openSignupInfo {
+.openSignupInfo,
+.yourSignups {
   background-color: white;
   border-radius: 15px;
   padding: 10px;
   color: var(--gold);
   margin: 15px;
 }
+
 
 .cookTiles {
   display: flex;

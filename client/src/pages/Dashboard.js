@@ -1,17 +1,13 @@
 import React from "react";
 import { useQuery, useMutation } from "@apollo/client";
-import { useForm } from "react-hook-form";
 import {
   GET_ALL_COOKS,
   GET_ALL_MENUS,
-  GET_ALL_SIGNUPS,
   GET_USER_SIGNUPS,
   GET_OPEN_MENUS,
-  GET_ME
 } from "../utils/queries";
-import CookForm from "../components/CookForm";
+import { DELETE_SIGNUP } from "../utils/mutations";
 import SignupForm from "../components/SignupForm";
-import { Link } from "react-router-dom";
 import { timeConverter } from "../utils/timeConverter";
 import Auth from '../utils/auth';
 import { Navigate } from 'react-router-dom';
@@ -26,17 +22,35 @@ const Dashboard = () => {
   let menus = menuData?.menus || [];
 
   const { loading: openMenuLoading, data: openMenuData } = useQuery(GET_OPEN_MENUS);
-  let openMenus = openMenuData?.openMenus || [];
-
   const { loading: signupLoading, data: signupData } = useQuery(GET_USER_SIGNUPS);
+
+  const [deleteSignup] = useMutation(DELETE_SIGNUP);
+
+  const onDeleteClick = async (event) => {
+    try {
+      const { data } = await deleteSignup({
+        variables: {
+          signupId: event.target.id
+        }
+      })
+    } catch (err) {
+      console.error(err);
+    }
+  }
   let signups = signupData?.userSignups || [];
 
-  console.log("user signups", signups)
+  const getFilteredMenus = (openMenuData, signupData) => {
 
-  const showAddCook = () => {
-    const cookForm = document.querySelector(".cookForm");
-    cookForm.style.visibility = "visible";
-  };
+    let openMenus = openMenuData?.openMenus || [];
+    let signups = signupData?.userSignups || [];
+
+    let menusSignedUp = signups.map(signup => signup.menuItem._id);
+
+    return openMenus.filter(menu => !menusSignedUp.includes(menu._id));
+
+  }
+
+  let openMenus = getFilteredMenus(openMenuData, signupData);
 
   const showSignupForm = (event) => {
     hideAllForms();
@@ -89,27 +103,33 @@ const Dashboard = () => {
             ))}
         </div>
 
-        <h1>Your Signups</h1>
+        <SectionHeader title="Your Signups" />
 
         <div className="signupsContainer">
           {signups &&
             signups.map((signup) => (
               <div>
-                <ul>
-                  <li>{signup.user.fullName}</li>
-                  <p>{timeConverter(signup.menuItem.menuDate)}</p>
-                  <p>{signup.menuItem?.dish?.dishName}</p>
-                  <p>{signup.size}</p>
-                </ul>
+                <div className="yourSignups">
+                  <ul>
+                    <p>{timeConverter(signup.menuItem.menuDate)}</p>
+                    <p>{signup.menuItem?.dish?.dishName}</p>
+                    <p>{signup.size}</p>
+                  </ul>
+                  <button id={signup.menuItem._id} onClick={showSignupForm}>Edit</button>
+                  <button id={signup._id} onClick={onDeleteClick}>Cancel</button>
+                </div>
+                <div id={"form" + signup.menuItem._id} className="signupForm">
+                  <SignupForm id={signup.menuItem._id} />
+                </div>
               </div>
             ))}
         </div>
 
 
-
+        {/* 
         <Link to="/dishes">
           <h1 className="dishes">Dishes</h1>
-        </Link>
+        </Link> */}
       </div>
     </>
   );

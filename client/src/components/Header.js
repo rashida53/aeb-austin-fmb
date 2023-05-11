@@ -3,7 +3,7 @@ import React from "react";
 const Header = () => {
     return (
         <>
-            <h3 className="header">Faiz Ul Mawaid Il Burhaniyah</h3>
+            <h3 className="header">Faiz-ul Mawaid-il Burhaniyah</h3>
         </>
     )
 };

@@ -78,7 +78,8 @@ export const GET_ALL_SIGNUPS = gql`
 export const GET_USER_SIGNUPS = gql`
     query getUserSignups {
         userSignups {
-             user {
+            _id
+            user {
                 fullName
             }
             menuItem {
@@ -89,7 +90,6 @@ export const GET_USER_SIGNUPS = gql`
                 menuDate
             }
             size            
-        
         }
     }
 `

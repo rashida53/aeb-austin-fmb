@@ -121,7 +121,8 @@ const resolvers = {
                 throw new AuthenticationError('Incorrect Password');
             }
             const token = signToken(user);
-            return { token, user };
+            console.log(user);
+            return { token, me: user };
         },
         addUser: async (parent, args) => {
             const user = await User.create(args);
@@ -139,7 +140,19 @@ const resolvers = {
             return MenuItem.create(args);
         },
         createSignup: async (parent, args) => {
-            return Signup.create(args);
+            return Signup.findOneAndUpdate(
+                {
+                    menuItem: args.menuItem,
+                    user: args.user
+                },
+                {
+                    size: args.size
+                },
+                {
+                    new: true,
+                    upsert: true
+                }
+            );
         },
         addCost: async (parent, { menuId, amount }) => {
             return MenuItem.findOneAndUpdate(
@@ -164,6 +177,11 @@ const resolvers = {
                 { _id: menuId },
                 { isPaid: false },
                 { new: true }
+            )
+        },
+        deleteSignup: async (parents, { signupId }) => {
+            return Signup.deleteOne(
+                { _id: signupId }
             )
         }
     }

@@ -12,9 +12,6 @@ const SignupForm = (props) => {
     const { loading, data } = useQuery(GET_ME);
     const me = data?.me;
 
-    console.log("me", me)
-
-
     const onSizeSubmit = async (signupData, event) => {
         try {
             const { data } = await createSignup({
@@ -42,7 +39,7 @@ const SignupForm = (props) => {
                 className="signupInputs"
             >
                 <div className="sizeOption">
-                    <input
+                    <input className="sizeButton"
                         {...register("size", { required: true })}
                         type="radio"
                         id="Small"
@@ -60,7 +57,7 @@ const SignupForm = (props) => {
                     ></input>
                     <label htmlFor="Large">Large</label>
                 </div>
-                <input type="submit" value="Create Signup" />
+                <button className="submitButton" type="submit"><h3>Submit</h3></button>
             </form>
         </>
     );
