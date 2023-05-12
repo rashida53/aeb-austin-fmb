@@ -9,9 +9,9 @@ import {
 import { DELETE_SIGNUP } from "../utils/mutations";
 import SignupForm from "../components/SignupForm";
 import { timeConverter } from "../utils/timeConverter";
-import Auth from '../utils/auth';
-import { Navigate } from 'react-router-dom';
-import Header from '../components/Header';
+import Auth from "../utils/auth";
+import { Navigate } from "react-router-dom";
+import Header from "../components/Header";
 import SectionHeader from "../components/SectionHeader";
 
 const Dashboard = () => {
@@ -21,8 +21,10 @@ const Dashboard = () => {
   const { loading, data: menuData } = useQuery(GET_ALL_MENUS);
   let menus = menuData?.menus || [];
 
-  const { loading: openMenuLoading, data: openMenuData } = useQuery(GET_OPEN_MENUS);
-  const { loading: signupLoading, data: signupData } = useQuery(GET_USER_SIGNUPS);
+  const { loading: openMenuLoading, data: openMenuData } =
+    useQuery(GET_OPEN_MENUS);
+  const { loading: signupLoading, data: signupData } =
+    useQuery(GET_USER_SIGNUPS);
 
   const [deleteSignup] = useMutation(DELETE_SIGNUP);
 
@@ -30,25 +32,23 @@ const Dashboard = () => {
     try {
       const { data } = await deleteSignup({
         variables: {
-          signupId: event.target.id
-        }
-      })
+          signupId: event.target.id,
+        },
+      });
     } catch (err) {
       console.error(err);
     }
-  }
+  };
   let signups = signupData?.userSignups || [];
 
   const getFilteredMenus = (openMenuData, signupData) => {
-
     let openMenus = openMenuData?.openMenus || [];
     let signups = signupData?.userSignups || [];
 
-    let menusSignedUp = signups.map(signup => signup.menuItem._id);
+    let menusSignedUp = signups.map((signup) => signup.menuItem._id);
 
-    return openMenus.filter(menu => !menusSignedUp.includes(menu._id));
-
-  }
+    return openMenus.filter((menu) => !menusSignedUp.includes(menu._id));
+  };
 
   let openMenus = getFilteredMenus(openMenuData, signupData);
 
@@ -65,11 +65,11 @@ const Dashboard = () => {
         allSignupDivs[i].style.visibility = "hidden";
       }
     }
-  };
+  }
 
   return (
     <>
-      {!Auth.loggedIn() && <Navigate to='/login' />}
+      {!Auth.loggedIn() && <Navigate to="/login" />}
       <div className="mainContainer">
         <Header />
         <nav>
@@ -85,29 +85,35 @@ const Dashboard = () => {
             openMenus.map((menu) => (
               <div className="signup">
                 <div className="signupsRow" key={menu._id}>
-
                   <div className="openSignupInfo">
                     <p>{menu.dish?.dishName}</p>
                     <p>{timeConverter(menu.menuDate)}</p>
                     <p>{menu.cook?.fullName}</p>
                   </div>
 
-                  <div className="dishPhotoContainer">
-                    <img className="dishPhoto" src="https://www.seriouseats.com/thmb/tuMCogfAOy2zNdVqE7ydUwuru9Q=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/easy-vegetable-fried-rice-recipe-hero-2-fed2a62b8bce4c51b945d9c24c2edb68.jpg" />
-                  </div>
+                  <div className="addButtonAndPhoto">
+                    <div className="addButton">
+                      <p
+                        id={menu._id}
+                        className="addSignupPlus"
+                        onClick={showSignupForm}
+                      >
+                        +
+                      </p>
+                    </div>
 
-                  <div className="addButton">
-                    <p id={menu._id} className="createSignupPencil" onClick={showSignupForm}>
-                      +
-                    </p>
+                    <div className="dishPhotoContainer">
+                      <img
+                        className="dishPhoto"
+                        src="https://www.seriouseats.com/thmb/tuMCogfAOy2zNdVqE7ydUwuru9Q=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/easy-vegetable-fried-rice-recipe-hero-2-fed2a62b8bce4c51b945d9c24c2edb68.jpg"
+                      />
+                    </div>
                   </div>
-
                 </div>
 
                 <div id={"form" + menu._id} className="signupForm">
                   <SignupForm id={menu._id} />
                 </div>
-
               </div>
             ))}
         </div>
@@ -124,8 +130,12 @@ const Dashboard = () => {
                     <p>{signup.menuItem?.dish?.dishName}</p>
                     <p>{signup.size}</p>
                   </ul>
-                  <button id={signup.menuItem._id} onClick={showSignupForm}>Edit</button>
-                  <button id={signup._id} onClick={onDeleteClick}>Cancel</button>
+                  <button id={signup.menuItem._id} onClick={showSignupForm}>
+                    Edit
+                  </button>
+                  <button id={signup._id} onClick={onDeleteClick}>
+                    Cancel
+                  </button>
                 </div>
                 <div id={"form" + signup.menuItem._id} className="signupForm">
                   <SignupForm id={signup.menuItem._id} />
@@ -133,7 +143,6 @@ const Dashboard = () => {
               </div>
             ))}
         </div>
-
 
         {/* 
         <Link to="/dishes">

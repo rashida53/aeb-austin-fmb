@@ -13,7 +13,8 @@ body {
 h1,
 h2,
 h3,
-h4 {
+h4,
+p {
   margin: 0px;
 }
 
@@ -21,7 +22,7 @@ h1 {
   text-align: center;
 }
 
-h2 {
+h2, .addSignupPlus {
   font-size: 30px;
   font-weight: bold;
 }
@@ -140,36 +141,57 @@ nav,
   justify-content: space-between;
 }
 
-.signupsRow {
-  position: absolute;
+.signup {
+  min-width: 400px;
 }
 
-.addButton,
+.addButtonAndPhoto {
+  display: flex;
+  justify-content: space-between;
+  margin: 15px;
+  position: relative;
+  z-index: 1;
+  top: -80px
+}
+
+.addButton {
+  width: 40px;
+  height: 40px;
+  background-color: white;
+  border-radius: 15px;
+  padding: 10px;
+  color: var(--green);
+  box-shadow: 4px 4px 10px rgb(177, 177, 177);
+  align-self: end;
+}
+
+.addSignupPlus {
+  text-align: center;
+}
+
+.signupsRow {
+  /* position: absolute; */
+}
+
 .openSignupInfo,
 .yourSignups {
   background-color: white;
   border-radius: 15px;
-  padding: 10px;
+  width: 260px;
+  line-height: 2.5em;
+  padding: 15px 20px 15px 20px;
   color: var(--gold);
   margin: 15px;
   box-shadow: 4px 4px 10px rgb(177, 177, 177);
 }
 
-.openSignupInfo {
-  position: absolute;
-  top: 0px;
-
-}
 
 .dishPhoto {
   border: 3px solid var(--green);
   border-radius: 15px;
   width: 130px;
   height: 130px;
-  position: relative;
-  left: 50px;
-  top: 50px;
-  z-index: 1;
+  box-shadow: 4px 4px 10px rgb(177, 177, 177);
 }
 
 .cookTiles {
