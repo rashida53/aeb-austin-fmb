@@ -22,7 +22,8 @@ h1 {
   text-align: center;
 }
 
-h2, .addSignupPlus {
+h2,
+.addSignupPlus {
   font-size: 30px;
   font-weight: bold;
 }
@@ -145,7 +146,8 @@ nav,
   min-width: 400px;
 }
 
-.addButtonAndPhoto {
+.addButtonAndPhoto,
+.buttonAndPhoto {
   display: flex;
   justify-content: space-between;
   margin: 15px;
@@ -154,7 +156,9 @@ nav,
   top: -80px
 }
 
-.addButton {
+.addButton,
+.editButton,
+.cancelButton {
   width: 40px;
   height: 40px;
   background-color: white;
@@ -165,16 +169,14 @@ nav,
   align-self: end;
 }
 
-.addSignupPlus {
+.addSignupPlus,
+.editButtonText,
+.cancelButtonText {
   text-align: center;
 }
 
-.signupsRow {
-  /* position: absolute; */
-}
-
 .openSignupInfo,
-.yourSignups {
+.yourSignupInfo {
   background-color: white;
   border-radius: 15px;
   width: 260px;

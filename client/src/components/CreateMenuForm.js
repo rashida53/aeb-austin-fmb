@@ -37,11 +37,13 @@ const CreateMenuForm = () => {
         <>
             <form onSubmit={handleSubmit(onSubmit)} >
                 <select {...register("dishId", { required: true })}>
+                    <option disabled selected value>-- Choose a Dish --</option>
                     {dishes && dishes.map((dish) => (
                         <option key={dish._id} value={dish._id}>{dish.dishName}</option>
                     ))}
                 </select>
                 <select {...register("cookId", { required: true })}>
+                    <option disabled selected value>-- Choose a Caterer --</option>
                     {cooks && cooks.map((cook) => (
                         <option key={cook._id} value={cook._id}>{cook.fullName}</option>
                     ))}

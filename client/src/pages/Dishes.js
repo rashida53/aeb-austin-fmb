@@ -4,6 +4,8 @@ import { GET_ALL_MENUS, GET_ALL_DISHES, GET_THIS_WEEKS_DISHES } from "../utils/q
 import CreateMenuForm from "../components/CreateMenuForm";
 import AddDishForm from "../components/AddDishForm";
 import { timeConverter } from "../utils/timeConverter";
+import SectionHeader from "../components/SectionHeader";
+import Header from "../components/Header";
 
 const Dishes = (props) => {
 
@@ -19,44 +21,49 @@ const Dishes = (props) => {
 
     return (
         <>
-            <h1>This Week's Dishes</h1>
+            <div className="mainContainer">
 
-            <div>
-                {thisWeeksDishes && thisWeeksDishes.map((menu) => (
-                    <div className="weeklyDishContainer">
-                        <div className="dishesRow">
-                            <p>{menu.dish?.dishName}</p>
-                            <p>{timeConverter(menu.menuDate)}</p>
-                            <p>{menu.cook?.fullName}</p>
-                        </div>
-                    </div>
-                ))}
-            </div>
 
-            <h1>All Dishes</h1>
-
-            <div>
-                {dishes && dishes.map((dish) => (
-                    <div>
-                        <div>
-                            <ul>
-                                <li key={dish._id} id={dish._id}>{dish.dishName}</li>
-                            </ul>
-                        </div>
-
-                    </div>
-
-                ))}
+                <Header />
+                <SectionHeader title="This Week's Dishes" />
 
                 <div>
-                    <AddDishForm />
+                    {thisWeeksDishes && thisWeeksDishes.map((menu) => (
+                        <div className="weeklyDishContainer">
+                            <div className="dishesRow">
+                                <p>{menu.dish?.dishName}</p>
+                                <p>{timeConverter(menu.menuDate)}</p>
+                                <p>{menu.cook?.fullName}</p>
+                            </div>
+                        </div>
+                    ))}
                 </div>
-            </div>
 
-            <h1>Create Menu</h1>
+                <SectionHeader title="All Dishes" />
 
-            <div>
-                <CreateMenuForm />
+                <div>
+                    {dishes && dishes.map((dish) => (
+                        <div>
+                            <div>
+                                <ul>
+                                    <li key={dish._id} id={dish._id}>{dish.dishName}</li>
+                                </ul>
+                            </div>
+
+                        </div>
+
+                    ))}
+
+                    <div>
+                        <AddDishForm />
+                    </div>
+                </div>
+
+                <SectionHeader title="Create Menu" />
+
+                <div>
+                    <CreateMenuForm />
+                </div>
             </div>
         </>
     )

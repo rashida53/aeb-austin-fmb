@@ -123,19 +123,32 @@ const Dashboard = () => {
         <div className="signupsContainer">
           {signups &&
             signups.map((signup) => (
-              <div>
+              <div className="signup">
                 <div className="yourSignups">
-                  <ul>
+                  <div className="yourSignupInfo">
                     <p>{timeConverter(signup.menuItem.menuDate)}</p>
                     <p>{signup.menuItem?.dish?.dishName}</p>
                     <p>{signup.size}</p>
-                  </ul>
-                  <button id={signup.menuItem._id} onClick={showSignupForm}>
-                    Edit
-                  </button>
-                  <button id={signup._id} onClick={onDeleteClick}>
-                    Cancel
-                  </button>
+                  </div>
+                  <div className="buttonAndPhoto">
+                    <div className="editButton">
+                      <p id={signup.menuItem._id} onClick={showSignupForm} className="editButtonText">
+                        Edit
+                      </p>
+                    </div>
+                    <div className="cancelButton">
+                      <p id={signup._id} onClick={onDeleteClick} className="cancelButtonText">
+                        Cancel
+                      </p>
+                    </div>
+
+                    <div className="dishPhotoContainer">
+                      <img
+                        className="dishPhoto"
+                        src="https://www.seriouseats.com/thmb/tuMCogfAOy2zNdVqE7ydUwuru9Q=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/easy-vegetable-fried-rice-recipe-hero-2-fed2a62b8bce4c51b945d9c24c2edb68.jpg"
+                      />
+                    </div>
+                  </div>
                 </div>
                 <div id={"form" + signup.menuItem._id} className="signupForm">
                   <SignupForm id={signup.menuItem._id} />
