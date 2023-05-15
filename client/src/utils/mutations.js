@@ -98,3 +98,13 @@ export const RETURN_TO_PENDING = gql`
         }
     }
 `
+
+export const DELETE_SIGNUP = gql`
+    mutation deleteSignup($signupId: ID) {
+        deleteSignup(signupId: $signupId) {
+            user {
+                fullName
+            }
+        }
+    }
+`

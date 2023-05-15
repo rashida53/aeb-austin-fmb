@@ -6,11 +6,15 @@
 }
 
 body {
-  margin: 20px;
   background-image: url('./assets/bg.jpg');
+  background-position: center;
 }
 
-h1, h2, h3, h4 {
+h1,
+h2,
+h3,
+h4,
+p {
   margin: 0px;
 }
 
@@ -18,7 +22,8 @@ h1 {
   text-align: center;
 }
 
-h2 {
+h2,
+.addSignupPlus {
   font-size: 30px;
   font-weight: bold;
 }
@@ -26,9 +31,23 @@ h2 {
 h3 {
   font-size: 25px;
   font-weight: bold;
-} 
+}
 
-nav > a {
+.header {
+  color: var(--gold);
+  margin: 20px;
+}
+
+.sectionHeader {
+  background-color: var(--gold);
+  padding: 5px;
+  width: 100%;
+  color: white;
+  text-align: center;
+  margin: 0px -10px 0px -10px;
+}
+
+nav>a {
   font-size: 25px;
 }
 
@@ -36,15 +55,33 @@ p {
   font-size: 18px;
 }
 
-button > p {
+button>p {
   font-size: 18px;
   font-weight: bold;
 }
 
-button > h2, .loginForm > form > label {
+button>h2,
+.loginForm>form>label {
   font-size: 25px;
   font-weight: bold;
   color: var(--gold);
+}
+
+.sizeButtons {
+  font-size: 18px;
+  font-weight: bold;
+  background-color: transparent;
+  color: var(--gold);
+  border: solid 2px var(--lightgold);
+  border-radius: 15px;
+  padding: 10px 25px 10px 25px;
+  margin: 5px;
+}
+
+.sizeButtons:active,
+.sizeButtons:hover {
+  background-color: var(--lightgold);
+  color: white;
 }
 
 .logo {
@@ -54,10 +91,18 @@ button > h2, .loginForm > form > label {
   margin: 30px;
 }
 
-.loginForm > form {
+.loginForm>form {
   display: flex;
   flex-direction: column;
   align-items: start;
+}
+
+.loginForm {
+  height: 70vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-top: -70px;
 }
 
 .loginButton {
@@ -70,9 +115,17 @@ input {
   padding: 10px;
   margin-bottom: 20px;
   font-size: 20px;
+
+  /* color: var(--green); */
 }
 
-.loginButton > button {
+:-webkit-autofill,
+:-webkit-autofill:hover,
+:-webkit-autofill:focus {
+  -webkit-text-fill-color: var(--green);
+}
+
+.loginButton>button {
   background-color: var(--green);
   color: white;
   border: 2px solid var(--darkgreen);
@@ -81,13 +134,85 @@ input {
 
 }
 
+.submitButton {
+  background-color: var(--green);
+  color: white;
+  border: 2px solid var(--darkgreen);
+  border-radius: 15px;
+  padding: 3px 9px 3px 9px;
+}
+
 nav,
-.signupsRow,
+/* .signupsRow, */
 .signupInputs,
 .sizeOption,
 .dishesRow {
   display: flex;
   justify-content: space-between;
+}
+
+.signup {
+  min-width: 400px;
+}
+
+.addButtonAndPhoto,
+.buttonAndPhoto {
+  display: flex;
+  justify-content: space-between;
+  margin: 15px;
+  position: relative;
+  z-index: 1;
+  top: -80px;
+  bottom: 0px;
+}
+
+.addButton,
+.editButton,
+.cancelButton {
+  background-color: white;
+  border-radius: 15px;
+  color: var(--green);
+  box-shadow: 4px 4px 10px rgb(177, 177, 177);
+  align-self: end;
+}
+
+.addButton {
+  width: 40px;
+  height: 40px;
+  padding: 10px;
+}
+
+.editButton,
+.cancelButton {
+  padding: 15px;
+  font-weight: bold;
+}
+
+.addSignupPlus,
+.editButtonText,
+.cancelButtonText {
+  text-align: center;
+}
+
+.openSignupInfo,
+.yourSignupInfo {
+  background-color: white;
+  border-radius: 15px;
+  width: 260px;
+  line-height: 2.5em;
+  padding: 15px 20px 15px 20px;
+  color: var(--gold);
+  margin: 15px;
+  box-shadow: 4px 4px 10px rgb(177, 177, 177);
+}
+
+
+.dishPhoto {
+  border: 3px solid var(--green);
+  border-radius: 15px;
+  width: 130px;
+  height: 130px;
+  box-shadow: 4px 4px 10px rgb(177, 177, 177);
 }
 
 .cookTiles {
@@ -136,4 +261,8 @@ nav,
 
 .signup {
   margin-bottom: 40px;
+}
+
+.signupsRow {
+  height: 50%;
 }

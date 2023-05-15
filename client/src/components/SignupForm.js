@@ -12,22 +12,36 @@ const SignupForm = (props) => {
     const { loading, data } = useQuery(GET_ME);
     const me = data?.me;
 
-    console.log("me", me)
-
-
-    const onSizeSubmit = async (signupData, event) => {
+    const onSmallSubmit = async (event) => {
+        console.log(event.target);
         try {
             const { data } = await createSignup({
                 variables: {
                     menuItem: event.target.id,
                     user: me._id,
-                    size: signupData.size,
+                    size: "Small",
                 },
             });
             const signupForm = document.querySelector(".signupForm");
             signupForm.style.visibility = "hidden";
-            console.log("signupData", data);
-            window.location.reload();
+
+        } catch (err) {
+            console.error(err);
+        }
+    };
+
+    const onLargeSubmit = async (event) => {
+        console.log(event.target);
+        try {
+            const { data } = await createSignup({
+                variables: {
+                    menuItem: event.target.id,
+                    user: me._id,
+                    size: "Large",
+                },
+            });
+            const signupForm = document.querySelector(".signupForm");
+            signupForm.style.visibility = "hidden";
 
         } catch (err) {
             console.error(err);
@@ -36,42 +50,8 @@ const SignupForm = (props) => {
 
     return (
         <>
-            <form
-                id={props.id}
-                onSubmit={handleSubmit(onSizeSubmit)}
-                className="signupInputs"
-            >
-                <div className="sizeOption">
-                    <input
-                        {...register("size", { required: true })}
-                        type="radio"
-                        id="Small"
-                        value="Small"
-                    ></input>
-                    <label htmlFor="Small">Small</label>
-                </div>
-
-                <div className="sizeOption">
-                    <input
-                        {...register("size", { required: true })}
-                        type="radio"
-                        id="Medium"
-                        value="Medium"
-                    ></input>
-                    <label htmlFor="Medium">Medium</label>
-                </div>
-
-                <div className="sizeOption">
-                    <input
-                        {...register("size", { required: true })}
-                        type="radio"
-                        id="Large"
-                        value="Large"
-                    ></input>
-                    <label htmlFor="Large">Large</label>
-                </div>
-                <input type="submit" value="Create Signup" />
-            </form>
+            <button id={props.id} onClick={onSmallSubmit} className="sizeButtons">Small</button>
+            <button id={props.id} onClick={onLargeSubmit} className="sizeButtons">Large</button>
         </>
     );
 };
