@@ -10,7 +10,7 @@ import { DELETE_SIGNUP } from "../utils/mutations";
 import SignupForm from "../components/SignupForm";
 import { timeConverter } from "../utils/timeConverter";
 import Auth from "../utils/auth";
-import { Navigate } from "react-router-dom";
+import { Navigate, Link } from "react-router-dom";
 import Header from "../components/Header";
 import SectionHeader from "../components/SectionHeader";
 
@@ -70,13 +70,33 @@ const Dashboard = () => {
   return (
     <>
       {!Auth.loggedIn() && <Navigate to="/login" />}
-      <div className="mainContainer">
-        <Header />
-        <nav>
-          <h3>Dashboard</h3>
-          <h3>Cooks</h3>
-          <h3>Sign Out</h3>
+
+        <nav class="navbar">
+          <div class="hamburger-lines">
+            <p>x</p>
+          </div>
+
+          <div className="navLinks">
+            <ul>
+              <li>
+                <Link to="/dashboard"><h3 className="navLink">Dashboard</h3></Link>
+              </li>
+              <li>
+                <Link to="/dishes"><h3 className="navLink">Dishes</h3></Link>
+              </li>
+              <li>
+                <Link to="/cooks"><h3 className="navLink">Cooks</h3></Link>
+              </li>
+              <li>
+                <Link to="#"><h3 className="navLink">Sign Out</h3></Link>
+              </li>
+            </ul>
+          </div>
         </nav>
+
+      <div className="mainContainer">
+
+        <Header />
 
         <SectionHeader title="Open Signups" />
 
@@ -132,12 +152,20 @@ const Dashboard = () => {
                   </div>
                   <div className="buttonAndPhoto">
                     <div className="editButton">
-                      <p id={signup.menuItem._id} onClick={showSignupForm} className="editButtonText">
+                      <p
+                        id={signup.menuItem._id}
+                        onClick={showSignupForm}
+                        className="editButtonText"
+                      >
                         Edit
                       </p>
                     </div>
                     <div className="cancelButton">
-                      <p id={signup._id} onClick={onDeleteClick} className="cancelButtonText">
+                      <p
+                        id={signup._id}
+                        onClick={onDeleteClick}
+                        className="cancelButtonText"
+                      >
                         Cancel
                       </p>
                     </div>

@@ -47,8 +47,12 @@ h3 {
   margin: 0px -10px 0px -10px;
 }
 
-nav>a {
+.navLink {
   font-size: 25px;
+  font-weight: 100;
+  color: white;
+  text-decoration: none;
+  margin: 10px;
 }
 
 p {
@@ -142,7 +146,7 @@ input {
   padding: 3px 9px 3px 9px;
 }
 
-nav,
+
 /* .signupsRow, */
 .signupInputs,
 .sizeOption,
@@ -266,4 +270,21 @@ nav,
 
 .signupsRow {
   height: 50%;
+}
+
+@media (max-width: 768px) {
+  .navbar {
+    background-color: var(--gold);
+    color: white;
+    width: 50%;
+    height: 100vh;
+    position: fixed;
+    z-index: 3;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .navLinks > ul {
+    list-style: none;
+  }
 }
