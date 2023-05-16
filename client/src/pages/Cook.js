@@ -6,6 +6,7 @@ import { useParams } from 'react-router-dom';
 import { timeConverter } from '../utils/timeConverter';
 import { MENU_PAID, RETURN_TO_PENDING } from '../utils/mutations';
 import AddCostForm from '../components/AddCostForm';
+import SectionHeader from '../components/SectionHeader';
 
 const Cook = () => {
     const { cookId: cookParam } = useParams();
@@ -60,7 +61,7 @@ const Cook = () => {
         <>
             <h1>{cook.fullName}</h1>
 
-            <h1>This Week's Dishes</h1>
+            <SectionHeader title="This Week's Dishes" />
 
             <div className="mainContainer">
                 {cookMenuItems && cookMenuItems.map((cookMenu) => (
@@ -76,7 +77,7 @@ const Cook = () => {
 
 
                 <div>
-                    <h1>Pending Payments</h1>
+                    <SectionHeader title="Pending Payments" />
                     {cooksUnpaidMenus && cooksUnpaidMenus.map((cookMenu) => (
                         <div className="weeklyDishContainer">
                             <div className="dishesRow">
@@ -93,7 +94,7 @@ const Cook = () => {
                 </div>
 
                 <div>
-                    <h1>Payment History</h1>
+                    <SectionHeader title="Payment History" />
                     {cooksPaidMenus && cooksPaidMenus.map((cookMenu) => (
                         <div className="weeklyDishContainer">
                             <div className="dishesRow">

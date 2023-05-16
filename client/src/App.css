@@ -195,7 +195,8 @@ nav,
 }
 
 .openSignupInfo,
-.yourSignupInfo {
+.yourSignupInfo,
+.dishesRow {
   background-color: white;
   border-radius: 15px;
   width: 260px;
