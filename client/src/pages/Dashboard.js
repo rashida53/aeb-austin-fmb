@@ -13,6 +13,7 @@ import Auth from "../utils/auth";
 import { Navigate, Link } from "react-router-dom";
 import Header from "../components/Header";
 import SectionHeader from "../components/SectionHeader";
+import Nav from "../components/Nav";
 
 const Dashboard = () => {
   const { loading: cookLoading, data: getCookData } = useQuery(GET_ALL_COOKS);
@@ -71,32 +72,17 @@ const Dashboard = () => {
     <>
       {!Auth.loggedIn() && <Navigate to="/login" />}
 
-        <nav class="navbar">
-          <div class="hamburger-lines">
-            <p>x</p>
-          </div>
+      <div className="navAndHeader">
+        <Nav />
 
-          <div className="navLinks">
-            <ul>
-              <li>
-                <Link to="/dashboard"><h3 className="navLink">Dashboard</h3></Link>
-              </li>
-              <li>
-                <Link to="/dishes"><h3 className="navLink">Dishes</h3></Link>
-              </li>
-              <li>
-                <Link to="/cooks"><h3 className="navLink">Cooks</h3></Link>
-              </li>
-              <li>
-                <Link to="#"><h3 className="navLink">Sign Out</h3></Link>
-              </li>
-            </ul>
-          </div>
-        </nav>
+        <Header />
+      </div>
+
+
 
       <div className="mainContainer">
 
-        <Header />
+
 
         <SectionHeader title="Open Signups" />
 
