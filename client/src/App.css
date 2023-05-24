@@ -286,19 +286,30 @@ input {
   display: flex;
   flex-wrap: wrap;
   float: right;
-  margin: 20px 0px;
-  padding: 0px 25px;
+  /* margin: 20px 0px; */
+  /* padding: 0px 25px; */
 }
 
 .navigation ul li {
   list-style-type: none;
-  padding-right: 10px;
+  /* padding-right: 10px; */
+  margin: 10px 0px 10px 0px;
+} 
+
+
+.navigation ul li h3 {
+  padding: 10px 20px 10px 20px;
+}
+
+.navigation ul li h3:hover, .navigation ul li h3:active {
+  background-color: var(--lightgold);
+
 }
 
 .hamburger {
   width: 2rem;
   height: 2rem;
-  display: flex;
+  display: none;
   justify-content: space-around;
   flex-flow: column nowrap;
   z-index: 10;
@@ -313,13 +324,10 @@ input {
   transition: all 0.3s linear;
 }
 
-.hamburger {
-  display: none;
-}
 
 @media (max-width: 768px) {
   .hamburger {
-    display: fixed;
+    display: flex;
     padding-top: 10px;
     margin-left: 10px;
     z-index: 10;

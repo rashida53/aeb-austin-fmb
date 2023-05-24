@@ -13,7 +13,7 @@ export default function Hamburger({ isOpen }) {
                 .hamburger{
                     width: 2rem;
                     height: 2rem;
-                    display: flex;
+                    display: none;
                     justify-content: space-around;
                     flex-flow: column nowrap;
                     z-index: 10;
@@ -38,6 +38,16 @@ export default function Hamburger({ isOpen }) {
                 .burger3{
                     transform: ${isOpen ? 'rotate(-45deg)' : 'rotate(0)'};
                 }
+
+                @media (max-width: 768px) {
+                    .hamburger {
+                      display: flex;
+                      padding-top: 10px;
+                      margin-left: 10px;
+                      z-index: 10;
+                  
+                    }
+                  }
 
                 
             `}</style>
