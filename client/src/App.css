@@ -200,7 +200,8 @@ input {
 
 .openSignupInfo,
 .yourSignupInfo,
-.dishesRow {
+.dishesRow,
+.allDishes {
   background-color: white;
   border-radius: 15px;
   width: 260px;
@@ -210,7 +211,6 @@ input {
   margin: 15px;
   box-shadow: 4px 4px 10px rgb(177, 177, 177);
 }
-
 
 .dishPhoto {
   border: 3px solid var(--green);
@@ -274,6 +274,10 @@ input {
 
 .navAndHeader {
   display: flex;
+}
+
+.dishesRow {
+  flex-direction: column;
 }
 
 /* .navigation {

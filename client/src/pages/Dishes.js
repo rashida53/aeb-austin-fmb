@@ -43,20 +43,20 @@ const Dishes = (props) => {
 
                 <div>
                     {dishes && dishes.map((dish) => (
-                        <div>
-                            <div>
-                                <ul>
-                                    <li key={dish._id} id={dish._id}>{dish.dishName}</li>
-                                </ul>
-                            </div>
+                        <div className="allDishes">
+
+                            <p key={dish._id} id={dish._id}>{dish.dishName}</p>
 
                         </div>
 
+
+
                     ))}
 
-                    <div>
-                        <AddDishForm />
-                    </div>
+
+                </div>
+                <div>
+                    <AddDishForm />
                 </div>
 
                 <SectionHeader title="Create Menu" />
