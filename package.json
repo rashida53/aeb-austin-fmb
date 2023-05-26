@@ -17,6 +17,7 @@
   },
   "dependencies": {
     "@hookform/error-message": "^2.0.1",
-    "react-hook-form": "^7.43.3"
+    "react-hook-form": "^7.43.3",
+    "react-media-hook": "^0.5.0"
   }
 }
