@@ -23,10 +23,10 @@ const AddDishForm = () => {
 
     return (
         <>
-            <form onSubmit={handleSubmit(onSubmit)}>
+            <form onSubmit={handleSubmit(onSubmit)} className="addDishForm">
                 <input {...register("dishName", { required: true })} placeholder="Name"></input>
                 <input {...register("category", { required: true })} placeholder="Category"></input>
-                <input type="submit" value="Add dish"></input>
+                <input type="submit" value="Add Dish"></input>
             </form>
         </>
     )

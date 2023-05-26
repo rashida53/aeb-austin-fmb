@@ -35,7 +35,7 @@ const CreateMenuForm = () => {
 
     return (
         <>
-            <form onSubmit={handleSubmit(onSubmit)} >
+            <form onSubmit={handleSubmit(onSubmit)} className="createMenuForm" >
                 <select {...register("dishId", { required: true })}>
                     <option disabled selected value>-- Choose a Dish --</option>
                     {dishes && dishes.map((dish) => (
