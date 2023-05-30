@@ -86,7 +86,7 @@ const Dashboard = () => {
 
   return (
     <>
-      {!Auth.loggedIn() && <Navigate to="/login" />}
+      {/* {!Auth.loggedIn() && <Navigate to="/login" />} */}
 
       <div className="navAndHeader">
         <Nav />
