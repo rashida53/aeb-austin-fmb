@@ -31,14 +31,14 @@ const Cooks = () => {
       <div className="cookTiles">
         {cooks &&
           cooks.map((cook) => (
-            <Link to={`/cook/${cook._id}`}>
+            <Link to={`/cook/${cook._id}`} style={{ textDecoration: "none" }}>
               <div className="cookTile" key={cook._id}>
                 <p>{cook.fullName}</p>
               </div>
             </Link>
           ))}
         <div className="cookTile">
-          <p className="addCookPlus" onClick={showAddCook}>
+          <p id="addCookPlus" onClick={showAddCook}>
             +
           </p>
         </div>

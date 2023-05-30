@@ -223,9 +223,16 @@ select {
 .yourSignupInfo,
 .dishesRow,
 .allDishes {
+  width: 260px;
+}
+
+.openSignupInfo,
+.yourSignupInfo,
+.dishesRow,
+.allDishes,
+.cookTile {
   background-color: white;
   border-radius: 15px;
-  width: 260px;
   line-height: 2.5em;
   padding: 15px 20px 15px 20px;
   color: var(--gold);
@@ -244,20 +251,26 @@ select {
 .cookTiles {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
 }
 
 .cookTile {
   display: flex;
-  border: 1px solid black;
-  padding: 5px;
-  margin: 5px;
-  min-width: 100px;
-  min-height: 100px;
+  padding: 15px;
+  margin: 30px;
+  width: 130px;
   justify-content: center;
   align-items: center;
+  aspect-ratio: 1 / 1;
+  text-align: center;
+
 }
 
-.addCookPlus {
+.cookTile p {
+  font-size: 22px;
+}
+
+#addCookPlus {
   font-size: 50px;
   margin: 0px;
 }
