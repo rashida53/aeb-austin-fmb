@@ -120,7 +120,8 @@ button>h2,
   align-self: center;
 }
 
-input, select {
+input,
+select {
   border: 2px solid var(--gold);
   border-radius: 15px;
   padding: 10px;
@@ -135,7 +136,8 @@ input, select {
   margin-top: 20px;
 }
 
-.createMenuForm input, .createMenuForm select {
+.createMenuForm input,
+.createMenuForm select {
   color: var(--gold);
 }
 
@@ -165,7 +167,6 @@ input, select {
   border-radius: 15px;
   padding: 3px 9px 3px 9px;
 }
-
 
 /* .signupsRow, */
 .signupInputs,
@@ -360,21 +361,48 @@ input, select {
   margin-top: 20px;
 }
 
-.addDishForm input, .createMenuForm select {
+.addDishForm input,
+.createMenuForm select {
   margin-bottom: 10px;
 }
 
-.addDishForm input[type='submit'], .createMenuForm input[type='submit'] {
+.addDishForm input[type='submit'],
+.createMenuForm input[type='submit'] {
   width: 150px;
   align-self: center;
 }
 
-input[type='submit'] {
+input[type='submit'],
+.menuPaidButton,
+.returnToPendingButton {
   background-color: var(--green);
   color: white;
   border: 2px solid var(--darkgreen);
   border-radius: 15px;
   font-weight: bold;
+}
+
+.returnToPendingButton {
+  padding: 10px 0px 10px 0px;
+}
+
+.addCostForm {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.addCostForm input {
+  width: 110px;
+}
+
+.amountAndPaidButton {
+  display: flex;
+  justify-content: space-between;
+}
+
+.menuPaidButton {
+  width: 80px;
 }
 
 @media (max-width: 768px) {

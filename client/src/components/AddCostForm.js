@@ -20,13 +20,18 @@ const AddCostForm = (props) => {
         } catch (err) {
             console.error(err);
         }
+
+        const addCostForm = document.getElementById(event.target.id);
+        addCostForm.style.display = "none";
+
+
     };
 
     return (
         <>
-            <form onSubmit={handleSubmit(onCostSubmit)} id={props.id} >
+            <form className="addCostForm" onSubmit={handleSubmit(onCostSubmit)} id={props.id} >
                 <input {...register("amount", { required: true })} placeholder="Amount"></input>
-                <input type="submit" value="Add cost"></input>
+                <input type="submit" value="Add Cost"></input>
             </form>
         </>
     )

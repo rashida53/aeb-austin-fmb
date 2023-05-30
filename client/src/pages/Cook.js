@@ -18,10 +18,10 @@ const Cook = () => {
 
     const { loading: cookMenuItemsLoading, data: cookMenuItemsData } = useQuery(GET_COOKS_MENU_ITEMS_BY_DATE, { variables: { cookId: cookParam } });
     const cookMenuItems = cookMenuItemsData?.cookMenuItemsByDate;
-    console.log(cookMenuItemsData);
 
     const { loading: cooksUnpaidMenusLoading, data: cooksUnpaidMenusData } = useQuery(GET_COOKS_UNPAID_MENUS, { variables: { cookId: cookParam } });
     const cooksUnpaidMenus = cooksUnpaidMenusData?.getCooksUnpaidMenus;
+    console.log("cooks unpaid menus", cooksUnpaidMenus);
 
     const { loading: cooksPaidMenusLoading, data: cooksPaidMenusData } = useQuery(GET_COOKS_PAID_MENUS, { variables: { cookId: cookParam } });
     const cooksPaidMenus = cooksPaidMenusData?.getCooksPaidMenus;
@@ -76,37 +76,40 @@ const Cook = () => {
                 ))}
 
 
-                <div>
-                    <SectionHeader title="Pending Payments" />
-                    {cooksUnpaidMenus && cooksUnpaidMenus.map((cookMenu) => (
-                        <div className="weeklyDishContainer">
-                            <div className="dishesRow">
-                                <p>{cookMenu.dish.dishName}</p>
-                                <p>{cookMenu.amount}</p>
-                                <p>{timeConverter(cookMenu.menuDate)}</p>
 
-                                <AddCostForm id={cookMenu._id} />
-                                <button onClick={menuPaidButton} id={cookMenu._id}>Paid</button>
+                <SectionHeader title="Pending Payments" />
+                {cooksUnpaidMenus && cooksUnpaidMenus.map((cookMenu) => (
+                    <div className="weeklyDishContainer">
+                        <div className="dishesRow">
+                            <p>{cookMenu.dish.dishName}</p>
+                            <p>{timeConverter(cookMenu.menuDate)}</p>
+
+                            <div className='amountAndPaidButton'>
+                                <p style={{ fontWeight: "bold" }}>Total: ${cookMenu.amount}</p>
+                                <button className='menuPaidButton' onClick={menuPaidButton} id={cookMenu._id}><p>Paid</p></button>
                             </div>
 
-                        </div>
-                    ))}
-                </div>
-
-                <div>
-                    <SectionHeader title="Payment History" />
-                    {cooksPaidMenus && cooksPaidMenus.map((cookMenu) => (
-                        <div className="weeklyDishContainer">
-                            <div className="dishesRow">
-                                <p>{cookMenu.dish.dishName}</p>
-                                <p>{cookMenu.amount}</p>
-                                <p>{timeConverter(cookMenu.menuDate)}</p>
-                                <button onClick={returnToPendingButton} id={cookMenu._id}>Return to pending</button>
-                            </div>
+                            <AddCostForm id={"form" + cookMenu._id} />
 
                         </div>
-                    ))}
-                </div>
+
+                    </div>
+                ))}
+
+
+
+                <SectionHeader title="Payment History" />
+                {cooksPaidMenus && cooksPaidMenus.map((cookMenu) => (
+                    <div className="weeklyDishContainer">
+                        <div className="dishesRow">
+                            <p>{cookMenu.dish.dishName}</p>
+                            <p>{cookMenu.amount}</p>
+                            <p>{timeConverter(cookMenu.menuDate)}</p>
+                            <button className='returnToPendingButton' onClick={returnToPendingButton} id={cookMenu._id}><p>Return to Pending</p></button>
+                        </div>
+
+                    </div>
+                ))}
 
             </div>
         </>
