@@ -10,9 +10,10 @@ import { DELETE_SIGNUP } from "../utils/mutations";
 import SignupForm from "../components/SignupForm";
 import { timeConverter } from "../utils/timeConverter";
 import Auth from "../utils/auth";
-import { Navigate } from "react-router-dom";
+import { Navigate, Link } from "react-router-dom";
 import Header from "../components/Header";
 import SectionHeader from "../components/SectionHeader";
+import Nav from "../components/Nav";
 
 const Dashboard = () => {
   const { loading: cookLoading, data: getCookData } = useQuery(GET_ALL_COOKS);
@@ -28,6 +29,13 @@ const Dashboard = () => {
 
   const [deleteSignup] = useMutation(DELETE_SIGNUP);
 
+  const isDateFourDaysFromToday = (date) => {
+    var today = new Date();
+    today.setDate(today.getDate() + 4);
+    var fourDaysFromToday = new Date(today);
+    return new Date(parseFloat(date)) >= fourDaysFromToday;
+  };
+
   const onDeleteClick = async (event) => {
     try {
       const { data } = await deleteSignup({
@@ -39,15 +47,24 @@ const Dashboard = () => {
       console.error(err);
     }
   };
+
   let signups = signupData?.userSignups || [];
+  let filteredSignups = signups.filter(
+    (signup) => new Date(parseFloat(signup.menuItem.menuDate)) >= new Date()
+  );
 
   const getFilteredMenus = (openMenuData, signupData) => {
     let openMenus = openMenuData?.openMenus || [];
-    let signups = signupData?.userSignups || [];
+    let filteredOpenMenus = openMenus.filter((openMenu) =>
+      isDateFourDaysFromToday(openMenu.menuDate)
+    );
 
+    let signups = signupData?.userSignups || [];
     let menusSignedUp = signups.map((signup) => signup.menuItem._id);
 
-    return openMenus.filter((menu) => !menusSignedUp.includes(menu._id));
+    return filteredOpenMenus.filter(
+      (menu) => !menusSignedUp.includes(menu._id)
+    );
   };
 
   let openMenus = getFilteredMenus(openMenuData, signupData);
@@ -70,14 +87,15 @@ const Dashboard = () => {
   return (
     <>
       {!Auth.loggedIn() && <Navigate to="/login" />}
-      <div className="mainContainer">
-        <Header />
-        <nav>
-          <h3>Dashboard</h3>
-          <h3>Cooks</h3>
-          <h3>Sign Out</h3>
-        </nav>
 
+      <div className="navAndHeader">
+        <Nav />
+        <Header />
+      </div>
+
+      <h1>Dashboard</h1>
+
+      <div className="mainContainer">
         <SectionHeader title="Open Signups" />
 
         <div className="signupsTable">
@@ -121,8 +139,8 @@ const Dashboard = () => {
         <SectionHeader title="Your Signups" />
 
         <div className="signupsContainer">
-          {signups &&
-            signups.map((signup) => (
+          {filteredSignups &&
+            filteredSignups.map((signup) => (
               <div className="signup">
                 <div className="yourSignups">
                   <div className="yourSignupInfo">
@@ -132,12 +150,30 @@ const Dashboard = () => {
                   </div>
                   <div className="buttonAndPhoto">
                     <div className="editButton">
-                      <p id={signup.menuItem._id} onClick={showSignupForm} className="editButtonText">
+                      <p
+                        style={
+                          isDateFourDaysFromToday(signup.menuItem.menuDate)
+                            ? { display: "block" }
+                            : { display: "none" }
+                        }
+                        id={signup.menuItem._id}
+                        onClick={showSignupForm}
+                        className="editButtonText"
+                      >
                         Edit
                       </p>
                     </div>
                     <div className="cancelButton">
-                      <p id={signup._id} onClick={onDeleteClick} className="cancelButtonText">
+                      <p
+                        style={
+                          isDateFourDaysFromToday(signup.menuItem.menuDate)
+                            ? { display: "block" }
+                            : { display: "none" }
+                        }
+                        id={signup._id}
+                        onClick={onDeleteClick}
+                        className="cancelButtonText"
+                      >
                         Cancel
                       </p>
                     </div>
@@ -156,11 +192,6 @@ const Dashboard = () => {
               </div>
             ))}
         </div>
-
-        {/* 
-        <Link to="/dishes">
-          <h1 className="dishes">Dishes</h1>
-        </Link> */}
       </div>
     </>
   );

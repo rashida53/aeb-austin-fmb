@@ -9,6 +9,10 @@
     "seed": "cd server && npm run seed",
     "build": "cd client && npm run build"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rashida53/aeb-austin-fmb.git"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",

@@ -24,9 +24,9 @@ const AddCostForm = (props) => {
 
     return (
         <>
-            <form onSubmit={handleSubmit(onCostSubmit)} id={props.id} >
+            <form className="addCostForm" onSubmit={handleSubmit(onCostSubmit)} id={props.id} >
                 <input {...register("amount", { required: true })} placeholder="Amount"></input>
-                <input type="submit" value="Add cost"></input>
+                <input type="submit" value="Add Cost"></input>
             </form>
         </>
     )

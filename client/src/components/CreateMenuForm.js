@@ -35,7 +35,7 @@ const CreateMenuForm = () => {
 
     return (
         <>
-            <form onSubmit={handleSubmit(onSubmit)} >
+            <form onSubmit={handleSubmit(onSubmit)} className="createMenuForm" >
                 <select {...register("dishId", { required: true })}>
                     <option disabled selected value>-- Choose a Dish --</option>
                     {dishes && dishes.map((dish) => (
@@ -48,7 +48,7 @@ const CreateMenuForm = () => {
                         <option key={cook._id} value={cook._id}>{cook.fullName}</option>
                     ))}
                 </select>
-                <input type="datetime-local" format="yyyy-MM-dd" {...register("menuDate")}></input>
+                <input type="date" format="yyyy-MM-dd" {...register("menuDate")}></input>
 
                 <input type='submit' value='Create' />
 

@@ -20,6 +20,9 @@ p {
 
 h1 {
   text-align: center;
+  color: var(--green);
+  font-size: 40px;
+  margin-bottom: 20px;
 }
 
 h2,
@@ -47,12 +50,20 @@ h3 {
   margin: 0px -10px 0px -10px;
 }
 
-nav>a {
+.navLink {
   font-size: 25px;
+  font-weight: 100;
+  color: white;
+  text-decoration: none;
+  margin: 10px;
 }
 
 p {
   font-size: 18px;
+}
+
+.allDishes p {
+  text-align: center;
 }
 
 button>p {
@@ -109,14 +120,29 @@ button>h2,
   align-self: center;
 }
 
-input {
+input,
+select {
   border: 2px solid var(--gold);
   border-radius: 15px;
   padding: 10px;
   margin-bottom: 20px;
   font-size: 20px;
+  background-color: white;
+}
 
-  /* color: var(--green); */
+.createMenuForm {
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+}
+
+.createMenuForm input,
+.createMenuForm select {
+  color: var(--gold);
+}
+
+.loginForm input {
+  color: var(--green);
 }
 
 :-webkit-autofill,
@@ -142,7 +168,6 @@ input {
   padding: 3px 9px 3px 9px;
 }
 
-nav,
 /* .signupsRow, */
 .signupInputs,
 .sizeOption,
@@ -195,17 +220,25 @@ nav,
 }
 
 .openSignupInfo,
-.yourSignupInfo {
+.yourSignupInfo,
+.dishesRow,
+.allDishes {
+  width: 260px;
+}
+
+.openSignupInfo,
+.yourSignupInfo,
+.dishesRow,
+.allDishes,
+.cookTile {
   background-color: white;
   border-radius: 15px;
-  width: 260px;
   line-height: 2.5em;
   padding: 15px 20px 15px 20px;
   color: var(--gold);
   margin: 15px;
   box-shadow: 4px 4px 10px rgb(177, 177, 177);
 }
-
 
 .dishPhoto {
   border: 3px solid var(--green);
@@ -218,20 +251,26 @@ nav,
 .cookTiles {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
 }
 
 .cookTile {
   display: flex;
-  border: 1px solid black;
-  padding: 5px;
-  margin: 5px;
-  min-width: 100px;
-  min-height: 100px;
+  padding: 15px;
+  margin: 30px;
+  width: 130px;
   justify-content: center;
   align-items: center;
+  aspect-ratio: 1 / 1;
+  text-align: center;
+
 }
 
-.addCookPlus {
+.cookTile p {
+  font-size: 22px;
+}
+
+#addCookPlus {
   font-size: 50px;
   margin: 0px;
 }
@@ -265,4 +304,153 @@ nav,
 
 .signupsRow {
   height: 50%;
+}
+
+.navAndHeader {
+  display: flex;
+}
+
+.dishesRow {
+  flex-direction: column;
+}
+
+/* .navigation {
+  width: 100%;
+  height: 50px;
+  background-color: var(--gold);
+} */
+
+.navigation ul,
+.navigationDesktop ul {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.navigation ul li {
+  list-style-type: none;
+  margin: 10px 0px 10px 0px;
+}
+
+.navigationDesktop ul li {
+  list-style-type: none;
+}
+
+
+.navigation ul li h3,
+.navigationDesktop ul li h3 {
+  padding: 10px 20px 10px 20px;
+}
+
+.navigation ul li h3:hover,
+.navigation ul li h3:active,
+.navigationDesktop ul li h3:hover {
+  background-color: var(--lightgold);
+
+}
+
+.hamburger {
+  width: 2rem;
+  height: 2rem;
+  display: none;
+  justify-content: space-around;
+  flex-flow: column nowrap;
+  z-index: 10;
+}
+
+.burger {
+  width: 2rem;
+  height: 0.25rem;
+  border-radius: 10px;
+  background-color: var(--lightgold);
+  transform-origin: 1px;
+  transition: all 0.3s linear;
+}
+
+.addDishForm {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.addDishForm input,
+.createMenuForm select {
+  margin-bottom: 10px;
+}
+
+.addDishForm input[type='submit'],
+.createMenuForm input[type='submit'] {
+  width: 150px;
+  align-self: center;
+}
+
+input[type='submit'],
+.menuPaidButton,
+.returnToPendingButton {
+  background-color: var(--green);
+  color: white;
+  border: 2px solid var(--darkgreen);
+  border-radius: 15px;
+  font-weight: bold;
+}
+
+.returnToPendingButton {
+  padding: 10px 0px 10px 0px;
+}
+
+.addCostForm {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.addCostForm input {
+  width: 110px;
+}
+
+.amountAndPaidButton {
+  display: flex;
+  justify-content: space-between;
+}
+
+.menuPaidButton {
+  width: 80px;
+}
+
+@media (max-width: 768px) {
+  .hamburger {
+    display: flex;
+    padding-top: 10px;
+    margin-left: 10px;
+    z-index: 10;
+
+  }
+
+
+  .navigationDesktop {
+    display: none;
+  }
+
+}
+
+@media (min-width: 768px) {
+  .navigationDesktop {
+    background-color: var(--gold);
+    width: 100%;
+    color: white;
+    text-align: center;
+    display: flex;
+    justify-content: space-around;
+    height: 53.5px;
+    align-items: center;
+  }
+
+  .navAndHeader {
+    flex-direction: column;
+  }
+
+  .header {
+    text-align: center;
+  }
 }

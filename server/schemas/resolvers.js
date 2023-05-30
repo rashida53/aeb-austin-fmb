@@ -37,10 +37,10 @@ const resolvers = {
         },
         openMenus: async () => {
             var currentDate = new Date();
-            var beforeThreeDays = new Date(currentDate.setDate(currentDate.getDate() - 3));
+            var afterThreeDays = new Date(currentDate.setDate(currentDate.getDate() + 3));
             return MenuItem.find(
                 {
-                    menuDate: { "$gte": beforeThreeDays }
+                    menuDate: { "$gte": afterThreeDays }
                 }
             ).populate('dish').populate('cook');
         },
@@ -95,10 +95,12 @@ const resolvers = {
             ).populate('user');
         },
         userSignups: async (parent, args, context) => {
+            var currentDate = new Date();
             if (context) {
                 return Signup.find(
-                    { user: context.user._id },
-                    console.log("user id", context.user._id)
+                    {
+                        user: context.user._id
+                    },
                 ).populate(
                     {
                         path: 'menuItem',
@@ -106,7 +108,6 @@ const resolvers = {
                     }
                 ).populate('user');
             }
-
         },
     },
 
@@ -172,10 +173,13 @@ const resolvers = {
                 { new: true }
             )
         },
-        returnToPending: async (parent, { menuId, isPaid }) => {
+        returnToPending: async (parent, { menuId }) => {
             return MenuItem.findOneAndUpdate(
                 { _id: menuId },
-                { isPaid: false },
+                {
+                    isPaid: false,
+                    amount: null
+                },
                 { new: true }
             )
         },

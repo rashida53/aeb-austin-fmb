@@ -6,6 +6,7 @@ import AddDishForm from "../components/AddDishForm";
 import { timeConverter } from "../utils/timeConverter";
 import SectionHeader from "../components/SectionHeader";
 import Header from "../components/Header";
+import Nav from "../components/Nav";
 
 const Dishes = (props) => {
 
@@ -21,10 +22,13 @@ const Dishes = (props) => {
 
     return (
         <>
+      <div className="navAndHeader">
+        <Nav />
+        <Header />
+      </div>
+      
             <div className="mainContainer">
-
-
-                <Header />
+<h1>Dishes</h1>
                 <SectionHeader title="This Week's Dishes" />
 
                 <div>
@@ -43,20 +47,22 @@ const Dishes = (props) => {
 
                 <div>
                     {dishes && dishes.map((dish) => (
-                        <div>
-                            <div>
-                                <ul>
-                                    <li key={dish._id} id={dish._id}>{dish.dishName}</li>
-                                </ul>
-                            </div>
+                        <div className="allDishes">
+
+                            <p key={dish._id} id={dish._id}>{dish.dishName}</p>
 
                         </div>
 
+
+
                     ))}
 
-                    <div>
-                        <AddDishForm />
-                    </div>
+
+                </div>
+
+                <SectionHeader title="Add Dishes" />
+                <div>
+                    <AddDishForm />
                 </div>
 
                 <SectionHeader title="Create Menu" />

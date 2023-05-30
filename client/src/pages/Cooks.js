@@ -7,6 +7,7 @@ import CookForm from '../components/CookForm'
 import Header from '../components/Header';
 import { Link } from "react-router-dom";
 import { timeConverter } from "../utils/timeConverter";
+import Nav from "../components/Nav";
 
 const Cooks = () => {
   const { loading: cookLoading, data: getCookData } = useQuery(GET_ALL_COOKS);
@@ -19,25 +20,25 @@ const Cooks = () => {
 
   return (
     <>
-      <Header />
-      <nav>
-        <h3>Dashboard</h3>
-        <h3>Sign Out</h3>
-      </nav>
+
+<div className="navAndHeader">
+        <Nav />
+        <Header />
+      </div>
 
       <h1>Cooks</h1>
 
       <div className="cookTiles">
         {cooks &&
           cooks.map((cook) => (
-            <Link to={`/cook/${cook._id}`}>
+            <Link to={`/cook/${cook._id}`} style={{ textDecoration: "none" }}>
               <div className="cookTile" key={cook._id}>
                 <p>{cook.fullName}</p>
               </div>
             </Link>
           ))}
         <div className="cookTile">
-          <p className="addCookPlus" onClick={showAddCook}>
+          <p id="addCookPlus" onClick={showAddCook}>
             +
           </p>
         </div>
