@@ -173,10 +173,13 @@ const resolvers = {
                 { new: true }
             )
         },
-        returnToPending: async (parent, { menuId, isPaid }) => {
+        returnToPending: async (parent, { menuId }) => {
             return MenuItem.findOneAndUpdate(
                 { _id: menuId },
-                { isPaid: false },
+                {
+                    isPaid: false,
+                    amount: null
+                },
                 { new: true }
             )
         },

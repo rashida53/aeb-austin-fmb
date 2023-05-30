@@ -20,11 +20,6 @@ const AddCostForm = (props) => {
         } catch (err) {
             console.error(err);
         }
-
-        const addCostForm = document.getElementById(event.target.id);
-        addCostForm.style.display = "none";
-
-
     };
 
     return (

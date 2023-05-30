@@ -69,7 +69,7 @@ type Mutation {
     addCost(menuId: ID, amount: Int): MenuItem
     createSignup(signupId: ID, user: String, menuItem: String, size: String): Signup
     menuPaid(menuId: ID, isPaid: Boolean): MenuItem
-    returnToPending(menuId: ID, isPaid: Boolean): MenuItem
+    returnToPending(menuId: ID): MenuItem
     deleteSignup(signupId: ID): Signup
 }
 
