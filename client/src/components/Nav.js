@@ -50,8 +50,8 @@ export default function Nav() {
                 </div>
             </div>
 
-            <div className="navigation">
-                <ul style={style.closeLinks}>
+            <div className="navigationDesktop">
+                <ul>
                     <li>
                         <Link to="/dashboard" style={{ textDecoration: "none", color: "white" }}><h3>Dashboard</h3></Link>
                     </li>
