@@ -3,6 +3,7 @@ import { useQuery, useMutation } from "@apollo/client";
 import { useForm } from "react-hook-form";
 import { GET_ALL_COOKS, GET_ALL_DISHES } from "../utils/queries";
 import { CREATE_MENU } from "../utils/mutations";
+import SectionHeader from "../components/SectionHeader";
 
 const CreateMenuForm = () => {
     const { register, handleSubmit } = useForm();
@@ -20,7 +21,6 @@ const CreateMenuForm = () => {
                     isPaid: false
                 },
             });
-            console.log("menu data", menuData)
         } catch (err) {
             console.error(err);
         }
@@ -31,10 +31,9 @@ const CreateMenuForm = () => {
     const { loading: dishLoading, data: getDishData } = useQuery(GET_ALL_DISHES);
     let dishes = getDishData?.dishes || [];
 
-    console.log(dishes)
-
     return (
         <>
+            <SectionHeader title="Create Menu" />
             <form onSubmit={handleSubmit(onSubmit)} className="createMenuForm" >
                 <select {...register("dishId", { required: true })}>
                     <option disabled selected value>-- Choose a Dish --</option>

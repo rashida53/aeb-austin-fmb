@@ -67,7 +67,7 @@ const Cook = () => {
             </div>
             <h1>{cook.fullName}</h1>
 
-            <SectionHeader title="This Week's Dishes" />
+            <SectionHeader title="Upcoming Dishes" />
 
             <div className="mainContainer">
                 {cookMenuItems && cookMenuItems.map((cookMenu) => (
