@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { useQuery } from "@apollo/client";
 import { GET_ALL_MENUS, GET_THIS_WEEKS_DISHES } from "../utils/queries";
 import CreateMenuForm from "../components/CreateMenuForm";
@@ -10,11 +10,18 @@ import DishList from "./DishList";
 
 const Dishes = (props) => {
 
-    const { loading, data: menuData } = useQuery(GET_ALL_MENUS);
-    let menus = menuData?.menus || [];
-
+    const [ thisWeeksDishes, setThisWeeksDishes ] = useState([]);
+    // const { loading, data: getMenuData } = useQuery(GET_ALL_MENUS);
+    // const menuData = getMenuData?.menus;
+    
     const { loading: thisWeekDishLoading, data: thisWeekDishData } = useQuery(GET_THIS_WEEKS_DISHES);
-    let thisWeeksDishes = thisWeekDishData?.thisWeeksDishes || [];
+    let thisWeeksDishesData = thisWeekDishData?.thisWeeksDishes || [];
+
+    useEffect(() => {
+        if (!thisWeekDishLoading) {
+            setThisWeeksDishes(thisWeeksDishesData);
+        }
+    }, [thisWeeksDishesData])
 
     return (
         <>
@@ -37,7 +44,7 @@ const Dishes = (props) => {
                         </div>
                     ))}
                 </div>
-                <CreateMenuForm />
+                <CreateMenuForm thisWeeksDishes={thisWeeksDishes} setThisWeeksDishes={setThisWeeksDishes} />
 
                 <DishList />
             </div>

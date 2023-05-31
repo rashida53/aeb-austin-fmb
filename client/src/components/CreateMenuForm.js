@@ -1,26 +1,31 @@
-import React from "react";
+import React, { useState } from "react";
 import { useQuery, useMutation } from "@apollo/client";
 import { useForm } from "react-hook-form";
 import { GET_ALL_COOKS, GET_ALL_DISHES } from "../utils/queries";
 import { CREATE_MENU } from "../utils/mutations";
 import SectionHeader from "../components/SectionHeader";
 
-const CreateMenuForm = () => {
+const CreateMenuForm = ({ thisWeeksDishes, setThisWeeksDishes }) => {
     const { register, handleSubmit } = useForm();
 
-    const [createMenu, { data: createMenuData }] = useMutation(CREATE_MENU);
+    const [createMenu] = useMutation(CREATE_MENU);
 
-    const onSubmit = async (menuData, event) => {
-        const amount = parseFloat(menuData.amount);
+
+    const onSubmit = async (thisWeeksDishesData, event) => {
+        const amount = parseFloat(thisWeeksDishesData.amount);
         try {
             const { data } = await createMenu({
                 variables: {
-                    dish: menuData.dishId,
-                    cook: menuData.cookId,
-                    menuDate: menuData.menuDate,
+                    dish: thisWeeksDishesData.dishId,
+                    cook: thisWeeksDishesData.cookId,
+                    menuDate: thisWeeksDishesData.menuDate,
                     isPaid: false
                 },
             });
+            console.log("this weeks dishes BEFORE", thisWeeksDishes)
+            thisWeeksDishes = [...thisWeeksDishes, thisWeeksDishesData];
+            console.log("this weeks dishes AFTER", thisWeeksDishes)
+            setThisWeeksDishes(thisWeeksDishes);
         } catch (err) {
             console.error(err);
         }
