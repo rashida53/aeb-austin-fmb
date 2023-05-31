@@ -1,10 +1,11 @@
-import React, { useState } from "react";
-import { useQuery, useMutation } from "@apollo/client";
+import React from "react";
+import { useMutation } from "@apollo/client";
 import { useForm } from "react-hook-form";
 import { ADD_DISH } from "../utils/mutations";
+import SectionHeader from "../components/SectionHeader";
 
-const AddDishForm = () => {
-    const { register, handleSubmit } = useForm();
+const AddDishForm = ({ dishes, setDishes }) => {
+    const { register, handleSubmit, reset } = useForm();
 
     const [addDish] = useMutation(ADD_DISH);
 
@@ -16,6 +17,13 @@ const AddDishForm = () => {
                     category: dishData.category,
                 },
             });
+            dishes = [...dishes, dishData];
+            setDishes(dishes);
+
+            reset({
+                dishName: '',
+                category: '',
+            })
         } catch (err) {
             console.error(err);
         }
@@ -23,6 +31,7 @@ const AddDishForm = () => {
 
     return (
         <>
+            <SectionHeader title="Add Dishes" />
             <form onSubmit={handleSubmit(onSubmit)} className="addDishForm">
                 <input {...register("dishName", { required: true })} placeholder="Name"></input>
                 <input {...register("category", { required: true })} placeholder="Category"></input>
@@ -33,4 +42,3 @@ const AddDishForm = () => {
 };
 
 export default AddDishForm;
-
