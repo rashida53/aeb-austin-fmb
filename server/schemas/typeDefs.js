@@ -57,7 +57,7 @@ type Query {
     user(userId: ID!): User
     me: User
     userSignups: [Signup]!
-
+    menuItem: MenuItem
 }
 
 type Mutation {

@@ -29,6 +29,11 @@ const resolvers = {
                 { _id: cookId }
             );
         },
+        menuItem: async (parent, { menuItemId }) => {
+            return MenuItem.findOne(
+                { _id: menuItemId }
+            );
+        },
         dishes: async () => {
             return Dish.find();
         },
