@@ -6,8 +6,7 @@ import { GET_ME } from "../utils/queries";
 
 const SignupForm = (props) => {
     const { register, handleSubmit } = useForm();
-    const [createSignup, { error: signupError, data: createSignupData }] =
-        useMutation(CREATE_SIGNUP);
+    const [createSignup] = useMutation(CREATE_SIGNUP);
 
     const { loading, data } = useQuery(GET_ME);
     const me = data?.me;
