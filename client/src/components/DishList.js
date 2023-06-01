@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useQuery } from "@apollo/client";
 import { GET_ALL_DISHES } from "../utils/queries";
-import AddDishForm from "../components/AddDishForm";
-import SectionHeader from "../components/SectionHeader";
+import AddDishForm from "./AddDishForm";
+import SectionHeader from "./SectionHeader";
 
 const DishList = () => {
 
@@ -20,7 +20,7 @@ const DishList = () => {
     return (
         <>
             <SectionHeader title="All Dishes" />
-            <div>
+            <div className="mainContainer">
                 {dishes && dishes.map((dish) => (
                     <div className="allDishes">
                         <p key={dish._id} id={dish._id}>{dish.dishName}</p>

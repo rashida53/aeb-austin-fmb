@@ -50,7 +50,7 @@ const Dashboard = () => {
 
   let signups = signupData?.userSignups || [];
   let filteredSignups = signups.filter(
-    (signup) => new Date(parseFloat(signup.menuItem.menuDate)) >= new Date()
+    (signup) => new Date(parseFloat(signup?.menuItem?.menuDate)) >= new Date()
   );
 
   const getFilteredMenus = (openMenuData, signupData) => {
@@ -60,7 +60,7 @@ const Dashboard = () => {
     );
 
     let signups = signupData?.userSignups || [];
-    let menusSignedUp = signups.map((signup) => signup.menuItem._id);
+    let menusSignedUp = signups.map((signup) => signup?.menuItem?._id);
 
     return filteredOpenMenus.filter(
       (menu) => !menusSignedUp.includes(menu._id)

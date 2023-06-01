@@ -31,7 +31,6 @@ const AddDishForm = ({ dishes, setDishes }) => {
 
     return (
         <>
-            <SectionHeader title="Add Dishes" />
             <form onSubmit={handleSubmit(onSubmit)} className="addDishForm">
                 <input {...register("dishName", { required: true })} placeholder="Name"></input>
                 <input {...register("category", { required: true })} placeholder="Category"></input>

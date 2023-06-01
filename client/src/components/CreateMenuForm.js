@@ -5,46 +5,57 @@ import { GET_ALL_COOKS, GET_ALL_DISHES } from "../utils/queries";
 import { CREATE_MENU } from "../utils/mutations";
 import SectionHeader from "../components/SectionHeader";
 
-const CreateMenuForm = () => {
+const CreateMenuForm = ({ thisWeeksDishes, setThisWeeksDishes }) => {
+
     const { register, handleSubmit } = useForm();
 
-    const [createMenu, { data: createMenuData }] = useMutation(CREATE_MENU);
-
-    const onSubmit = async (menuData, event) => {
-        const amount = parseFloat(menuData.amount);
-        try {
-            const { data } = await createMenu({
-                variables: {
-                    dish: menuData.dishId,
-                    cook: menuData.cookId,
-                    menuDate: menuData.menuDate,
-                    isPaid: false
-                },
-            });
-        } catch (err) {
-            console.error(err);
-        }
-    }
     const { loading: cookLoading, data: getCookData } = useQuery(GET_ALL_COOKS);
     let cooks = getCookData?.cooks || [];
 
     const { loading: dishLoading, data: getDishData } = useQuery(GET_ALL_DISHES);
     let dishes = getDishData?.dishes || [];
 
+    const [createMenu] = useMutation(CREATE_MENU);
+
+    const onSubmit = async (newMenuItemData, event) => {
+        var cook = JSON.parse(newMenuItemData.cook);
+        var dish = JSON.parse(newMenuItemData.dish);
+        try {
+            const { data } = await createMenu({
+                variables: {
+                    dish: dish._id,
+                    cook: cook._id,
+                    menuDate: newMenuItemData.menuDate,
+                    isPaid: false
+                },
+            });
+            var newMenuItem = {
+                _id: data._id,
+                cook: cook,
+                dish: dish,
+                menuDate: new Date(newMenuItemData.menuDate).getTime()
+            }
+            thisWeeksDishes = [...thisWeeksDishes, newMenuItem];
+            setThisWeeksDishes(thisWeeksDishes);
+        } catch (err) {
+            console.error(err);
+        }
+    }
+
     return (
         <>
             <SectionHeader title="Create Menu" />
             <form onSubmit={handleSubmit(onSubmit)} className="createMenuForm" >
-                <select {...register("dishId", { required: true })}>
+                <select {...register("dish", { required: true })}>
                     <option disabled selected value>-- Choose a Dish --</option>
                     {dishes && dishes.map((dish) => (
-                        <option key={dish._id} value={dish._id}>{dish.dishName}</option>
+                        <option key={dish._id} value={JSON.stringify(dish)}>{dish.dishName}</option>
                     ))}
                 </select>
-                <select {...register("cookId", { required: true })}>
+                <select {...register("cook", { required: true })}>
                     <option disabled selected value>-- Choose a Caterer --</option>
                     {cooks && cooks.map((cook) => (
-                        <option key={cook._id} value={cook._id}>{cook.fullName}</option>
+                        <option key={cook._id} value={JSON.stringify(cook)}>{cook.fullName}</option>
                     ))}
                 </select>
                 <input type="date" format="yyyy-MM-dd" {...register("menuDate")}></input>

@@ -1,6 +1,9 @@
 export const timeConverter = (timestamp) => {
     if (timestamp) {
-        return new Date(parseFloat(timestamp)).toLocaleDateString('en-us', {
+        var epoch = parseFloat(timestamp);
+        var dateFromDb = new Date(epoch);
+        var addHoursForTimezone = dateFromDb.setHours(dateFromDb.getHours() + 6);
+        return new Date(addHoursForTimezone).toLocaleDateString('en-us', {
             weekday: "long",
             month: "short",
             day: "numeric"

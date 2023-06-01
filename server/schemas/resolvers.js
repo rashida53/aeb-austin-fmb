@@ -29,6 +29,11 @@ const resolvers = {
                 { _id: cookId }
             );
         },
+        menuItem: async (parent, { menuItemId }) => {
+            return MenuItem.findOne(
+                { _id: menuItemId }
+            );
+        },
         dishes: async () => {
             return Dish.find();
         },
@@ -67,7 +72,8 @@ const resolvers = {
                 {
                     menuDate: { "$gte": beforeSevenDays }
                 }
-            ).populate('dish').populate('cook');
+            ).sort({ menuDate: 'ascending' })
+                .populate('dish').populate('cook');
         },
         cookMenuItemsByDate: async (parent, { cookId }) => {
             var currentDate = new Date();

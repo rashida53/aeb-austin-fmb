@@ -3,7 +3,7 @@ import { useMutation } from "@apollo/client";
 import { useForm } from "react-hook-form";
 import { ADD_COST } from '../utils/mutations';
 
-const AddCostForm = (props) => {
+const AddCostForm = (props, { unpaidMenus, setUnpaidMenus }) => {
     const { register, handleSubmit } = useForm();
 
     const [addCost] = useMutation(ADD_COST);
@@ -17,6 +17,8 @@ const AddCostForm = (props) => {
                     amount: amount
                 },
             });
+            unpaidMenus = [...unpaidMenus, costData];
+            setUnpaidMenus(unpaidMenus);
         } catch (err) {
             console.error(err);
         }

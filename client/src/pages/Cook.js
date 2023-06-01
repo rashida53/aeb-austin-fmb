@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useQuery, useMutation } from '@apollo/client'
 import { GET_SINGLE_COOK, GET_COOKS_MENU_ITEMS, GET_COOKS_MENU_ITEMS_BY_DATE, GET_COOKS_UNPAID_MENUS, GET_COOKS_PAID_MENUS } from "../utils/queries";
 import { useForm } from 'react-hook-form'
@@ -12,6 +12,9 @@ import Header from '../components/Header';
 
 const Cook = () => {
     const { cookId: cookParam } = useParams();
+
+    const [unpaidMenus, setUnpaidMenus] = useState([]);
+
     const { loading, data } = useQuery(GET_SINGLE_COOK, { variables: { cookId: cookParam } })
     const cook = data?.cook || {};
 
@@ -24,6 +27,12 @@ const Cook = () => {
     const { loading: cooksUnpaidMenusLoading, data: cooksUnpaidMenusData } = useQuery(GET_COOKS_UNPAID_MENUS, { variables: { cookId: cookParam } });
     const cooksUnpaidMenus = cooksUnpaidMenusData?.getCooksUnpaidMenus;
     console.log("cooks unpaid menus", cooksUnpaidMenus);
+
+    useEffect(() => {
+        if (!cooksUnpaidMenusLoading) {
+            setUnpaidMenus(cooksUnpaidMenus);
+        }
+    }, [cooksUnpaidMenus]);
 
     const { loading: cooksPaidMenusLoading, data: cooksPaidMenusData } = useQuery(GET_COOKS_PAID_MENUS, { variables: { cookId: cookParam } });
     const cooksPaidMenus = cooksPaidMenusData?.getCooksPaidMenus;
@@ -42,6 +51,7 @@ const Cook = () => {
                 },
             });
             window.location.reload();
+
         } catch (err) {
             console.error(err);
         }
@@ -82,7 +92,7 @@ const Cook = () => {
                 ))}
 
                 <SectionHeader title="Pending Payments" />
-                {cooksUnpaidMenus && cooksUnpaidMenus.map((cookMenu) => (
+                {unpaidMenus && unpaidMenus.map((cookMenu) => (
                     <div className="weeklyDishContainer">
                         <div className="dishesRow">
                             <p>{cookMenu.dish.dishName}</p>
@@ -97,7 +107,7 @@ const Cook = () => {
                                 </div>
                             }
                             {
-                                !cookMenu.amount && <AddCostForm id={cookMenu._id} />
+                                !cookMenu.amount && <AddCostForm id={cookMenu._id} unpaidMenus={unpaidMenus} setUnpaidMenus={setUnpaidMenus} />
                             }
                         </div>
                     </div>

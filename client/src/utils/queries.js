@@ -38,6 +38,23 @@ export const GET_ALL_DISHES = gql`
     }
 `
 
+export const GET_SINGLE_MENU_ITEM = gql`
+    query getSingleMenuItem {
+        menuItem {
+            _id
+            cook {
+                _id
+                fullName
+            }
+            dish {
+                _id
+                dishName
+            }
+            menuDate
+        }
+    }
+`
+
 export const GET_ALL_MENUS = gql`
     query getAllMenus {
         menus {

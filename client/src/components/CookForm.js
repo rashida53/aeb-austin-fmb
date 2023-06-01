@@ -3,10 +3,9 @@ import { useMutation } from "@apollo/client";
 import { useForm } from "react-hook-form";
 import { ADD_COOK } from "../utils/mutations";
 
-const CookForm = () => {
+const CookForm = ({ cooks, setCook }) => {
   const { register, handleSubmit } = useForm();
-  const [addCook, { error: cookError, data: addCookData }] =
-    useMutation(ADD_COOK);
+  const [addCook] = useMutation(ADD_COOK);
 
   const onCookSubmit = async (cookData, event) => {
     try {
@@ -17,8 +16,8 @@ const CookForm = () => {
       });
       const cookForm = document.querySelector(".cookForm");
       cookForm.style.visibility = "hidden";
-      window.location.reload(); 
-      console.log(data);
+      cooks = [...cooks, cookData];
+      setCook(cooks);
     } catch (err) {
       console.error(err);
     }
