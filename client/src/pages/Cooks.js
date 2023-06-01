@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useQuery, useMutation } from '@apollo/client'
 import {
   GET_ALL_COOKS
@@ -10,18 +10,26 @@ import { timeConverter } from "../utils/timeConverter";
 import Nav from "../components/Nav";
 
 const Cooks = () => {
+  const [cooks, setCook] = useState([]);
+
   const { loading: cookLoading, data: getCookData } = useQuery(GET_ALL_COOKS);
-  let cooks = getCookData?.cooks || [];
+  let cookData = getCookData?.cooks || [];
 
   const showAddCook = () => {
     const cookForm = document.querySelector(".cookForm");
     cookForm.style.visibility = "visible";
   };
 
+  useEffect(() => {
+    if (!cookLoading) {
+      setCook(cookData);
+    }
+  }, [cookData]);
+
   return (
     <>
 
-<div className="navAndHeader">
+      <div className="navAndHeader">
         <Nav />
         <Header />
       </div>
@@ -45,7 +53,7 @@ const Cooks = () => {
 
       </div>
       <div>
-        <CookForm />
+        <CookForm cooks={cooks} setCook={setCook} />
       </div>
 
     </>
