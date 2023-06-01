@@ -51,6 +51,7 @@ const Cook = () => {
                 },
             });
             window.location.reload();
+
         } catch (err) {
             console.error(err);
         }
