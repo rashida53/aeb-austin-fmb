@@ -23,7 +23,7 @@ const Login = () => {
 
     return (
         <>
-            {Auth.loggedIn() && <Navigate to="/dashboard" />}
+            {Auth.loggedIn() && <Navigate to="/openMenus" />}
 
             <div className='mainContainer'>
 

@@ -4,7 +4,7 @@ import Nav from "../components/Nav";
 import DishList from "../components/DishList";
 import UpcomingDishList from "../components/UpcomingDishList";
 
-const Dishes = (props) => {
+const Dishes = () => {
     return (
         <>
             <div className="navAndHeader">

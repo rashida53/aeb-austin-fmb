@@ -1,12 +1,12 @@
 const Category = {
   Dal: 'Dal',
-  ChickenGravy: 'ChickenGravy',
+  ChickenGravy: 'Chicken Gravy',
   Rice: 'Rice',
-  MuttonGravy: 'MuttonGravy',
+  MuttonGravy: 'Mutton Gravy',
   Vegetarian: 'Vegetarian',
   Side: 'Side',
   Kebab: 'Kebab',
-  NonIndian: 'NonIndian'
+  NonIndian: 'Non-Indian'
 }
 
 export default Category;
