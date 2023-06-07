@@ -100,6 +100,18 @@ const resolvers = {
                 }
             ).populate('user');
         },
+        getAllSignups: async (parent, { menuItemId }) => {
+            return Signup.find(
+                {
+                    menuItem: menuItemId
+                }
+            ).populate(
+                {
+                    path: 'menuItem',
+                    populate: { path: 'dish cook'}
+                }
+            ).populate('user')
+        },
         userSignups: async (parent, args, context) => {
             var currentDate = new Date();
             if (context) {

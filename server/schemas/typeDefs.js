@@ -53,6 +53,7 @@ type Query {
     getCooksUnpaidMenus(cookId: ID!): [MenuItem]!
     getCooksPaidMenus(cookId: ID!): [MenuItem]!
     signups: [Signup]!
+    getAllSignups(menuItemId: ID!): [Signup]! 
     users: [User]!
     user(userId: ID!): User
     me: User
