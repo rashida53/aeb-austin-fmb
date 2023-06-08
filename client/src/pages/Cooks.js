@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { useQuery, useMutation } from '@apollo/client'
+import { useQuery } from '@apollo/client'
 import {
   GET_ALL_COOKS
 } from '../utils/queries'
 import CookForm from '../components/CookForm'
 import Header from '../components/Header';
 import { Link } from "react-router-dom";
-import { timeConverter } from "../utils/timeConverter";
 import Nav from "../components/Nav";
 
 const Cooks = () => {

@@ -1,9 +1,6 @@
-
 import { React, useState } from "react";
 import Hamburger from "./Hamburger";
 import { Link } from "react-router-dom";
-
-
 
 export default function Nav() {
 
@@ -26,13 +23,15 @@ export default function Nav() {
         },
     }
 
-
     return (
         <>
             <div className="navigation">
                 <ul style={style.navigationLink}>
                     <li>
-                        <Link to="/dashboard" style={{ textDecoration: "none", color: "white" }}><h3>Dashboard</h3></Link>
+                        <Link to="/openMenus" style={{ textDecoration: "none", color: "white" }}><h3>Open signups</h3></Link>
+                    </li>
+                    <li>
+                        <Link to="/mySignups" style={{ textDecoration: "none", color: "white" }}><h3>My Signups</h3></Link>
                     </li>
                     <li>
                         <Link to="/dishes" style={{ textDecoration: "none", color: "white" }}><h3>Dishes</h3></Link>
@@ -53,7 +52,10 @@ export default function Nav() {
             <div className="navigationDesktop">
                 <ul>
                     <li>
-                        <Link to="/dashboard" style={{ textDecoration: "none", color: "white" }}><h3>Dashboard</h3></Link>
+                        <Link to="/openMenus" style={{ textDecoration: "none", color: "white" }}><h3>Open Menus</h3></Link>
+                    </li>
+                    <li>
+                        <Link to="/mySignups" style={{ textDecoration: "none", color: "white" }}><h3>My Signups</h3></Link>
                     </li>
                     <li>
                         <Link to="/dishes" style={{ textDecoration: "none", color: "white" }}><h3>Dishes</h3></Link>

@@ -18,8 +18,8 @@ const CreateMenuForm = ({ thisWeeksDishes, setThisWeeksDishes }) => {
     const [createMenu] = useMutation(CREATE_MENU);
 
     const onSubmit = async (newMenuItemData, event) => {
-        var cook = JSON.parse(newMenuItemData.cook);
-        var dish = JSON.parse(newMenuItemData.dish);
+        let cook = JSON.parse(newMenuItemData.cook);
+        let dish = JSON.parse(newMenuItemData.dish);
         try {
             const { data } = await createMenu({
                 variables: {
@@ -29,7 +29,7 @@ const CreateMenuForm = ({ thisWeeksDishes, setThisWeeksDishes }) => {
                     isPaid: false
                 },
             });
-            var newMenuItem = {
+            let newMenuItem = {
                 _id: data._id,
                 cook: cook,
                 dish: dish,

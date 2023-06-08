@@ -3,7 +3,7 @@ import { useQuery } from "@apollo/client";
 import SectionHeader from "./SectionHeader";
 import { GET_THIS_WEEKS_DISHES } from "../utils/queries";
 import CreateMenuForm from "./CreateMenuForm";
-import { timeConverter } from "../utils/timeConverter";
+import {isDateXDaysFromToday, timeConverter} from "../utils/timeConverter";
 
 const UpcomingDishList = () => {
 
@@ -24,7 +24,9 @@ const UpcomingDishList = () => {
                 <h1>Dishes</h1>
                 <SectionHeader title="Upcoming Dishes" />
                 <div>
-                    {thisWeeksDishes && thisWeeksDishes.map((menu) => (
+                    {thisWeeksDishes && thisWeeksDishes
+                        .filter(menu => isDateXDaysFromToday(menu.menuDate, 0))
+                        .map(menu => (
                         <div className="weeklyDishContainer">
                             <div className="dishesRow">
                                 <p>{menu.dish?.dishName}</p>

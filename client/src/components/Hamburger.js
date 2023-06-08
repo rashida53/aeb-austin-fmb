@@ -9,7 +9,7 @@ export default function Hamburger({ isOpen }) {
                 <div className="burger burger3"></div>
             </div>
 
-            <style jsx>{`
+            <style jsx="true">{`
                 .hamburger{
                     width: 2rem;
                     height: 2rem;

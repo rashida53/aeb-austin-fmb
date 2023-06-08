@@ -2,7 +2,7 @@ import React from "react";
 import { useMutation } from "@apollo/client";
 import { useForm } from "react-hook-form";
 import { ADD_DISH } from "../utils/mutations";
-import Category from "../utils/Category";
+import Category from "../utils/category";
 
 const AddDishForm = ({ dishes, setDishes }) => {
     const { register, handleSubmit, reset } = useForm();
