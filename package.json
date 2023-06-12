@@ -23,6 +23,8 @@
   "homepage": "https://github.com/rashida53/aeb-austin-fmb",
   "dependencies": {
     "@hookform/error-message": "^2.0.1",
+    "axios": "^1.4.0",
+    "cloudinary": "^1.37.1",
     "gh-pages": "^5.0.0",
     "react-hook-form": "^7.43.3",
     "serve": "^14.2.0"

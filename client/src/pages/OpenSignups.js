@@ -19,7 +19,7 @@ const OpenSignups = () => {
 
     useEffect(() => {
         if (!openMenusLoading && !userSignupsLoading) {
-            let signedUpMenus = userSignupsData?.map(signup => signup.menuItem._id);
+            let signedUpMenus = userSignupsData?.map(signup => signup.menuItem?._id);
             let openMenusNotSignedUp = openMenusData.filter(openMenu => !signedUpMenus.includes(openMenu._id));
             setOpenSignups(openMenusNotSignedUp);
         }

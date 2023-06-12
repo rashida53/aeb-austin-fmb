@@ -72,6 +72,14 @@ export const ADD_DISH = gql`
     }
 `
 
+export const UPLOAD_IMAGE = gql`
+    mutation uploadImage($image: String!) {
+        uploadImage(image: $image) {
+            image
+        }
+    }
+`
+
 export const ADD_COST = gql`
     mutation addCost($menuId: ID $amount: Int) {
         addCost(menuId: $menuId amount: $amount) {

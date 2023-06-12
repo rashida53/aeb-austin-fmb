@@ -71,7 +71,7 @@ const UserSignups = () => {
         <div className="signupsContainer">
           {
             userSignups && userSignups
-              .filter(signup => isDateXDaysFromToday(signup.menuItem.menuDate, 0))
+              .filter(signup => isDateXDaysFromToday(signup.menuItem?.menuDate, 0))
               .map(signup => (
                 <div key={signup._id} className="signup">
                   <div className="yourSignups">

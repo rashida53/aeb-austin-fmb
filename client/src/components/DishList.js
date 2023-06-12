@@ -25,6 +25,7 @@ const DishList = () => {
                     <div className="allDishes">
                         <p key={dish._id} id={dish._id}>{dish.dishName}</p>
                     </div>
+                    
                 ))}
             </div>
             <SectionHeader title="Add Dishes" />
