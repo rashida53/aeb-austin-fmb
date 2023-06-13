@@ -6,7 +6,7 @@ import { GET_ME } from '../utils/queries';
 import { UPLOAD_IMAGE } from "../utils/mutations";
 import { Image, Transformation } from "cloudinary-react";
 
-const UploadImage = () => {
+const UploadImage = (props) => {
   const { register, handleSubmit } = useForm();
   const [uploadImage, { error }] = useMutation(UPLOAD_IMAGE);
   const [imageId, setImageId] = useState("");
@@ -15,17 +15,18 @@ const UploadImage = () => {
   const me = data?.me || {};
 
   useEffect(() => {
-    if (me.image) {
-      let newImage = `${me.image}.png`;
+    if (props.dish.dishPhoto) {
+      let newImage = `${props.dish.dishPhoto}.png`;
       setImageId(newImage)
     }
+
 
   }, [me])
 
   const submit = async (data, e) => {
     e.preventDefault();
 
-    const file = data.image[0];
+    const file = data.dishPhoto[0];
 
     const formData = new FormData();
     formData.append("file", file);
@@ -35,18 +36,21 @@ const UploadImage = () => {
       `https://api.cloudinary.com/v1_1/${process.env.REACT_APP_CLOUD_NAME}/image/upload`,
       formData
     );
-    const image = response.data.public_id;
+    const dishPhoto = response.data.public_id;
 
-    if (!image) {
+    if (!dishPhoto) {
       return false;
     }
 
     try {
       await uploadImage({
-        variables: { image: image },
+        variables: { 
+          dishPhoto: dishPhoto,
+          dishId: props._id
+         },
       });
 
-      let newImage = `${image}.png`
+      let newImage = `${dishPhoto}.png`
       setImageId(newImage)
 
     } catch (err) {
@@ -87,7 +91,7 @@ const UploadImage = () => {
           className="uploadPhoto"
           accept="image/*"
           type="file"
-          {...register("image")}
+          {...register("dishPhoto")}
         />
 
         <button type="submit">Save Photo</button>

@@ -73,9 +73,10 @@ export const ADD_DISH = gql`
 `
 
 export const UPLOAD_IMAGE = gql`
-    mutation uploadImage($image: String!) {
-        uploadImage(image: $image) {
-            image
+    mutation uploadImage($dishPhoto: String!, $dishId: ID) {
+        uploadImage(dishPhoto: $dishPhoto, dishId: $dishId) {
+            dishPhoto
+            _id
         }
     }
 `

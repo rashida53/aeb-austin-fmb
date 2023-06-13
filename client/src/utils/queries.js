@@ -38,6 +38,16 @@ export const GET_ALL_DISHES = gql`
     }
 `
 
+export const GET_SINGLE_DISH = gql`
+    query getSingleDish($dishId: ID!) {
+        dish(dishId: $dishId) {
+            _id
+            dishName
+            dishPhoto
+        }
+    }
+`
+
 export const GET_SINGLE_MENU_ITEM = gql`
     query getSingleMenuItem {
         menuItem {

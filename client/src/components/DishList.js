@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useQuery } from "@apollo/client";
-import { GET_ALL_DISHES } from "../utils/queries";
+import { GET_ALL_DISHES, GET_SINGLE_DISH } from "../utils/queries";
 import AddDishForm from "./AddDishForm";
 import SectionHeader from "./SectionHeader";
+import Upload from "./Upload"
 
 const DishList = () => {
 
@@ -10,6 +11,8 @@ const DishList = () => {
 
     const { loading: dishLoading, data: getDishData } = useQuery(GET_ALL_DISHES);
     const dishData = getDishData?.dishes;
+
+
 
     useEffect(() => {
         if (!dishLoading) {
@@ -24,6 +27,7 @@ const DishList = () => {
                 {dishes && dishes.map((dish) => (
                     <div className="allDishes">
                         <p key={dish._id} id={dish._id}>{dish.dishName}</p>
+                        <Upload id={dish._id} dish={dish} />
                     </div>
                     
                 ))}

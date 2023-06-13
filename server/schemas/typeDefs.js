@@ -45,6 +45,7 @@ type Query {
     cooks: [Cook]!
     cook(cookId: ID!): Cook!
     dishes: [Dish]!
+    dish(dishId: ID!): Dish
     menus: [MenuItem]!
     openMenus: [MenuItem]!
     thisWeeksDishes: [MenuItem]!
@@ -65,6 +66,7 @@ type Mutation {
     addUser(email: String!, password: String!, fullName: String!): Auth
     addCook(cookId: ID, fullName: String): Cook
     addDish(dishId: ID, dishName: String, dishPhoto: String, category: String): Dish
+    uploadImage(dishId: ID, dishPhoto: String): Dish
     createMenu(menuId: ID, dish: String, cook: String, amount: Int, isPaid: Boolean menuDate: String): MenuItem
     addCost(menuId: ID, amount: Int): MenuItem
     createSignup(signupId: ID, user: String, menuItem: String, size: String): Signup
