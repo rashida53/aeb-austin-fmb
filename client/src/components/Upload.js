@@ -4,6 +4,7 @@ import { useForm } from "react-hook-form";
 import { useMutation, useQuery } from "@apollo/client";
 import { UPLOAD_IMAGE } from "../utils/mutations";
 import { Image, Transformation } from "cloudinary-react";
+import mockPhoto from '../assets/dishPhotoPlaceholder.jpg';
 
 const UploadImage = (props) => {
   const { register, handleSubmit } = useForm();
@@ -54,23 +55,20 @@ const UploadImage = (props) => {
         <label htmlFor="file-input">
 
           {!imageId ? (
-            <p id="addCookPlus" key={props.id}>
-              +
-            </p>
+ <img src={mockPhoto} className="dishPhoto" alt="Dish Photo Placeholder" />
           ) : (
             <Image
-              className="mediumPhoto"
               cloudName={process.env.REACT_APP_CLOUD_NAME}
               publicId={imageId}
-              alt="Prof pic"
+              alt={props.dish.dishName}
             >
               <Transformation
-                width="345"
-                height="345"
-                gravity="face"
-                radius="max"
+                width="130"
+                height="130"
+                gravity="auto"
+                radius="15"
                 crop="fill"
-                border="3px_solid_rgb:6789FF"
+                border="3px_solid_rgb:6B802A"
               />
             </Image>
           )}
@@ -84,7 +82,7 @@ const UploadImage = (props) => {
           {...register("dishPhoto")}
         />
 
-        <button type="submit">Save Photo</button>
+        <button type="submit"><p>Upload</p></button>
       </form>
     </>
   );

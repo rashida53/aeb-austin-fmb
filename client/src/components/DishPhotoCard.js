@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Image, Transformation } from "cloudinary-react";
-import mockPhoto from '../assets/logo.png';
+import mockPhoto from '../assets/dishPhotoPlaceholder.jpg';
 
 
 const DishPhotoCard = (props) => {
@@ -17,23 +17,24 @@ const DishPhotoCard = (props) => {
         <>
             {imageId ? (
                 <Image
-                    className="mediumPhoto topPhoto"
                     cloudName={process.env.REACT_APP_CLOUD_NAME}
                     publicId={imageId}
-                    alt="Prof Pic"
+                    alt={props.dish.dishName}
+                    className='dishPhotoCardPhoto'
                 >
                     <Transformation
-                        width="1000"
-                        height="1000"
-                        gravity="face"
-                        radius="max"
+                        width="130"
+                        height="130"
+                        gravity="auto"
+                        radius="15"
                         crop="fill"
-                        border="20px_solid_rgb:6789FF"
+                        border="3px_solid_rgb:6B802A"
                     />
                 </Image>
-            ) : (
-                <img src={mockPhoto} className="mediumPhoto" alt="prof pic" />
-            )
+                            ) : (
+                                <img src={mockPhoto} className="dishPhoto" alt="Dish Photo Placeholder" />
+                            )
+            
             }
         </>
     )

@@ -28,8 +28,10 @@ const DishList = () => {
                 {dishes && dishes.map((dish) => (
                     <div className="allDishes">
                         <p key={dish._id} id={dish._id}>{dish.dishName}</p>
-                        <DishPhotoCard image={dish.dishPhoto} />
-                        <Upload id={dish._id} dish={dish} />
+                        {dish.dishPhoto && <DishPhotoCard image={dish.dishPhoto} dish={dish} />}
+                        {!dish.dishPhoto && <Upload id={dish._id} dish={dish} />}
+                       
+                        
                     </div>
 
                 ))}
