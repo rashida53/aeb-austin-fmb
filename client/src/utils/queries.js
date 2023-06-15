@@ -34,6 +34,7 @@ export const GET_ALL_DISHES = gql`
             _id
             dishName
             category
+            dishPhoto
         }
     }
 `

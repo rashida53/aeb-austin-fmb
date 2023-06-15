@@ -149,15 +149,14 @@ const resolvers = {
             return Dish.create(args);
         },
         uploadImage: async (parent, args) => {
-
-      const newImage = args.dishPhoto
-            console.log("upload image args", args)
-      return await Dish.findOneAndUpdate(
-        { _id: dishId },
-        { $set: { dishPhoto: newImage } },
-        { new: true }
-      )
-    },
+            const newImage = args.dishPhoto;
+            console.log("upload image args", args);
+            return await Dish.findOneAndUpdate(
+                { _id: args.dishId },
+                { $set: { dishPhoto: newImage } },
+                { new: true }
+            )
+        },
         createMenu: async (parent, args) => {
             return MenuItem.create(args);
         },
