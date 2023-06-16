@@ -22,8 +22,10 @@
   },
   "homepage": "https://github.com/rashida53/aeb-austin-fmb",
   "dependencies": {
+    "@cloudinary/react": "^1.11.0",
+    "@cloudinary/url-gen": "^1.9.1",
     "@hookform/error-message": "^2.0.1",
-    "axios": "^1.4.0",
+    "axios": "^1.3.4",
     "cloudinary": "^1.37.1",
     "gh-pages": "^5.0.0",
     "react-hook-form": "^7.43.3",

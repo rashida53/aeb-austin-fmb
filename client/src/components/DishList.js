@@ -3,8 +3,8 @@ import { useQuery } from "@apollo/client";
 import { GET_ALL_DISHES, GET_SINGLE_DISH } from "../utils/queries";
 import AddDishForm from "./AddDishForm";
 import SectionHeader from "./SectionHeader";
-import Upload from "./Upload"
 import DishPhotoCard from "./DishPhotoCard";
+import ImageUploader from "./ImageUploader";
 
 const DishList = () => {
 
@@ -29,11 +29,8 @@ const DishList = () => {
                     <div className="allDishes">
                         <p key={dish._id} id={dish._id}>{dish.dishName}</p>
                         {dish.dishPhoto && <DishPhotoCard image={dish.dishPhoto} dish={dish} />}
-                        {!dish.dishPhoto && <Upload id={dish._id} dish={dish} />}
-                       
-                        
+                        {!dish.dishPhoto && <ImageUploader id={dish._id} dish={dish} />}
                     </div>
-
                 ))}
             </div>
             <SectionHeader title="Add Dishes" />

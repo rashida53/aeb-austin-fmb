@@ -2,22 +2,14 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useForm } from "react-hook-form";
 import { useMutation, useQuery } from "@apollo/client";
-import { UPLOAD_IMAGE } from "../utils/mutations";
+import { UPDATE_DISH_AND_UPLOAD_IMAGE } from "../utils/mutations";
 import { Image, Transformation } from "cloudinary-react";
 import mockPhoto from '../assets/dishPhotoPlaceholder.jpg';
 
-const UploadImage = (props) => {
+const ImageUploader = (props) => {
   const { register, handleSubmit } = useForm();
-  const [uploadImage, { error }] = useMutation(UPLOAD_IMAGE);
+  const [updateDishWithImage, { error }] = useMutation(UPDATE_DISH_AND_UPLOAD_IMAGE);
   const [imageId, setImageId] = useState("");
-
-
-  // useEffect(() => {
-  //   if (props.dish.dishPhoto) {
-  //     let newImage = `${props.dish.dishPhoto}.png`;
-  //     setImageId(newImage)
-  //   }
-  // }, [me])
 
   const submit = async (data, e) => {
 
@@ -34,7 +26,7 @@ const UploadImage = (props) => {
       return false;
     }
     try {
-      await uploadImage({
+      await updateDishWithImage({
         variables: {
           dishPhoto: dishPhoto,
           dishId: props.id
@@ -52,11 +44,8 @@ const UploadImage = (props) => {
   return (
     <>
       <form id={props.id} className="uploadPhotoForm" onSubmit={handleSubmit(submit)}>
-        <label htmlFor="file-input">
-
-          {!imageId ? (
- <img src={mockPhoto} className="dishPhoto" alt="Dish Photo Placeholder" />
-          ) : (
+        <label htmlFor={"file-" + props.id}>
+          {!imageId ? (<img src={mockPhoto} className="dishPhoto" alt="Dish Photo Placeholder" />) : (
             <Image
               cloudName={process.env.REACT_APP_CLOUD_NAME}
               publicId={imageId}
@@ -74,11 +63,11 @@ const UploadImage = (props) => {
           )}
         </label>
         <input
-          id="file-input"
+          type="file"
+          id={"file-" + props.id}
           hidden
           className="uploadPhoto"
           accept="image/*"
-          type="file"
           {...register("dishPhoto")}
         />
 
@@ -88,4 +77,4 @@ const UploadImage = (props) => {
   );
 };
 
-export default UploadImage;
+export default ImageUploader;

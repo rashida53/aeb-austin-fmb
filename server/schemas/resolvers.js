@@ -148,7 +148,7 @@ const resolvers = {
         addDish: async (parent, args) => {
             return Dish.create(args);
         },
-        uploadImage: async (parent, args) => {
+        updateDishWithImage: async (parent, args) => {
             const newImage = args.dishPhoto;
             console.log("upload image args", args);
             return await Dish.findOneAndUpdate(
