@@ -75,7 +75,8 @@ const UserSignups = () => {
               .filter(signup => isDateXDaysFromToday(signup.menuItem.menuDate, 0))
               .map(signup => (
                 <div key={signup._id} className="signup">
-                  <div className="yourSignups">
+                  {/* <div className="yourSignups"> */}
+                  <div className="signupsRow">
                     <div className="yourSignupInfo">
                       <p>{timeConverter(signup.menuItem.menuDate)}</p>
                       <p>{signup.menuItem?.dish?.dishName}</p>
@@ -103,6 +104,8 @@ const UserSignups = () => {
                     <button id={signup.menuItem._id} onClick={onSubmit} value="Small" className="sizeButtons">Small</button>
                     <button id={signup.menuItem._id} onClick={onSubmit} value="Large" className="sizeButtons">Large</button>
                   </div>
+                  {/* </div> */}
+
                 </div>
               ))}
         </div>

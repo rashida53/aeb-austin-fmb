@@ -231,6 +231,10 @@ select {
   width: 260px;
 }
 
+.yourSignups {
+  height: 300px;
+}
+
 .openSignupInfo,
 .yourSignupInfo,
 .dishesRow,
