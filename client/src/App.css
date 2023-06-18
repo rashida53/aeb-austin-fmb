@@ -180,7 +180,10 @@ select {
 
 .signup {
   min-width: 400px;
+  height: 300px;
 }
+
+
 
 .addButtonAndPhoto,
 .buttonAndPhoto {
@@ -290,18 +293,21 @@ select {
   font-size: 22px;
 }
 
-#addCookPlus, #addPhotoPlus {
+#addCookPlus,
+#addPhotoPlus {
   font-size: 50px;
   margin: 0px;
 }
 
-#addCookPlus:hover, #addPhotoPlus:hover {
+#addCookPlus:hover,
+#addPhotoPlus:hover {
   cursor: pointer;
 }
 
 .cookForm,
 .signupForm {
   visibility: hidden;
+  padding-top: 100px;
 }
 
 .signupsTable,

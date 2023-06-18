@@ -7,6 +7,7 @@ import Header from "../components/Header";
 import SectionHeader from "../components/SectionHeader";
 import Nav from "../components/Nav";
 import { useForm } from "react-hook-form";
+import DishPhotoCard from "../components/DishPhotoCard";
 
 const UserSignups = () => {
 
@@ -94,7 +95,7 @@ const UserSignups = () => {
                         }
                       </div>
                       <div className="dishPhotoContainer">
-                        <img className="dishPhoto" src="https://www.seriouseats.com/thmb/tuMCogfAOy2zNdVqE7ydUwuru9Q=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/easy-vegetable-fried-rice-recipe-hero-2-fed2a62b8bce4c51b945d9c24c2edb68.jpg" />
+                        <DishPhotoCard image={signup.menuItem?.dish?.dishPhoto} />
                       </div>
                     </div>
                   </div>

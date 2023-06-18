@@ -19,7 +19,7 @@ const DishPhotoCard = (props) => {
                 <Image
                     cloudName={process.env.REACT_APP_CLOUD_NAME}
                     publicId={imageId}
-                    alt={props.dish.dishName}
+                    alt={props.dish?.dishName}
                     className='dishPhotoCardPhoto'
                 >
                     <Transformation
@@ -31,10 +31,10 @@ const DishPhotoCard = (props) => {
                         border="3px_solid_rgb:6B802A"
                     />
                 </Image>
-                            ) : (
-                                <img src={mockPhoto} className="dishPhoto" alt="Dish Photo Placeholder" />
-                            )
-            
+            ) : (
+                <img src={mockPhoto} className="dishPhoto" alt="Dish Photo Placeholder" />
+            )
+
             }
         </>
     )

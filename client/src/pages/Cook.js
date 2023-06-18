@@ -83,7 +83,7 @@ const Cook = () => {
                 {cookMenuItems && cookMenuItems.map((cookMenu) => (
                     <div className="weeklyDishContainer">
                         <div className="dishesRow">
-                            <p>{cookMenu.dish.dishName}</p>
+                            <p>{cookMenu.dish?.dishName}</p>
                             <p>{timeConverter(cookMenu.menuDate)}</p>
                         </div>
 
@@ -95,7 +95,7 @@ const Cook = () => {
                 {unpaidMenus && unpaidMenus.map((cookMenu) => (
                     <div className="weeklyDishContainer">
                         <div className="dishesRow">
-                            <p>{cookMenu.dish.dishName}</p>
+                            <p>{cookMenu.dish?.dishName}</p>
                             <p>{timeConverter(cookMenu.menuDate)}</p>
                             {
                                 cookMenu.amount &&
@@ -117,7 +117,7 @@ const Cook = () => {
                 {cooksPaidMenus && cooksPaidMenus.map((cookMenu) => (
                     <div className="weeklyDishContainer">
                         <div className="dishesRow">
-                            <p>{cookMenu.dish.dishName}</p>
+                            <p>{cookMenu.dish?.dishName}</p>
                             <p>{timeConverter(cookMenu.menuDate)}</p>
                             <p style={{ fontWeight: "bold" }}>${cookMenu.amount}</p>
                             <button className='returnToPendingButton' onClick={returnToPendingButton}>
