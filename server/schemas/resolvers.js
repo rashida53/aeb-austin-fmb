@@ -37,6 +37,11 @@ const resolvers = {
         dishes: async () => {
             return Dish.find();
         },
+        dish: async (parent, { dishId }) => {
+            return Dish.findOne(
+                { _id: dishId }
+            );
+        },
         menus: async (parent, args) => {
             return MenuItem.find().populate('dish').populate('cook');
         },
@@ -142,6 +147,15 @@ const resolvers = {
         },
         addDish: async (parent, args) => {
             return Dish.create(args);
+        },
+        updateDishWithImage: async (parent, args) => {
+            const newImage = args.dishPhoto;
+            console.log("upload image args", args);
+            return await Dish.findOneAndUpdate(
+                { _id: args.dishId },
+                { $set: { dishPhoto: newImage } },
+                { new: true }
+            )
         },
         createMenu: async (parent, args) => {
             return MenuItem.create(args);

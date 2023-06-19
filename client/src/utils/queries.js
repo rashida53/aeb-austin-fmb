@@ -34,6 +34,17 @@ export const GET_ALL_DISHES = gql`
             _id
             dishName
             category
+            dishPhoto
+        }
+    }
+`
+
+export const GET_SINGLE_DISH = gql`
+    query getSingleDish($dishId: ID!) {
+        dish(dishId: $dishId) {
+            _id
+            dishName
+            dishPhoto
         }
     }
 `
@@ -49,6 +60,7 @@ export const GET_SINGLE_MENU_ITEM = gql`
             dish {
                 _id
                 dishName
+                dishPhoto
             }
             menuDate
         }
@@ -66,6 +78,7 @@ export const GET_ALL_MENUS = gql`
             dish {
                 _id
                 dishName
+                dishPhoto
             }
             menuDate
         }
@@ -83,6 +96,7 @@ export const GET_ALL_SIGNUPS = gql`
                 _id
                 dish {
                     dishName
+                    dishPhoto
                 }
                 menuDate
             }
@@ -103,6 +117,7 @@ export const GET_USER_SIGNUPS = gql`
                 _id
                 dish {
                     dishName
+                    dishPhoto
                 }
                 menuDate
             }
@@ -122,6 +137,7 @@ export const GET_OPEN_MENUS = gql`
             dish {
                 _id
                 dishName
+                dishPhoto
             }
             menuDate
             amount
@@ -140,6 +156,7 @@ export const GET_THIS_WEEKS_DISHES = gql`
             dish {
                 _id
                 dishName
+                dishPhoto
             }
             menuDate
             amount
@@ -158,6 +175,7 @@ export const GET_COOKS_MENU_ITEMS = gql`
             dish {
                 _id
                 dishName
+                dishPhoto
             }
             menuDate
             amount
@@ -176,6 +194,7 @@ export const GET_COOKS_MENU_ITEMS_BY_DATE = gql`
             dish {
                 _id
                 dishName
+                dishPhoto
             }
             menuDate
             amount
@@ -194,6 +213,7 @@ export const GET_COOKS_UNPAID_MENUS = gql`
             dish {
                 _id
                 dishName
+                dishPhoto
             }
             menuDate
             amount
@@ -212,6 +232,7 @@ export const GET_COOKS_PAID_MENUS = gql`
             dish {
                 _id
                 dishName
+                dishPhoto
             }
             menuDate
             amount

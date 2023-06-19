@@ -1,12 +1,13 @@
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import { useQuery, useMutation } from "@apollo/client";
-import {GET_ME, GET_USER_SIGNUPS} from "../utils/queries";
-import {CREATE_SIGNUP, DELETE_SIGNUP} from "../utils/mutations";
-import {isDateXDaysFromToday, showSignupForm, timeConverter} from "../utils/timeConverter";
+import { GET_ME, GET_USER_SIGNUPS } from "../utils/queries";
+import { CREATE_SIGNUP, DELETE_SIGNUP } from "../utils/mutations";
+import { isDateXDaysFromToday, showSignupForm, timeConverter } from "../utils/timeConverter";
 import Header from "../components/Header";
 import SectionHeader from "../components/SectionHeader";
 import Nav from "../components/Nav";
-import {useForm} from "react-hook-form";
+import { useForm } from "react-hook-form";
+import DishPhotoCard from "../components/DishPhotoCard";
 
 const UserSignups = () => {
 
@@ -73,8 +74,8 @@ const UserSignups = () => {
             userSignups && userSignups
               .filter(signup => isDateXDaysFromToday(signup.menuItem.menuDate, 0))
               .map(signup => (
-                <div key={signup._id} className="signup">
-                  <div className="yourSignups">
+                <div key={signup._id} className="userSignup">
+                  <div className="signupsRow">
                     <div className="yourSignupInfo">
                       <p>{timeConverter(signup.menuItem.menuDate)}</p>
                       <p>{signup.menuItem?.dish?.dishName}</p>
@@ -82,19 +83,19 @@ const UserSignups = () => {
                     </div>
                     <div className="buttonAndPhoto">
                       <div className="editButton">
-                      {
-                        isDateXDaysFromToday(signup.menuItem.menuDate, 4) &&
+                        {
+                          isDateXDaysFromToday(signup.menuItem.menuDate, 4) &&
                           <p id={signup.menuItem._id} onClick={showSignupForm} className="editButtonText">Edit</p>
-                      }
+                        }
                       </div>
                       <div className="cancelButton">
-                      {
-                        isDateXDaysFromToday(signup.menuItem.menuDate, 4) &&
+                        {
+                          isDateXDaysFromToday(signup.menuItem.menuDate, 4) &&
                           <p id={signup._id} onClick={onDeleteClick} className="cancelButtonText">Cancel</p>
-                      }
+                        }
                       </div>
                       <div className="dishPhotoContainer">
-                        <img className="dishPhoto" src="https://www.seriouseats.com/thmb/tuMCogfAOy2zNdVqE7ydUwuru9Q=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/easy-vegetable-fried-rice-recipe-hero-2-fed2a62b8bce4c51b945d9c24c2edb68.jpg"/>
+                        <DishPhotoCard image={signup.menuItem?.dish?.dishPhoto} />
                       </div>
                     </div>
                   </div>
@@ -102,8 +103,9 @@ const UserSignups = () => {
                     <button id={signup.menuItem._id} onClick={onSubmit} value="Small" className="sizeButtons">Small</button>
                     <button id={signup.menuItem._id} onClick={onSubmit} value="Large" className="sizeButtons">Large</button>
                   </div>
+
                 </div>
-            ))}
+              ))}
         </div>
       </div>
     </>

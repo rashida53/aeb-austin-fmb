@@ -62,8 +62,10 @@ p {
   font-size: 18px;
 }
 
-.allDishes p {
-  text-align: center;
+.allDishes {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
 }
 
 button>p {
@@ -178,7 +180,15 @@ select {
 
 .signup {
   min-width: 400px;
+  height: 250px;
 }
+
+.userSignup {
+  min-width: 400px;
+  height: 335px;
+}
+
+
 
 .addButtonAndPhoto,
 .buttonAndPhoto {
@@ -226,6 +236,10 @@ select {
   width: 260px;
 }
 
+.yourSignups {
+  height: 300px;
+}
+
 .openSignupInfo,
 .yourSignupInfo,
 .dishesRow,
@@ -246,6 +260,24 @@ select {
   width: 130px;
   height: 130px;
   box-shadow: 4px 4px 10px rgb(177, 177, 177);
+}
+
+.dishPhotoCardPhoto {
+  padding-bottom: 15px;
+}
+
+.uploadPhotoForm {
+  display: flex;
+  flex-direction: column;
+}
+
+.uploadPhotoForm button {
+  margin: 10px;
+  padding: 5px 10px 5px 10px;
+}
+
+.uploadPhotoForm img {
+  box-shadow: none;
 }
 
 .cookTiles {
@@ -270,14 +302,21 @@ select {
   font-size: 22px;
 }
 
-#addCookPlus {
+#addCookPlus,
+#addPhotoPlus {
   font-size: 50px;
   margin: 0px;
+}
+
+#addCookPlus:hover,
+#addPhotoPlus:hover {
+  cursor: pointer;
 }
 
 .cookForm,
 .signupForm {
   visibility: hidden;
+  padding-top: 85px;
 }
 
 .signupsTable,
@@ -386,6 +425,7 @@ select {
 }
 
 input[type='submit'],
+button[type='submit'],
 .menuPaidButton,
 .returnToPendingButton {
   background-color: var(--green);

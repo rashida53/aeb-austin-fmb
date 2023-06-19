@@ -4,6 +4,7 @@ import { useForm } from "react-hook-form";
 import { ADD_DISH } from "../utils/mutations";
 import Category from "../utils/category";
 
+
 const AddDishForm = ({ dishes, setDishes }) => {
     const { register, handleSubmit, reset } = useForm();
 
@@ -31,6 +32,7 @@ const AddDishForm = ({ dishes, setDishes }) => {
 
     return (
         <>
+
             <form onSubmit={handleSubmit(onSubmit)} className="addDishForm">
                 <input {...register("dishName", { required: true })} placeholder="Name"></input>
                 <select {...register("category", { required: true })} placeholder="Category">
