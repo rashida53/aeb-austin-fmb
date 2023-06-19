@@ -180,7 +180,12 @@ select {
 
 .signup {
   min-width: 400px;
-  height: 300px;
+  height: 250px;
+}
+
+.userSignup {
+  min-width: 400px;
+  height: 335px;
 }
 
 
@@ -311,7 +316,7 @@ select {
 .cookForm,
 .signupForm {
   visibility: hidden;
-  padding-top: 100px;
+  padding-top: 85px;
 }
 
 .signupsTable,
