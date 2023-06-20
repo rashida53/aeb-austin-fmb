@@ -23,6 +23,7 @@ h1 {
   color: var(--green);
   font-size: 40px;
   margin-bottom: 20px;
+  padding-top: 20px;
 }
 
 h2,
@@ -38,6 +39,9 @@ h3 {
 
 .header {
   color: var(--gold);
+}
+
+.header, .navHeader {
   margin: 20px;
 }
 
@@ -181,6 +185,7 @@ select {
 .signup {
   min-width: 400px;
   height: 250px;
+  margin: 0px 40px 40px 40px;
 }
 
 .userSignup {
@@ -261,10 +266,10 @@ select {
   height: 130px;
   box-shadow: 4px 4px 10px rgb(177, 177, 177);
 }
-
+/* 
 .dishPhotoCardPhoto {
   padding-bottom: 15px;
-}
+} */
 
 .uploadPhotoForm {
   display: flex;
@@ -337,9 +342,6 @@ select {
 
 }
 
-.signup {
-  margin-bottom: 40px;
-}
 
 .signupsRow {
   height: 50%;
@@ -358,6 +360,10 @@ select {
   height: 50px;
   background-color: var(--gold);
 } */
+
+.navHeader {
+  color: white;
+}
 
 .navigation ul,
 .navigationDesktop ul {
@@ -458,7 +464,7 @@ button[type='submit'],
   width: 80px;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1258px) {
   .hamburger {
     display: flex;
     padding-top: 10px;
@@ -474,14 +480,14 @@ button[type='submit'],
 
 }
 
-@media (min-width: 768px) {
+@media (min-width: 1258px) {
   .navigationDesktop {
     background-color: var(--gold);
     width: 100%;
     color: white;
     text-align: center;
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     height: 53.5px;
     align-items: center;
   }
@@ -492,5 +498,20 @@ button[type='submit'],
 
   .header {
     text-align: center;
+    display: none;
+  }
+
+  .sectionHeader {
+    text-align: center;
+    color: var(--green);
+    font-size: 40px;
+    margin-bottom: 20px;
+    background-color: transparent;
+  }
+
+  .signupsContainer {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-auto-rows: minmax(100px, auto);
   }
 }

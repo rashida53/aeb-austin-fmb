@@ -50,6 +50,8 @@ export default function Nav() {
             </div>
 
             <div className="navigationDesktop">
+            <h3 className="navHeader">Faiz-ul Mawaid-il Burhaniyah</h3>
+            <div className="navLinks">
                 <ul>
                     <li>
                         <Link to="/openMenus" style={{ textDecoration: "none", color: "white" }}><h3>Open Menus</h3></Link>
@@ -67,6 +69,7 @@ export default function Nav() {
                         <Link to="#" style={{ textDecoration: "none", color: "white" }}><h3>Sign Out</h3></Link>
                     </li>
                 </ul>
+            </div>
             </div>
         </>
     )

@@ -21,6 +21,7 @@ const DishPhotoCard = (props) => {
                     publicId={imageId}
                     alt={props.dish?.dishName}
                     className='dishPhotoCardPhoto'
+                    style={props.style}
                 >
                     <Transformation
                         width="130"

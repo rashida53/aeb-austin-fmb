@@ -21,7 +21,7 @@ const UpcomingDishList = () => {
     return (
         <>
             <div className="mainContainer">
-                <h1>Dishes</h1>
+              
                 <SectionHeader title="Upcoming Dishes" />
                 <div>
                     {thisWeeksDishes && thisWeeksDishes
