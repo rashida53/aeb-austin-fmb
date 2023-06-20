@@ -28,7 +28,7 @@ const DishList = () => {
                 {dishes && dishes.map((dish) => (
                     <div className="allDishes">
                         <p key={dish._id} id={dish._id}>{dish.dishName}</p>
-                        {dish.dishPhoto && <DishPhotoCard image={dish.dishPhoto} dish={dish} />}
+                        {dish.dishPhoto && <DishPhotoCard image={dish.dishPhoto} dish={dish} style={{paddingBottom: '15px'}} />}
                         {!dish.dishPhoto && <ImageUploader id={dish._id} dish={dish} />}
                     </div>
                 ))}

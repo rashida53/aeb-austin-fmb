@@ -68,11 +68,11 @@ const UserSignups = () => {
         <Header />
       </div>
       <div className="mainContainer">
-        <SectionHeader title="Your Signups" />
+<h1>Your Signups</h1>
         <div className="signupsContainer">
           {
             userSignups && userSignups
-              .filter(signup => isDateXDaysFromToday(signup.menuItem.menuDate, 0))
+              .filter(signup => isDateXDaysFromToday(signup.menuItem?.menuDate, 0))
               .map(signup => (
                 <div key={signup._id} className="userSignup">
                   <div className="signupsRow">

@@ -55,7 +55,7 @@ const OpenSignups = () => {
                 <Header />
             </div>
             <div className="mainContainer">
-                <SectionHeader title="Open Menus" />
+            <h1>Open Menus</h1>
                 <div className="signupsContainer">
                     {
                         openSignups && openSignups

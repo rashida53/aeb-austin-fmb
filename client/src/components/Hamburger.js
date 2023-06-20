@@ -39,7 +39,7 @@ export default function Hamburger({ isOpen }) {
                     transform: ${isOpen ? 'rotate(-45deg)' : 'rotate(0)'};
                 }
 
-                @media (max-width: 768px) {
+                @media (max-width: 1258px) {
                     .hamburger {
                       display: flex;
                       padding-top: 10px;
