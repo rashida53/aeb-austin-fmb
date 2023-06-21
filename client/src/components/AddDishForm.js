@@ -3,7 +3,7 @@ import { useMutation } from "@apollo/client";
 import { useForm } from "react-hook-form";
 import { ADD_DISH } from "../utils/mutations";
 import Category from "../utils/category";
-
+import SectionHeader from "../components/SectionHeader";
 
 const AddDishForm = ({ dishes, setDishes }) => {
     const { register, handleSubmit, reset } = useForm();
@@ -32,14 +32,14 @@ const AddDishForm = ({ dishes, setDishes }) => {
 
     return (
         <>
-
+            <SectionHeader title="Add Dishes" />
             <form onSubmit={handleSubmit(onSubmit)} className="addDishForm">
                 <input {...register("dishName", { required: true })} placeholder="Name"></input>
                 <select {...register("category", { required: true })} placeholder="Category">
-                  <option disabled selected value>-- Dish category --</option>
-                  {Object.keys(Category).map(category => (
-                    <option key={category} value={Category[category]}>{Category[category]}</option>
-                  ))}
+                    <option disabled selected value>-- Dish category --</option>
+                    {Object.keys(Category).map(category => (
+                        <option key={category} value={Category[category]}>{Category[category]}</option>
+                    ))}
                 </select>
                 <input type="submit" value="Add Dish"></input>
             </form>

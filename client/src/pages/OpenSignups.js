@@ -2,7 +2,6 @@ import { showSignupForm, timeConverter } from "../utils/timeConverter";
 import React, { useEffect, useState } from "react";
 import { useMutation, useQuery } from "@apollo/client";
 import { GET_ME, GET_OPEN_MENUS, GET_USER_SIGNUPS } from "../utils/queries";
-import SectionHeader from "../components/SectionHeader";
 import Nav from "../components/Nav";
 import Header from "../components/Header";
 import { CREATE_SIGNUP } from "../utils/mutations";
@@ -55,7 +54,7 @@ const OpenSignups = () => {
                 <Header />
             </div>
             <div className="mainContainer">
-            <h1>Open Menus</h1>
+                <h1>Open Menus</h1>
                 <div className="signupsContainer">
                     {
                         openSignups && openSignups

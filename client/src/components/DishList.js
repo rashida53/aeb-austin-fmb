@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useQuery } from "@apollo/client";
-import { GET_ALL_DISHES, GET_SINGLE_DISH } from "../utils/queries";
+import { GET_ALL_DISHES } from "../utils/queries";
 import AddDishForm from "./AddDishForm";
 import SectionHeader from "./SectionHeader";
 import DishPhotoCard from "./DishPhotoCard";
@@ -19,23 +19,20 @@ const DishList = () => {
         }
     }, [dishData]);
 
-
-
     return (
         <>
-            <SectionHeader title="All Dishes" />
             <div className="mainContainer">
-                {dishes && dishes.map((dish) => (
-                    <div className="allDishes">
-                        <p key={dish._id} id={dish._id}>{dish.dishName}</p>
-                        {dish.dishPhoto && <DishPhotoCard image={dish.dishPhoto} dish={dish} style={{paddingBottom: '15px'}} />}
-                        {!dish.dishPhoto && <ImageUploader id={dish._id} dish={dish} />}
-                    </div>
-                ))}
-            </div>
-            <SectionHeader title="Add Dishes" />
-            <div>
                 <AddDishForm dishes={dishes} setDishes={setDishes} />
+                <SectionHeader title="All Dishes" />
+                <div className="allDishesContainer">
+                    {dishes && dishes.map((dish) => (
+                        <div className="allDishes">
+                            <p key={dish._id} id={dish._id}>{dish.dishName}</p>
+                            {dish.dishPhoto && <DishPhotoCard image={dish.dishPhoto} dish={dish} style={{ paddingBottom: '15px' }} />}
+                            {!dish.dishPhoto && <ImageUploader id={dish._id} dish={dish} />}
+                        </div>
+                    ))}
+                </div>
             </div>
         </>
     );

@@ -4,7 +4,6 @@ import { GET_ME, GET_USER_SIGNUPS } from "../utils/queries";
 import { CREATE_SIGNUP, DELETE_SIGNUP } from "../utils/mutations";
 import { isDateXDaysFromToday, showSignupForm, timeConverter } from "../utils/timeConverter";
 import Header from "../components/Header";
-import SectionHeader from "../components/SectionHeader";
 import Nav from "../components/Nav";
 import { useForm } from "react-hook-form";
 import DishPhotoCard from "../components/DishPhotoCard";
@@ -68,7 +67,7 @@ const UserSignups = () => {
         <Header />
       </div>
       <div className="mainContainer">
-<h1>Your Signups</h1>
+        <h1>Your Signups</h1>
         <div className="signupsContainer">
           {
             userSignups && userSignups
