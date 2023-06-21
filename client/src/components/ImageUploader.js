@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useForm } from "react-hook-form";
-import { useMutation, useQuery } from "@apollo/client";
+import { useMutation } from "@apollo/client";
 import { UPDATE_DISH_AND_UPLOAD_IMAGE } from "../utils/mutations";
 import { Image, Transformation } from "cloudinary-react";
 import mockPhoto from '../assets/dishPhotoPlaceholder.jpg';

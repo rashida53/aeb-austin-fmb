@@ -183,6 +183,27 @@ export const GET_COOKS_MENU_ITEMS = gql`
     }
 `
 
+export const GET_SIGNUPS_FOR_MENU_ITEM = gql`
+    query getSignupsForMenuItem($menuId: ID!) {
+        getSignupsForMenuItem(menuId: $menuId) {
+            menuItem {
+                cook {
+                    fullName
+                }
+                dish {
+                    dishName
+                }
+                menuDate
+            }
+            size
+            user {
+                _id
+                fullName
+            }
+        }
+}
+`
+
 export const GET_COOKS_MENU_ITEMS_BY_DATE = gql`
     query getCooksMenuItemsByDate($cookId: ID!) {
         cookMenuItemsByDate(cookId: $cookId) {

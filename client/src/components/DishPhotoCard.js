@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { Image, Transformation } from "cloudinary-react";
 import mockPhoto from '../assets/dishPhotoPlaceholder.jpg';
 
-
 const DishPhotoCard = (props) => {
     const [imageId, setImageId] = useState("");
 
@@ -31,10 +30,7 @@ const DishPhotoCard = (props) => {
                         border="3px_solid_rgb:6B802A"
                     />
                 </Image>
-            ) : (
-                <img src={mockPhoto} className="dishPhoto" alt="Dish Photo Placeholder" />
-            )
-
+            ) : <img src={mockPhoto} className="dishPhoto" alt="Dish Photo Placeholder" />
             }
         </>
     )

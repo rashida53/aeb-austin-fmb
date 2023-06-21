@@ -19,8 +19,6 @@ const DishList = () => {
         }
     }, [dishData]);
 
-
-
     return (
         <>
             <SectionHeader title="All Dishes" />

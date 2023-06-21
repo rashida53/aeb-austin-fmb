@@ -120,6 +120,18 @@ const resolvers = {
                 ).populate('user');
             }
         },
+        getSignupsForMenuItem: async (parent, { menuId }) => {
+            return Signup.find(
+                {
+                    menuItem: menuId
+                }
+            ).populate(
+                {
+                    path: 'menuItem',
+                    populate: { path: 'dish cook' },
+                }
+            ).populate('user');
+        },
     },
 
     Mutation: {

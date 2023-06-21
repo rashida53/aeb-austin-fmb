@@ -59,6 +59,7 @@ type Query {
     me: User
     userSignups: [Signup]!
     menuItem: MenuItem
+    getSignupsForMenuItem(menuId: ID!): [Signup]
 }
 
 type Mutation {
