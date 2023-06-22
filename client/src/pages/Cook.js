@@ -77,56 +77,63 @@ const Cook = () => {
             </div>
             <h1>{cook.fullName}</h1>
 
-            <SectionHeader title="Upcoming Dishes" />
+
 
             <div className="mainContainer">
-                {cookMenuItems && cookMenuItems.map((cookMenu) => (
-                    <div className="weeklyDishContainer">
-                        <div className="dishesRow">
-                            <p>{cookMenu.dish?.dishName}</p>
-                            <p>{timeConverter(cookMenu.menuDate)}</p>
-                        </div>
-
-                    </div>
-
-                ))}
+                <SectionHeader title="Upcoming Dishes" />
+                <div className="dishContainer">
+                    {cookMenuItems && cookMenuItems.map((cookMenu) => (
+                        <>
+                            <div id="cookDishesRow" className="dishesRow">
+                                <p>{cookMenu.dish?.dishName}</p>
+                                <p>{timeConverter(cookMenu.menuDate)}</p>
+                            </div>
+                            <hr className="dishRowLine" />
+                        </>
+                    ))}
+                </div>
 
                 <SectionHeader title="Pending Payments" />
-                {unpaidMenus && unpaidMenus.map((cookMenu) => (
-                    <div className="weeklyDishContainer">
-                        <div className="dishesRow">
-                            <p>{cookMenu.dish?.dishName}</p>
-                            <p>{timeConverter(cookMenu.menuDate)}</p>
-                            {
-                                cookMenu.amount &&
-                                <div className='amountAndPaidButton'>
-                                    <p style={{ fontWeight: "bold" }}>Total: ${cookMenu.amount}</p>
-                                    <button className='menuPaidButton' onClick={menuPaidButton}>
-                                        <p id={cookMenu._id}>Paid</p>
-                                    </button>
-                                </div>
-                            }
-                            {
-                                !cookMenu.amount && <AddCostForm id={cookMenu._id} unpaidMenus={unpaidMenus} setUnpaidMenus={setUnpaidMenus} />
-                            }
-                        </div>
-                    </div>
-                ))}
+                <div className="dishContainer">
+                    {unpaidMenus && unpaidMenus.map((cookMenu) => (
+                        <>
+                            <div className="dishesRow">
+                                <p>{cookMenu.dish?.dishName}</p>
+                                <p>{timeConverter(cookMenu.menuDate)}</p>
+                                {
+                                    cookMenu.amount &&
+                                    <div className='amountAndPaidButton'>
+                                        <p style={{ fontWeight: "bold" }}>Total: ${cookMenu.amount}</p>
+                                        <button className='menuPaidButton' onClick={menuPaidButton}>
+                                            <p id={cookMenu._id}>Paid</p>
+                                        </button>
+                                    </div>
+                                }
+                                {
+                                    !cookMenu.amount && <AddCostForm id={cookMenu._id} unpaidMenus={unpaidMenus} setUnpaidMenus={setUnpaidMenus} />
+                                }
+                            </div>
+                            <hr className="dishRowLine" />
+                        </>
+                    ))}
+                </div>
 
                 <SectionHeader title="Payment History" />
-                {cooksPaidMenus && cooksPaidMenus.map((cookMenu) => (
-                    <div className="weeklyDishContainer">
-                        <div className="dishesRow">
-                            <p>{cookMenu.dish?.dishName}</p>
-                            <p>{timeConverter(cookMenu.menuDate)}</p>
-                            <p style={{ fontWeight: "bold" }}>${cookMenu.amount}</p>
-                            <button className='returnToPendingButton' onClick={returnToPendingButton}>
-                                <p id={cookMenu._id}>Return to Pending</p>
-                            </button>
-                        </div>
-
-                    </div>
-                ))}
+                <div className="dishContainer">
+                    {cooksPaidMenus && cooksPaidMenus.map((cookMenu) => (
+                        <>
+                            <div id="paymentHistoryRow" className="dishesRow">
+                                <p>{cookMenu.dish?.dishName}</p>
+                                <p>{timeConverter(cookMenu.menuDate)}</p>
+                                <p style={{ fontWeight: "bold" }}>${cookMenu.amount}</p>
+                                <button className='returnToPendingButton' onClick={returnToPendingButton}>
+                                    <p id={cookMenu._id}>Return to Pending</p>
+                                </button>
+                            </div>
+                            <hr className="dishRowLine" />
+                        </>
+                    ))}
+                </div>
             </div>
         </>
     )

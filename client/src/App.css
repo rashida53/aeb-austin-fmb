@@ -41,7 +41,8 @@ h3 {
   color: var(--gold);
 }
 
-.header, .navHeader {
+.header,
+.navHeader {
   margin: 20px;
 }
 
@@ -266,10 +267,6 @@ select {
   height: 130px;
   box-shadow: 4px 4px 10px rgb(177, 177, 177);
 }
-/* 
-.dishPhotoCardPhoto {
-  padding-bottom: 15px;
-} */
 
 .uploadPhotoForm {
   display: flex;
@@ -330,7 +327,6 @@ select {
   margin-bottom: 75px;
 }
 
-
 .mainContainer {
   display: flex;
   flex-direction: column;
@@ -341,7 +337,6 @@ select {
   max-width: 600px;
 
 }
-
 
 .signupsRow {
   height: 50%;
@@ -354,12 +349,6 @@ select {
 .dishesRow {
   flex-direction: column;
 }
-
-/* .navigation {
-  width: 100%;
-  height: 50px;
-  background-color: var(--gold);
-} */
 
 .navHeader {
   color: white;
@@ -379,7 +368,6 @@ select {
 .navigationDesktop ul li {
   list-style-type: none;
 }
-
 
 .navigation ul li h3,
 .navigationDesktop ul li h3 {
@@ -464,6 +452,10 @@ button[type='submit'],
   width: 80px;
 }
 
+.dishRowLine {
+  visibility: hidden;
+}
+
 @media (max-width: 1258px) {
   .hamburger {
     display: flex;
@@ -472,7 +464,6 @@ button[type='submit'],
     z-index: 10;
 
   }
-
 
   .navigationDesktop {
     display: none;
@@ -501,17 +492,93 @@ button[type='submit'],
     display: none;
   }
 
-  .sectionHeader {
-    text-align: center;
-    color: var(--green);
-    font-size: 40px;
-    margin-bottom: 20px;
-    background-color: transparent;
-  }
-
   .signupsContainer {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-auto-rows: minmax(100px, auto);
+  }
+
+  .sectionHeader {
+    width: 80%;
+    margin: 0px;
+    padding: 0px 20px 0px 20px;
+    border-radius: 15px 15px 0px 0px;
+    box-shadow: 4px 0px 4px rgb(177, 177, 177);
+  }
+
+  .createMenuForm,
+  .addDishForm {
+    background-color: white;
+    display: flex;
+    flex-direction: row;
+    padding: 5px 20px;
+    justify-content: space-around;
+    margin-top: 0px;
+    margin-bottom: 30px;
+    border-radius: 0px 0px 15px 15px;
+    box-shadow: 4px 4px 10px rgb(177, 177, 177);
+    width: 80%
+  }
+
+  .createMenuForm select,
+  .createMenuForm input,
+  .addDishForm select,
+  .addDishForm input {
+    margin: 15px;
+  }
+
+  .dishesRow {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-auto-rows: minmax(50px, auto);
+    width: 100%;
+    padding: 10px 0px;
+    margin: 0px;
+    background-color: transparent;
+    box-shadow: none;
+    text-align: center;
+    align-items: center;
+  }
+
+  #cookDishesRow {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-auto-rows: minmax(50px, auto);
+  }
+
+  #paymentHistoryRow {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-auto-rows: minmax(50px, auto);
+  }
+
+  .allDishes {
+    background-color: transparent;
+    box-shadow: none;
+  }
+
+  .dishRowLine {
+    visibility: visible;
+  }
+
+  input {
+    margin-bottom: 0px;
+  }
+
+  .dishContainer,
+  .allDishesContainer {
+    width: 80%;
+    background-color: white;
+    padding: 15px 20px 0px 20px;
+    margin-bottom: 30px;
+    border-radius: 0px 0px 15px 15px;
+    box-shadow: 4px 4px 10px rgb(177, 177, 177);
+  }
+
+  .allDishesContainer {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
   }
 }
