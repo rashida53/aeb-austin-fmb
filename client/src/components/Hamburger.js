@@ -3,6 +3,7 @@ import React from "react";
 export default function Hamburger({ isOpen }) {
     return (
         <>
+        
             <div className="hamburger">
                 <div className="burger burger1"></div>
                 <div className="burger burger2"></div>
@@ -14,7 +15,6 @@ export default function Hamburger({ isOpen }) {
                     width: 2rem;
                     height: 2rem;
                     display: none;
-                    justify-content: space-around;
                     flex-flow: column nowrap;
                     z-index: 10;
                 }
@@ -42,11 +42,11 @@ export default function Hamburger({ isOpen }) {
                 @media (max-width: 1258px) {
                     .hamburger {
                       display: flex;
-                      padding-top: 10px;
                       margin-left: 10px;
                       z-index: 10;
-                  
                     }
+
+                    
                   }
 
                 
