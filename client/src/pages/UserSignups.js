@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useQuery, useMutation } from "@apollo/client";
 import { GET_ME, GET_USER_SIGNUPS } from "../utils/queries";
 import { CREATE_SIGNUP, DELETE_SIGNUP } from "../utils/mutations";
-import { isDateXDaysFromToday, showSignupForm, timeConverter, showEditMessage } from "../utils/timeConverter";
+import { isDateXDaysFromToday, showSignupForm, timeConverter, showEditMessage, showCancelMessage } from "../utils/timeConverter";
 import Header from "../components/Header";
 import Nav from "../components/Nav";
 import { useForm } from "react-hook-form";
@@ -94,23 +94,31 @@ const UserSignups = () => {
                         }
 
                       </div>
-                        
+
                       <div className="cancelButton">
                         {
                           isDateXDaysFromToday(signup.menuItem.menuDate, 4) &&
                           <p id={signup._id} onClick={onDeleteClick} className="cancelButtonText">Cancel</p>
+                        }
+                        {
+                          !isDateXDaysFromToday(signup.menuItem.menuDate, 4) &&
+                          <p id={signup._id} onClick={showCancelMessage} className="cancelButtonText">Cancel</p>
                         }
                       </div>
                       <div className="dishPhotoContainer">
                         <DishPhotoCard image={signup.menuItem?.dish?.dishPhoto} />
                       </div>
                     </div>
-                    <p id={"edit" + signup.menuItem._id} className="cantEditMessage" style={{visibility: 'hidden'}}>You can't edit now</p>
+                    <p id={"edit" + signup.menuItem._id} className="cantEditMessage" style={{ visibility: 'hidden' }}>You can't edit now</p>
+                    <p id={"cancel" + signup._id} className="cantCancelMessage" style={{ visibility: 'hidden' }}>You can't cancel now</p>
                   </div>
+
                   <div id={"form" + signup.menuItem._id} className="signupForm">
                     <button id={signup.menuItem._id} onClick={onSubmit} value="Small" className="sizeButtons">Small</button>
                     <button id={signup.menuItem._id} onClick={onSubmit} value="Large" className="sizeButtons">Large</button>
                   </div>
+
+
 
                 </div>
               ))}

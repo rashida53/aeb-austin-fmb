@@ -35,16 +35,34 @@ const hideAllForms = () => {
 
 export const showEditMessage = async (event) => {
     hideEditMessage();
+    hideCancelMessage();
     hideAllForms();
     const editMessage = document.getElementById("edit" + event.target.id);
     editMessage.style.visibility = "visible";
-  }
+}
 
-  const hideEditMessage = () => {
+const hideEditMessage = () => {
     const editMessage = document.getElementsByClassName('cantEditMessage');
     if (editMessage.length > 0) {
         for (let i = 0; i < editMessage.length; i++) {
             editMessage[i].style.visibility = "hidden";
         }
     }
-  }
+}
+
+export const showCancelMessage = async (event) => {
+    hideCancelMessage();
+    hideEditMessage();
+    hideAllForms();
+    const cancelMessage = document.getElementById("cancel" + event.target.id);
+    cancelMessage.style.visibility = "visible";
+}
+
+const hideCancelMessage = () => {
+    const cancelMessage = document.getElementsByClassName('cantCancelMessage');
+    if (cancelMessage.length > 0) {
+        for (let i = 0; i < cancelMessage.length; i++) {
+            cancelMessage[i].style.visibility = "hidden";
+        }
+    }
+}

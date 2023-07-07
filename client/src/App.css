@@ -223,11 +223,20 @@ select {
   padding: 10px;
 }
 
+.cantEditMessage,
+.cantCancelMessage {
+  position: relative;
+  top: -65px;
+  left: 20px;
+}
+
 .editButton,
 .cancelButton {
   padding: 15px;
   font-weight: bold;
 }
+
+
 
 .addSignupPlus,
 .editButtonText,
