@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useQuery, useMutation } from "@apollo/client";
 import { GET_ME, GET_USER_SIGNUPS } from "../utils/queries";
 import { CREATE_SIGNUP, DELETE_SIGNUP } from "../utils/mutations";
-import { isDateXDaysFromToday, showSignupForm, timeConverter } from "../utils/timeConverter";
+import { isDateXDaysFromToday, showSignupForm, timeConverter, showEditMessage } from "../utils/timeConverter";
 import Header from "../components/Header";
 import Nav from "../components/Nav";
 import { useForm } from "react-hook-form";
@@ -59,6 +59,8 @@ const UserSignups = () => {
     }
   }
 
+
+
   return (
     <>
       {/* {!Auth.loggedIn() && <Navigate to="/login" />} */}
@@ -86,7 +88,13 @@ const UserSignups = () => {
                           isDateXDaysFromToday(signup.menuItem.menuDate, 4) &&
                           <p id={signup.menuItem._id} onClick={showSignupForm} className="editButtonText">Edit</p>
                         }
+                        {
+                          !isDateXDaysFromToday(signup.menuItem.menuDate, 4) &&
+                          <p id={signup.menuItem._id} onClick={showEditMessage} className="editButtonText">Edit</p>
+                        }
+
                       </div>
+                        
                       <div className="cancelButton">
                         {
                           isDateXDaysFromToday(signup.menuItem.menuDate, 4) &&
@@ -97,6 +105,7 @@ const UserSignups = () => {
                         <DishPhotoCard image={signup.menuItem?.dish?.dishPhoto} />
                       </div>
                     </div>
+                    <p id={"edit" + signup.menuItem._id} className="cantEditMessage" style={{visibility: 'hidden'}}>You can't edit now</p>
                   </div>
                   <div id={"form" + signup.menuItem._id} className="signupForm">
                     <button id={signup.menuItem._id} onClick={onSubmit} value="Small" className="sizeButtons">Small</button>

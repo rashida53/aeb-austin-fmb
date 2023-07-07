@@ -19,6 +19,7 @@ export const isDateXDaysFromToday = (date, days) => {
 
 export const showSignupForm = (event) => {
     hideAllForms();
+    hideEditMessage();
     const signupForm = document.getElementById("form" + event.target.id);
     signupForm.style.visibility = "visible";
 };
@@ -32,5 +33,18 @@ const hideAllForms = () => {
     }
 }
 
+export const showEditMessage = async (event) => {
+    hideEditMessage();
+    hideAllForms();
+    const editMessage = document.getElementById("edit" + event.target.id);
+    editMessage.style.visibility = "visible";
+  }
 
-
+  const hideEditMessage = () => {
+    const editMessage = document.getElementsByClassName('cantEditMessage');
+    if (editMessage.length > 0) {
+        for (let i = 0; i < editMessage.length; i++) {
+            editMessage[i].style.visibility = "hidden";
+        }
+    }
+  }
