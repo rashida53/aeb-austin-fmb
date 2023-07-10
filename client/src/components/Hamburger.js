@@ -17,6 +17,7 @@ export default function Hamburger({ isOpen }) {
                     display: none;
                     flex-flow: column nowrap;
                     z-index: 10;
+                    position: fixed;
                 }
 
                 .burger{

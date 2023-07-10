@@ -93,7 +93,7 @@ const UserSignups = () => {
                       }
                       {
                         !isDateXDaysFromToday(signup.menuItem.menuDate, 4) &&
-                        <div className="editButton" style={{ backgroundColor: '#DDC798', color: '#E6DBC9' }}>
+                        <div className="editButton" style={{ backgroundColor: '#DDC798', color: '#FFFFFF', boxShadow: 'inset 3px 4px 5px #A4800F', cursor: 'default' }}>
                           <p id={signup.menuItem._id} className="editButtonText">Edit</p>
                         </div>
                       }
@@ -110,7 +110,7 @@ const UserSignups = () => {
 
                       {
                         !isDateXDaysFromToday(signup.menuItem.menuDate, 4) &&
-                        <div className="cancelButton" style={{ backgroundColor: '#DDC798', color: '#E6DBC9' }}>
+                        <div className="cancelButton" style={{ backgroundColor: '#DDC798', color: '#FFFFFF', boxShadow: 'inset 3px 4px 5px #A4800F', cursor: 'default'}}>
                           <p id={signup._id} className="cancelButtonText">Cancel</p>
                         </div>
                       }

@@ -33,6 +33,7 @@ const Cooks = () => {
         <Header />
       </div>
 
+<div className='mainContainer'>
       <h1>Cooks</h1>
 
       <div className="cookTiles">
@@ -44,17 +45,17 @@ const Cooks = () => {
               </div>
             </Link>
           ))}
-        <div className="cookTile">
-          <p id="addCookPlus" onClick={showAddCook}>
+        <div className="cookTile" onClick={showAddCook}>
+          <p id="addCookPlus">
             +
           </p>
         </div>
 
       </div>
-      <div>
+      <div className="cookFormWrapperDiv">
         <CookForm cooks={cooks} setCook={setCook} />
       </div>
-
+      </div>
     </>
   )
 

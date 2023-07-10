@@ -17,7 +17,7 @@ export default function Nav() {
             maxWidth: '350px',
             marginTop: '0px',
             paddingTop: '60px',
-            position: 'absolute',
+            position: 'fixed',
             zIndex: 2,
             paddingLeft: '0px'
         },
