@@ -19,6 +19,7 @@ export const isDateXDaysFromToday = (date, days) => {
 
 export const showSignupForm = (event) => {
     hideAllForms();
+    hideEditMessage();
     const signupForm = document.getElementById("form" + event.target.id);
     signupForm.style.visibility = "visible";
 };
@@ -32,5 +33,41 @@ const hideAllForms = () => {
     }
 }
 
+// export const showEditMessage = async (event) => {
+//     hideEditMessage();
+//     hideCancelMessage();
+//     hideAllForms();
+//     const editMessage = document.getElementById("edit" + event.target.id);
+//     editMessage.style.visibility = "visible";
+// }
 
+export const showEditMessage = async (event) => {
+    const editButton = document.getElementsByClassName("editButton");
+    editButton[1].style.backgroundColor = "grey";
+}
 
+const hideEditMessage = () => {
+    const editMessage = document.getElementsByClassName('cantEditMessage');
+    if (editMessage.length > 0) {
+        for (let i = 0; i < editMessage.length; i++) {
+            editMessage[i].style.visibility = "hidden";
+        }
+    }
+}
+
+export const showCancelMessage = async (event) => {
+    hideCancelMessage();
+    hideEditMessage();
+    hideAllForms();
+    const cancelMessage = document.getElementById("cancel" + event.target.id);
+    cancelMessage.style.visibility = "visible";
+}
+
+const hideCancelMessage = () => {
+    const cancelMessage = document.getElementsByClassName('cantCancelMessage');
+    if (cancelMessage.length > 0) {
+        for (let i = 0; i < cancelMessage.length; i++) {
+            cancelMessage[i].style.visibility = "hidden";
+        }
+    }
+}
