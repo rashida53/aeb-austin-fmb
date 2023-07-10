@@ -6,7 +6,7 @@
 }
 
 body {
-  background-image: url('./assets/bg.jpg');
+  background-image: url('./assets/bg2.jpg');
   background-position: center;
 }
 
@@ -39,6 +39,7 @@ h3 {
 
 .header {
   color: var(--gold);
+  font-size: 21px;
 }
 
 .header,
@@ -354,6 +355,10 @@ select {
   color: white;
 }
 
+.navigation {
+  display: flex;
+}
+
 .navigation ul,
 .navigationDesktop ul {
   display: flex;
@@ -388,6 +393,7 @@ select {
   justify-content: space-around;
   flex-flow: column nowrap;
   z-index: 10;
+  align-self: center;
 }
 
 .burger {
@@ -459,7 +465,7 @@ button[type='submit'],
 @media (max-width: 1258px) {
   .hamburger {
     display: flex;
-    padding-top: 10px;
+    /* padding-top: 10px; */
     margin-left: 10px;
     z-index: 10;
 
@@ -481,6 +487,10 @@ button[type='submit'],
     justify-content: space-between;
     height: 53.5px;
     align-items: center;
+  }
+
+  .navigation {
+    display: none;
   }
 
   .navAndHeader {
