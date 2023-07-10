@@ -33,12 +33,17 @@ const hideAllForms = () => {
     }
 }
 
+// export const showEditMessage = async (event) => {
+//     hideEditMessage();
+//     hideCancelMessage();
+//     hideAllForms();
+//     const editMessage = document.getElementById("edit" + event.target.id);
+//     editMessage.style.visibility = "visible";
+// }
+
 export const showEditMessage = async (event) => {
-    hideEditMessage();
-    hideCancelMessage();
-    hideAllForms();
-    const editMessage = document.getElementById("edit" + event.target.id);
-    editMessage.style.visibility = "visible";
+    const editButton = document.getElementsByClassName("editButton");
+    editButton[1].style.backgroundColor = "grey";
 }
 
 const hideEditMessage = () => {

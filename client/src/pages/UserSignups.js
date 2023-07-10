@@ -7,6 +7,7 @@ import Header from "../components/Header";
 import Nav from "../components/Nav";
 import { useForm } from "react-hook-form";
 import DishPhotoCard from "../components/DishPhotoCard";
+import CantChangeMessage from "../components/CantChangeMessage";
 
 const UserSignups = () => {
 
@@ -83,34 +84,44 @@ const UserSignups = () => {
                       <p>{signup.size}</p>
                     </div>
                     <div className="buttonAndPhoto">
-                      <div className="editButton">
-                        {
-                          isDateXDaysFromToday(signup.menuItem.menuDate, 4) &&
+
+                      {
+                        isDateXDaysFromToday(signup.menuItem.menuDate, 4) &&
+                        <div className="editButton">
                           <p id={signup.menuItem._id} onClick={showSignupForm} className="editButtonText">Edit</p>
-                        }
-                        {
-                          !isDateXDaysFromToday(signup.menuItem.menuDate, 4) &&
-                          <p id={signup.menuItem._id} onClick={showEditMessage} className="editButtonText">Edit</p>
-                        }
+                        </div>
+                      }
+                      {
+                        !isDateXDaysFromToday(signup.menuItem.menuDate, 4) &&
+                        <div className="editButton" style={{ backgroundColor: '#DDC798', color: '#E6DBC9' }}>
+                          <p id={signup.menuItem._id} className="editButtonText">Edit</p>
+                        </div>
+                      }
 
-                      </div>
 
-                      <div className="cancelButton">
-                        {
-                          isDateXDaysFromToday(signup.menuItem.menuDate, 4) &&
+
+
+                      {
+                        isDateXDaysFromToday(signup.menuItem.menuDate, 4) &&
+                        <div className="cancelButton">
                           <p id={signup._id} onClick={onDeleteClick} className="cancelButtonText">Cancel</p>
-                        }
-                        {
-                          !isDateXDaysFromToday(signup.menuItem.menuDate, 4) &&
-                          <p id={signup._id} onClick={showCancelMessage} className="cancelButtonText">Cancel</p>
-                        }
-                      </div>
+                        </div>
+                      }
+
+                      {
+                        !isDateXDaysFromToday(signup.menuItem.menuDate, 4) &&
+                        <div className="cancelButton" style={{ backgroundColor: '#DDC798', color: '#E6DBC9' }}>
+                          <p id={signup._id} className="cancelButtonText">Cancel</p>
+                        </div>
+                      }
+
                       <div className="dishPhotoContainer">
                         <DishPhotoCard image={signup.menuItem?.dish?.dishPhoto} />
                       </div>
                     </div>
-                    <p id={"edit" + signup.menuItem._id} className="cantEditMessage" style={{ visibility: 'hidden' }}>You can't edit now</p>
-                    <p id={"cancel" + signup._id} className="cantCancelMessage" style={{ visibility: 'hidden' }}>You can't cancel now</p>
+                    <CantChangeMessage id={"edit" + signup.menuItem._id} className={"cantEditMessage"} style={{ visibility: 'hidden' }} message={"You can't edit now"} />
+                    <CantChangeMessage id={"cancel" + signup._id} className={"cantCancelMessage"} style={{ visibility: 'hidden' }} message={"You can't cancel now"} />
+                    {/* <p id={"cancel" + signup._id} className="cantCancelMessage" style={{ visibility: 'hidden' }}>You can't cancel now</p> */}
                   </div>
 
                   <div id={"form" + signup.menuItem._id} className="signupForm">
