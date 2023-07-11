@@ -9,7 +9,7 @@ const Dishes = () => {
         <>
             <div className="navAndHeader">
                 <Nav />
-                <Header />
+
             </div>
             <h1>Dishes</h1>
             <UpcomingDishList />

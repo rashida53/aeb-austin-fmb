@@ -73,7 +73,6 @@ const Cook = () => {
         <>
             <div className="navAndHeader">
                 <Nav />
-                <Header />
             </div>
             <h1>{cook.fullName}</h1>
 

@@ -3,7 +3,7 @@ import React from "react";
 export default function Hamburger({ isOpen }) {
     return (
         <>
-        
+
             <div className="hamburger">
                 <div className="burger burger1"></div>
                 <div className="burger burger2"></div>
