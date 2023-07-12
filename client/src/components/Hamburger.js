@@ -3,7 +3,7 @@ import React from "react";
 export default function Hamburger({ isOpen }) {
     return (
         <>
-        
+
             <div className="hamburger">
                 <div className="burger burger1"></div>
                 <div className="burger burger2"></div>
@@ -17,7 +17,10 @@ export default function Hamburger({ isOpen }) {
                     display: none;
                     flex-flow: column nowrap;
                     z-index: 10;
+                 
                 }
+
+                .hamburger {position: ${isOpen ? 'fixed' : 'absolute'}}
 
                 .burger{
                     width: 2rem;

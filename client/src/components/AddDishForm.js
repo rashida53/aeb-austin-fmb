@@ -23,7 +23,7 @@ const AddDishForm = ({ dishes, setDishes }) => {
 
             reset({
                 dishName: '',
-                category: '',
+                category: '-- Dish Category --',
             })
         } catch (err) {
             console.error(err);

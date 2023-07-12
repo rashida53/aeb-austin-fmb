@@ -51,7 +51,6 @@ const OpenSignups = () => {
         <>
             <div className="navAndHeader">
                 <Nav />
-                <Header />
             </div>
             <div className="mainContainer">
                 <h1>Open Menus</h1>

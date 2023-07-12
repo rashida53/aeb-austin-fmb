@@ -30,31 +30,31 @@ const Cooks = () => {
 
       <div className="navAndHeader">
         <Nav />
-        <Header />
       </div>
 
-      <h1>Cooks</h1>
+      <div className='mainContainer'>
+        <h1>Cooks</h1>
 
-      <div className="cookTiles">
-        {cooks &&
-          cooks.map((cook) => (
-            <Link to={`/cook/${cook._id}`} style={{ textDecoration: "none" }}>
-              <div className="cookTile" key={cook._id}>
-                <p>{cook.fullName}</p>
-              </div>
-            </Link>
-          ))}
-        <div className="cookTile">
-          <p id="addCookPlus" onClick={showAddCook}>
-            +
-          </p>
+        <div className="cookTiles">
+          {cooks &&
+            cooks.map((cook) => (
+              <Link to={`/cook/${cook._id}`} style={{ textDecoration: "none" }}>
+                <div className="cookTile" key={cook._id}>
+                  <p>{cook.fullName}</p>
+                </div>
+              </Link>
+            ))}
+          <div className="cookTile" onClick={showAddCook}>
+            <p id="addCookPlus">
+              +
+            </p>
+          </div>
+
         </div>
-
+        <div className="cookFormWrapperDiv">
+          <CookForm cooks={cooks} setCook={setCook} />
+        </div>
       </div>
-      <div>
-        <CookForm cooks={cooks} setCook={setCook} />
-      </div>
-
     </>
   )
 
