@@ -41,12 +41,7 @@ const AddDishForm = ({ dishes, setDishes }) => {
                         <option key={category} value={Category[category]}>{Category[category]}</option>
                     ))}
                 </select>
-                <input type="submit" value="Add Dish" onClick={() => {
-                    reset({
-                        dishName: '',
-                        category: "-- Dish Category --",
-                    })
-                }}></input>
+                <input type="submit" value="Add Dish"></input>
             </form>
         </>
     )
