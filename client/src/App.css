@@ -178,7 +178,6 @@ select {
   padding: 3px 9px 3px 9px;
 }
 
-/* .signupsRow, */
 .signupInputs,
 .sizeOption,
 .dishesRow {
@@ -216,7 +215,6 @@ select {
   background-color: white;
   border-radius: 15px;
   color: var(--green);
-  /* box-shadow: 2px 2px 10px rgb(164,128,15); */
   align-self: end;
 }
 
@@ -269,7 +267,6 @@ select {
   padding: 15px 20px 15px 20px;
   color: var(--gold);
   margin: 15px;
-  /* box-shadow: 2px 2px 10px rgb(164,128,15); */
 }
 
 .dishPhoto {
@@ -277,7 +274,7 @@ select {
   border-radius: 15px;
   width: 130px;
   height: 130px;
-  /* box-shadow: 2px 2px 10px rgb(164,128,15); */
+
 }
 
 .uploadPhotoForm {
@@ -470,6 +467,7 @@ button[type='submit'],
 
 .addCostForm input {
   width: 110px;
+  font-size: 18px;
 }
 
 .amountAndPaidButton {
@@ -488,7 +486,6 @@ button[type='submit'],
 @media (max-width: 1258px) {
   .hamburger {
     display: flex;
-    /* padding-top: 10px; */
     margin-left: 10px;
     z-index: 10;
 
@@ -536,7 +533,6 @@ button[type='submit'],
     margin: 0px;
     padding: 0px 20px 0px 20px;
     border-radius: 15px 15px 0px 0px;
-    /* box-shadow: 2px 2px 10px rgb(164,128,15); */
   }
 
   .createMenuForm,
@@ -549,7 +545,6 @@ button[type='submit'],
     margin-top: 0px;
     margin-bottom: 30px;
     border-radius: 0px 0px 15px 15px;
-    /* box-shadow: 2px 2px 10px rgb(164,128,15); */
     width: 80%
   }
 
@@ -605,7 +600,6 @@ button[type='submit'],
     padding: 15px 20px 0px 20px;
     margin-bottom: 30px;
     border-radius: 0px 0px 15px 15px;
-    /* box-shadow: 2px 2px 10px rgb(164,128,15); */
   }
 
   .allDishesContainer {

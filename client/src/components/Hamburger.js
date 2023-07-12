@@ -17,8 +17,10 @@ export default function Hamburger({ isOpen }) {
                     display: none;
                     flex-flow: column nowrap;
                     z-index: 10;
-                    position: fixed;
+                 
                 }
+
+                .hamburger {position: ${isOpen ? 'fixed' : 'absolute'}}
 
                 .burger{
                     width: 2rem;
